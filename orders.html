@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TaskPro - Orders</title>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="nav-profile.css" />
+    <link rel="stylesheet" href="orders.css" />
+  </head>
+  <body>
+
+    <header class="navbar">
+      <div class="nav-inner">
+        <div class="brand">
+          <div class="logo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              fill="white"
+              class="bi bi-check2-square"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"
+              />
+              <path
+                d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"
+              />
+            </svg>
+          </div>
+          <span class="brand-name">TaskPro</span>
+        </div>
+        <div class="nav-actions">
+          <a href="dashboard.html" class="dashboard-pill">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              fill="white"
+              class="bi bi-house"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"
+              />
+            </svg>
+            <span class="dashboard-text">Dashboard</span>
+          </a>
+          <div class="profile" id="profile">
+            <div id="profileIcon" class="profile-trigger">
+              <img
+                src="download.jpeg"
+                alt="Profile"
+                style="width: 34px; height: 34px; border-radius: 50%"
+              />
+            </div>
+            <div id="profileDropdown" class="profile-dropdown">
+              <ul>
+                <p class="para">Owner</p>
+                <p class="para">Owner@gmail.com</p>
+                <hr>
+                <!-- <li><a href="#" id="editProfileLink">Edit</a></li> -->
+                <li><a href="#" id="settingsLink">Settings</a></li>
+                <hr>
+                <li><a href="#" id="logoutLink">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="hero">
+        <br>
+        <br>
+        <h1>Order Management</h1>
+        <p class="subtitle">View and manage customer orders</p>
+      </section>
+
+      <section class="orders-table">
+        <!-- ✅ Filter Buttons -->
+        <div class="orders-header">
+          <div class="status-filters">
+            <button class="filter-btn all active" data-status="all">
+              All Orders <span class="badge">4</span>
+            </button>
+            <button class="filter-btn pending" data-status="pending">
+              Order Placed <span class="badge">0</span>
+            </button>
+            <button class="filter-btn processing" data-status="processing">
+              Processing <span class="badge">4</span>
+            </button>
+            <button class="filter-btn shipped" data-status="shipped">
+              Shipped <span class="badge">0</span>
+            </button>
+            <button class="filter-btn outfordelivery" data-status="outfordelivery">
+              Out for Delivery <span class="badge">0</span>
+            </button>
+            <button class="filter-btn delivered" data-status="delivered">
+              Delivered <span class="badge">0</span>
+            </button>
+            <button class="filter-btn cancelled" data-status="cancelled">
+              Cancelled <span class="badge">0</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- ✅ Search Bar above the table -->
+        <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Search orders..." />
+          <button class="btn-search" onclick="searchOrders()">Search</button>
+        </div>
+
+        <!-- ✅ Orders Table -->
+        <table>
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Customer</th>
+              <th>Date</th>
+              <th>Items</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="ordersTable">
+            <tr data-status="pending">
+              <td>#order_RD52V8...</td>
+              <td>kalyanR</td>
+              <td>Sep 03, 2025</td>
+              <td>3 items</td>
+              <td>$45.00</td>
+              <td><span class="order-status pending">Order Placed</span></td>
+              <td><a href="#" class="btn-soft btn-mint">View Details</a></td>
+            </tr>
+            <tr data-status="processing">
+              <td>#order_RCNzSw...</td>
+              <td>kalyanR</td>
+              <td>Sep 01, 2025</td>
+              <td>1 item</td>
+              <td>$120.50</td>
+              <td><span class="order-status processing">Processing</span></td>
+              <td><a href="#" class="btn-soft btn-mint">View Details</a></td>
+            </tr>
+            <tr data-status="shipped">
+              <td>#order_RCMfgq...</td>
+              <td>kalyanR</td>
+              <td>Sep 01, 2025</td>
+              <td>1 item</td>
+              <td>$78.90</td>
+              <td><span class="order-status shipped">Shipped</span></td>
+              <td><a href="#" class="btn-soft btn-mint">View Details</a></td>
+            </tr>
+            <tr data-status="shipped">
+              <td>#order_RCBruT...</td>
+              <td>kalyanR</td>
+              <td>Sep 01, 2025</td>
+              <td>1 item</td>
+              <td>$78.90</td>
+              <td><span class="order-status shipped">Shipped</span></td>
+              <td><a href="#" class="btn-soft btn-mint">View Details</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <div id="noOrders" class="no-orders" style="display: none;">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-inbox'%3E%3Cpath d='M22 12h-6l-2 3h-4l-2-3H2'/%3E%3Crect x='2' y='7' width='20' height='14' rx='2' ry='2'/%3E%3Cpath d='M16 21v-2a4 4 0 0 0-4-4h-4a4 4 0 0 0-4 4v2'/%3E%3C/svg%3E" alt="No orders icon">
+          <p>No orders found</p>
+          <button class="btn-search" onclick="viewAllOrders()">View All Orders</button>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <small>©️ <span id="year"></span> TaskPro — Orders Management</small>
+      </footer>
+    </main>
+
+    <script>
+      // Update year in footer
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // ✅ Filter functionality
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      const rows = document.querySelectorAll("#ordersTable tr");
+      const noOrdersDiv = document.getElementById("noOrders");
+      const ordersTable = document.getElementById("ordersTable");
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+
+          const status = btn.getAttribute("data-status");
+
+          if (status === "pending" || status === "shipped" || status === "outfordelivery" || status === "delivered" || status === "cancelled") {
+            ordersTable.innerHTML = "";
+            noOrdersDiv.style.display = "block";
+          } else if (status === "processing") {
+            ordersTable.innerHTML = `
+              <tr data-status="pending">
+                <td>#order_RD52V8...</td>
+                <td>kalyanR</td>
+                <td>Sep 03, 2025</td>
+                <td>3 items</td>
+                <td>$45.00</td>
+                <td><span class="order-status pending">Order Placed</span></td>
+                <td><a href="#" class="btn-soft btn-mint">View Details</a></td>
+              </tr>
+              <tr data-status="processing">
+                <td>#order_RCNzSw...</td>
+                <td>kalyanR</td>
+                <td>Sep 01, 2025</td>
+                <td>1 item</td>
+                <td>$120.50</td>
+                <td><span class="order-status processing">Processing</span></td>
+                <td><a href="#" class="btn-soft btn-mint">View Details</a></td>
+              </tr>
+              <tr data-status="shipped">
+                <td>#order_RCMfgq...</td>
+                <td>kalyanR</td>
+                <td>Sep 01, 2025</td>
+                <td>1 item</td>
+                <td>$78.90</td>
+                <td><span class="order-status shipped">Shipped</span></td>
+                <td><a href="#" class="btn-soft btn-mint">View Details</a></td>
+              </tr>
+              <tr data-status="shipped">
+                <td>#order_RCBruT...</td>
+                <td>kalyanR</td>
+                <td>Sep 01, 2025</td>
+                <td>1 item</td>
+                <td>$78.90</td>
+                <td><span class="order-status shipped">Shipped</span></td>
+                <td><a href="#" class="btn-soft btn-mint">View Details</a></td>
+              </tr>
+            `;
+            noOrdersDiv.style.display = "none";
+          } else {
+            noOrdersDiv.style.display = "none";
+            ordersTable.innerHTML = `
+              <tr data-status="pending">
+                <td>#order_RD52V8...</td>
+                <td>kalyanR</td>
+                <td>Sep 03, 2025</td>
+                <td>3 items</td>
+                <td>$45.00</td>
+                <td><span class="order-status pending">Order Placed</span></td>
+                <td><a href="#" class="btn-soft btn-mint">View Details</a></td>
+              </tr>
+              <tr data-status="processing">
+                <td>#order_RCNzSw...</td>
+                <td>kalyanR</td>
+                <td>Sep 01, 2025</td>
+                <td>1 item</td>
+                <td>$120.50</td>
+                <td><span class="order-status processing">Processing</span></td>
+                <td><a href="#" class="btn-soft btn-mint">View Details</a></td>
+              </tr>
+              <tr data-status="shipped">
+                <td>#order_RCMfgq...</td>
+                <td>kalyanR</td>
+                <td>Sep 01, 2025</td>
+                <td>1 item</td>
+                <td>$78.90</td>
+                <td><span class="order-status shipped">Shipped</span></td>
+                <td><a href="#" class="btn-soft btn-mint">View Details</a></td>
+              </tr>
+              <tr data-status="shipped">
+                <td>#order_RCBruT...</td>
+                <td>kalyanR</td>
+                <td>Sep 01, 2025</td>
+                <td>1 item</td>
+                <td>$78.90</td>
+                <td><span class="order-status shipped">Shipped</span></td>
+                <td><a href="#" class="btn-soft btn-mint">View Details</a></td>
+              </tr>
+            `;
+          }
+
+          rows.forEach((row) => {
+            if (status === "all" || row.getAttribute("data-status") === status) {
+              row.style.display = "";
+            } else {
+              row.style.display = "none";
+            }
+          });
+        });
+      });
+
+      // ✅ Search functionality
+      function searchOrders() {
+        const input = document.getElementById("searchInput").value.toLowerCase();
+        rows.forEach((row) => {
+          const text = row.innerText.toLowerCase();
+          row.style.display = text.includes(input) ? "" : "none";
+        });
+      }
+
+      // ✅ View All Orders functionality
+      function viewAllOrders() {
+        noOrdersDiv.style.display = "none";
+        ordersTable.innerHTML = `
+          <tr data-status="pending">
+            <td>#order_RD52V8...</td>
+            <td>kalyanR</td>
+            <td>Sep 03, 2025</td>
+            <td>3 items</td>
+            <td>$45.00</td>
+            <td><span class="order-status pending">Order Placed</span></td>
+            <td><a href="#" class="btn-soft btn-mint">View Details</a></td>
+          </tr>
+          <tr data-status="processing">
+            <td>#order_RCNzSw...</td>
+            <td>kalyanR</td>
+            <td>Sep 01, 2025</td>
+            <td>1 item</td>
+            <td>$120.50</td>
+            <td><span class="order-status processing">Processing</span></td>
+            <td><a href="#" class="btn-soft btn-mint">View Details</a></td>
+          </tr>
+          <tr data-status="shipped">
+            <td>#order_RCMfgq...</td>
+            <td>kalyanR</td>
+            <td>Sep 01, 2025</td>
+            <td>1 item</td>
+            <td>$78.90</td>
+            <td><span class="order-status shipped">Shipped</span></td>
+            <td><a href="#" class="btn-soft btn-mint">View Details</a></td>
+          </tr>
+          <tr data-status="shipped">
+            <td>#order_RCBruT...</td>
+            <td>kalyanR</td>
+            <td>Sep 01, 2025</td>
+            <td>1 item</td>
+            <td>$78.90</td>
+            <td><span class="order-status shipped">Shipped</span></td>
+            <td><a href="#" class="btn-soft btn-mint">View Details</a></td>
+          </tr>
+        `;
+      }
+    </script>
+  </body>
+</html>

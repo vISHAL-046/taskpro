@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="products.css" />
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="nav-profile.css"/>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="nav-inner">
+        <div class="brand">
+          <div class="logo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              fill="white"
+              class="bi bi-check2-square"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"
+              />
+              <path
+                d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"
+              />
+            </svg>
+          </div>
+          <span class="brand-name">TaskPro</span>
+        </div>
+        <div class="nav-actions">
+          <a href="dashboard.html" class="dashboard-pill">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              fill="white"
+              class="bi bi-house"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"
+              />
+            </svg>
+            <span class="dashboard-text">Dashboard</span>
+          </a>
+          <div class="profile" id="profile">
+            <div id="profileIcon" class="profile-trigger">
+              <img
+                src="download.jpeg"
+                alt="Profile"
+                style="width: 34px; height: 34px; border-radius: 50%"
+              />
+            </div>
+            <div id="profileDropdown" class="profile-dropdown">
+              <ul>
+                <li><a href="#" id="editProfileLink">Edit</a></li>
+                <li><a href="#" id="settingsLink">Settings</a></li>
+                <li><a href="#" id="logoutLink">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+<main class="container">
+      <!-- 🚀 Carousel Section -->
+      <section class="carousel">
+        <div class="carousel-inner" id="carouselInner">
+          <div class="carousel-item">
+            <img src="https://img.freepik.com/premium-photo/shopping-background-hd-8k-wallpaper-stock-photographic-image_890746-30662.jpg" alt="Orders Banner 1" />
+          </div>
+          <div class="carousel-item">
+            <img src="https://wallpaperbat.com/img/371335-grocery-store-wallpaper-photography-wallpaper.jpg" alt="Orders Banner 2" />
+          </div>
+          <div class="carousel-item">
+            <img src="https://wallpaperaccess.com/full/4754341.jpg" alt="Orders Banner 3" />
+          </div>
+        </div>
+        <div class="carousel-controls">
+          <button id="prevBtn">&#10094;</button>
+          <button id="nextBtn">&#10095;</button>
+        </div>
+      </section>
+<br>
+<br>
+<br>
+    <div class="manage-products">
+      <div class="sus">
+      <h2><i class="fas fa-boxes"></i> Manage Products</h2>
+      <p class="subtitle">Add, edit or remove products from your inventory</p>
+      </div>
+<br>
+<br>
+
+      <div class="filter-box">
+        <h3><i class="fas fa-filter"></i> Search & Filter</h3>
+
+        <div class="filter-controls">
+          <div class="search-input">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search products by name..." />
+          </div>
+
+          <div class="price-filter">
+            <label for="maxPrice">Max Price (₹):</label>
+            <input type="text" id="maxPrice" placeholder="No limit" />
+          </div>
+
+          <div class="filter-buttons">
+            <button class="btn apply-btn">
+              
+              <i class="fas fa-check"></i> Apply
+            </button>
+            <button class="btn clear-btn">
+              <i class="fas fa-times"></i> Clear
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="products">
+    <div class="product-card">
+      <div class="product-img-section">
+        <img src="https://cdn.topcombi.org/img/7159169/kakie-urozhajnie-sorta-tomatov-luchshe-sazhat-dlya-leningradskoj-oblasti.jpg" alt="lenin tomato" class="product-img" />
+        <span class="price-tag">₹ 122.0</span>
+        <span class="stock-warning">Only 2 left</span>
+      </div>
+      <div class="product-details">
+        <h3 class="product-title">lenin</h3>
+        <div class="rating">
+          ★★★★★
+          <span class="rating-count">(24)</span>
+        </div>
+        <button class="add-cart-btn">Add to Cart</button>
+      </div>
+    </div>
+    <div class="product-card">
+    <div class="product-img-section">
+      <img src="https://tse4.mm.bing.net/th/id/OIP.kDeVVY882mCsEFnxmg8H1QHaGl?pid=Api&P=0&h=180" alt="fresh potato" class="product-img" />
+      <span class="price-tag">₹ 85.0</span>
+      
+      <span class="stock-warning">In Stock</span>
+    </div>
+    <div class="product-details">
+      <h3 class="product-title">Fresh Potato</h3>
+      <div class="rating">
+        ★★★★☆
+        <span class="rating-count">(18)</span>
+      </div>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img-section">
+      <img src="https://www.tastingtable.com/img/gallery/why-are-red-onions-purple/l-intro-1644158494.jpg" alt="red onion" class="product-img" />
+      <span class="price-tag">₹ 60.0</span>
+      <span class="stock-warning">Only 5 left</span>
+    </div>
+    <div class="product-details">
+      <h3 class="product-title">Red Onion</h3>
+      <div class="rating">
+        ★★★★☆
+        <span class="rating-count">(12)</span>
+      </div>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+  </div>
+  <div class="product-card">
+    <div class="product-img-section">
+      <img src="https://tse1.mm.bing.net/th/id/OIP.SMUqoTYb_lhK5WP_ytwKqQHaHa?pid=Api&P=0&h=180" alt="fresh carrot" class="product-img" />
+      <span class="price-tag">₹ 95.0</span>
+      <span class="stock-warning">Only 3 left</span>
+    </div>
+    <div class="product-details">
+      <h3 class="product-title">Fresh Carrot</h3>
+      <div class="rating">
+        ★★★★☆
+        <span class="rating-count">(20)</span>
+      </div>
+      <button class="add-cart-btn">Add to Cart</button>
+    </div>
+  </div>
+</div>
+
+    <script>
+      const carouselInner = document.getElementById("carouselInner");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const slides = document.querySelectorAll(".carousel-item");
+    const totalSlides = slides.length;
+    let index = 0;
+
+    function showSlide(i) 
+    {
+
+      if (i < 0) {
+      index = 0; // stop at first slide
+     } else if (i >= totalSlides) {
+
+      index = totalSlides - 1; // stop at last slide
+      } else {
+
+        index = i;
+      }
+        carouselInner.style.transform = `translateX(-${index * 100}%)`;
+    }
+
+    prevBtn.addEventListener("click", () => showSlide(index - 1));
+    nextBtn.addEventListener("click", () => showSlide(index + 1));
+
+    // Auto slide every 5s
+    setInterval(() => showSlide(index + 1), 5000);
+    </script>
+  </body>
+</html>

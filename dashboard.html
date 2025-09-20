@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TaskPro Dashboard</title>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="nav-profile.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="nav-inner">
+        <div class="brand">
+          <div class="logo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              fill="white"
+              class="bi bi-check2-square"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"
+              />
+              <path
+                d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"
+              />
+            </svg>
+          </div>
+          <span class="brand-name">TaskPro</span>
+        </div>
+        <div class="nav-actions">
+          <a href="index.html" class="dashboard-pill">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              fill="white"
+              class="bi bi-house"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"
+              />
+            </svg>
+            <span class="dashboard-text">Dashboard</span>
+          </a>
+          <div class="profile" id="profile">
+            <div id="profileIcon" class="profile-trigger">
+              <img
+                src="download.jpeg"
+                alt="Profile"
+                style="width: 34px; height: 34px; border-radius: 50%"
+              />
+            </div>
+            <div id="profileDropdown" class="profile-dropdown">
+              <ul>
+                <p class="para">Owner</p>
+                <p class="para">Owner@gmail.com</p>
+                <hr>
+                <!-- <li><a href="#" id="editProfileLink">Edit</a></li> -->
+                <li><a href="#" id="settingsLink">Settings</a></li>
+                <hr>
+                <li><a href="#" id="logoutLink">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+      <section class="hero">
+        <center>
+          <h1>TaskPro Dashboard</h1>
+          <p class="subtitle">
+            Manage your categories, subcategories, and products from one central
+            location
+          </p>
+        </center>
+      </section>
+
+      <section class="cards-grid">
+        <!-- Categories Card -->
+        <article class="card">
+          <div class="card-icon card-icon--orange">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              fill="currentColor"
+              class="bi bi-tags"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3 2v4.586l7 7L14.586 9l-7-7zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586z"
+              />
+              <path
+                d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1z"
+              />
+            </svg>
+          </div>
+          <h3>Categories</h3>
+          <p class="muted">
+            Organize your products into categories for better management and
+            navigation.
+          </p>
+          <a class="btn btn-soft btn-orange" href="category.html"
+            >Manage Categories</a
+          >
+        </article>
+
+        <!-- Subcategories Card -->
+        <article class="card">
+          <div class="card-icon card-icon--teal">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 6v6"
+                stroke="#0BA"
+                stroke-width="1.4"
+                stroke-linecap="round"
+              />
+              <path
+                d="M6 12h12"
+                stroke="#0BA"
+                stroke-width="1.4"
+                stroke-linecap="round"
+              />
+              <circle cx="12" cy="6" r="1.4" fill="#0BA" />
+              <circle cx="6" cy="12" r="1.4" fill="#0BA" />
+              <circle cx="18" cy="12" r="1.4" fill="#0BA" />
+            </svg>
+          </div>
+          <h3>Subcategories</h3>
+          <p class="muted">
+            Create subcategories to further organize your products within each
+            category.
+          </p>
+          <a class="btn btn-soft btn-teal" href="subcategory.html"
+            >Manage Subcategories</a
+          >
+        </article>
+
+        <!-- Products Card -->
+        <article class="card">
+          <div class="card-icon card-icon--blue">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="36"
+              height="36"
+              fill="currentColor"
+              class="bi bi-box-seam"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2zm3.564 1.426L5.596 5 8 5.961 14.154 3.5zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464z"
+              />
+            </svg>
+          </div>
+          <h3>Products</h3>
+          <p class="muted">
+            Add, edit, and manage all your products in one convenient location.
+          </p>
+          <a class="btn btn-soft btn-blue" href="products.html"
+            >Manage Products</a
+          >
+        </article>
+
+        <!-- Orders Card -->
+        <article class="card small">
+          <div class="card-icon card-icon--mint">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="34"
+              height="34"
+              fill="currentColor"
+              class="bi bi-cart-check"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"
+              />
+              <path
+                d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"
+              />
+            </svg>
+          </div>
+          <h4>Orders</h4>
+          <p class="muted small-text">
+            View and manage customer orders, update status, and track
+            deliveries.
+          </p>
+          <a class="btn btn-soft btn-mint" href="orders.html">Manage Orders</a>
+        </article>
+
+        <!-- Customers Card -->
+        <article class="card small">
+          <div class="card-icon card-icon--indigo">
+            <svg
+              width="30"
+              height="30"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              class="bi bi-people-fill"
+            >
+              <path
+                d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"
+              />
+            </svg>
+          </div>
+          <h4>Customers</h4>
+          <p class="muted small-text">
+            Manage all customer accounts and view their order history.
+          </p>
+          <a class="btn btn-soft btn-indigo" href="customers.html"
+            >Manage Customers</a
+          >
+        </article>
+      </section>
+
+      <!-- Profile Popup -->
+      <div class="profile-popup" id="profilePopup">
+        <div class="popup-inner">
+          <div class="popup-header">
+            <h2>Edit Profile</h2>
+            <button class="close-btn" id="closeProfilePopupBtn">&times;</button>
+          </div>
+          <div class="image-container">
+            <img id="profileImg" alt="Profile" />
+            <input
+              type="file"
+              id="photoInput"
+              accept="image/*"
+              style="display: none"
+            />
+            <button id="changePhoto" class="image-btn">Change Photo</button>
+          </div>
+          <form id="profileForm" class="ecommerce-form">
+            <div class="form-group">
+              <label>Username</label>
+              <input type="text" id="username" value="owner" />
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" id="email" value="owner@signaltone.com" />
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="save-btn">Save Changes</button>
+              <button type="button" class="cancel-btn">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <small>©️ <span id="year"></span> TaskPro — Dashboard prototype</small>
+      </footer>
+    </main>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      // Load saved data from localStorage
+      const savedUsername = localStorage.getItem("username") || "owner";
+      const savedEmail =
+        localStorage.getItem("email") || "owner@signaltone.com";
+      const savedProfileImg = localStorage.getItem("profileImg");
+
+      document.getElementById("username").value = savedUsername;
+      document.getElementById("email").value = savedEmail;
+
+      const profileIcon = document.getElementById("profileIcon");
+      const profileImg = document.getElementById("profileImg");
+      const profileTrigger = document.querySelector(".profile-trigger");
+      const profilePopup = document.getElementById("profilePopup");
+      const profileForm = document.getElementById("profileForm");
+      const usernameInput = document.getElementById("username");
+      const emailInput = document.getElementById("email");
+      const photoInput = document.getElementById("photoInput");
+      const changePhotoBtn = document.getElementById("changePhoto");
+      const closeProfilePopupBtn = document.getElementById(
+        "closeProfilePopupBtn"
+      );
+      const profileDropdown = document.getElementById("profileDropdown");
+      const editProfileLink = document.getElementById("editProfileLink");
+      const settingsLink = document.getElementById("settingsLink");
+      const logoutLink = document.getElementById("logoutLink");
+
+      if (savedProfileImg) {
+        profileIcon.innerHTML = `<img src="${savedProfileImg}" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
+        profileImg.src = savedProfileImg;
+      } else {
+        profileImg.src = "https://via.placeholder.com/50";
+      }
+
+      // Profile dropdown functionality
+      profileTrigger.addEventListener("click", (e) => {
+        e.preventDefault();
+        profileDropdown.style.display =
+          profileDropdown.style.display === "block" ? "none" : "block";
+      });
+
+      settingsLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        profileDropdown.style.display = "none";
+        profilePopup.style.display = "flex";
+      });
+
+      // settingsLink.addEventListener("click", (e) => {
+      //   e.preventDefault();
+      //   profileDropdown.style.display = "none";
+      //   alert("Settings page is not implemented yet.");
+      // });
+
+      logoutLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        profileDropdown.style.display = "none";
+        if (confirm("Are you sure you want to logout?")) {
+          localStorage.removeItem("username");
+          localStorage.removeItem("email");
+          localStorage.removeItem("profileImg");
+          profileIcon.innerHTML = `<img src="https://via.placeholder.com/50" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
+          window.location.href = "index.html";
+        }
+      });
+
+      // Profile popup functionality
+      changePhotoBtn.addEventListener("click", () => {
+        photoInput.click();
+      });
+
+      photoInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            profileImg.src = event.target.result;
+            profileIcon.innerHTML = `<img src="${event.target.result}" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      profileForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const username = usernameInput.value;
+        const email = emailInput.value;
+        const profileImgSrc = profileImg.src;
+        localStorage.setItem("username", username);
+        localStorage.setItem("email", email);
+        localStorage.setItem("profileImg", profileImgSrc);
+        profileIcon.innerHTML = `<img src="${profileImgSrc}" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
+        profilePopup.style.display = "none";
+      });
+
+      document.querySelector(".cancel-btn").addEventListener("click", () => {
+        profilePopup.style.display = "none";
+        usernameInput.value = localStorage.getItem("username") || "owner";
+        emailInput.value =
+          localStorage.getItem("email") || "owner@signaltone.com";
+        const savedImg = localStorage.getItem("profileImg");
+        profileImg.src = savedImg || "https://via.placeholder.com/50";
+        profileIcon.innerHTML = `<img src="${profileImg.src}" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
+      });
+
+      closeProfilePopupBtn.addEventListener("click", () => {
+        profilePopup.style.display = "none";
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener("click", (e) => {
+        if (
+          !profileTrigger.contains(e.target) &&
+          !profileDropdown.contains(e.target)
+        ) {
+          profileDropdown.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>TaskPro - Customers</title>
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="nav-profile.css" />
+    <link rel="stylesheet" href="customers.css" />
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+      <div class="nav-inner">
+        <div class="brand">
+          <div class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" class="bi bi-check2-square" viewBox="0 0 16 16">
+              <path d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"/>
+              <path d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"/>
+            </svg>
+          </div>
+          <span class="brand-name">TaskPro</span>
+        </div>
+        <div class="nav-actions">
+          <a href="dashboard.html" class="dashboard-pill">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="white" class="bi bi-house" viewBox="0 0 16 16">
+              <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+            </svg>
+            <span class="dashboard-text">Dashboard</span>
+          </a>
+          <div class="profile" id="profile">
+            <div id="profileIcon" class="profile-trigger">
+              <img
+                src="download.jpeg"
+                alt="Profile"
+                style="width: 34px; height: 34px; border-radius: 50%"
+              />
+            </div>
+            <div id="profileDropdown" class="profile-dropdown">
+              <ul>
+                <p class="para">Owner</p>
+                <p class="para">Owner@gmail.com</p>
+                <hr>
+                <li><a href="#" id="settingsLink">Settings</a></li>
+                <hr>
+                <li><a href="#" id="logoutLink">Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="container">
+      <section class="hero">
+        <h1>Customer Management</h1>
+        <p class="subtitle">View and manage all customer accounts</p>
+      </section>
+
+      <section class="search-container">
+        <input type="text" placeholder="Search customers..." />
+        <button>Search</button>
+        <div class="total-customers">Total Customers: 1</div>
+      </section>
+
+      <table id="customersTable">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Joined</th>
+            <th>Orders</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+
+      <!-- ✅ Pagination -->
+      <div class="pagination">
+        <button id="prevBtn">Previous</button>
+        <button class="page-btn" data-page="1">1</button>
+        <button class="page-btn" data-page="2">2</button>
+        <button id="nextBtn">Next</button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <small>©️ <span id="year"></span> TaskPro — Customers Management</small>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const tableBody = document.getElementById("tableBody");
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+
+      // ✅ Function to update table
+      function updateTable(page) {
+        if (page === 2) {
+          tableBody.innerHTML = ""; // Empty on page 2
+        } else {
+          tableBody.innerHTML = `
+            <tr>
+              <td class="customer-info"><span class="username">kalyan</span></td>
+              <td>babukalyan523@gmail.com</td>
+              <td>Not provided</td>
+              <td>Aug 30, 2025</td>
+              <td>0</td>
+              <td><a href="#" class="view-orders">View Orders</a></td>
+            </tr>
+          `;
+        }
+
+        // Highlight active page
+        document.querySelectorAll(".page-btn").forEach(btn => {
+          btn.classList.remove("active");
+          if (parseInt(btn.dataset.page) === page) {
+            btn.classList.add("active");
+          }
+        });
+      }
+
+      // ✅ Initial load
+      let currentPage = 1;
+      updateTable(currentPage);
+
+      // ✅ Page buttons
+      document.querySelectorAll(".page-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          currentPage = parseInt(btn.dataset.page);
+          updateTable(currentPage);
+        });
+      });
+
+      // ✅ Prev button
+      prevBtn.addEventListener("click", () => {
+        if (currentPage > 1) {
+          currentPage--;
+          updateTable(currentPage);
+        }
+      });
+
+      // ✅ Next button
+      nextBtn.addEventListener("click", () => {
+        if (currentPage < 2) {
+          currentPage++;
+          updateTable(currentPage);
+        }
+      });
+    </script>
+  </body>
+</html>

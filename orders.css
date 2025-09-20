@@ -1,0 +1,218 @@
+body {
+        font-family: Arial, sans-serif;
+        background: #f8fafc;
+        margin: 0;
+        padding: 0;
+      }
+
+      main.container {
+        max-width: 1200px;
+        margin: auto;
+        padding: 20px;
+      }
+
+      h1 {
+        margin: 0;
+        color: #4f46e5;
+      }
+
+      .subtitle {
+        color: #6b7280;
+      }
+
+      .orders-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 20px 0;
+      }
+
+      .status-filters {
+        display: flex;
+        gap: 10px;
+      }
+
+      .filter-btn {
+        border: none;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        white-space: nowrap;
+        transition: 0.2s;
+      }
+
+      .filter-btn.active {
+        color: white;
+      }
+
+      .filter-btn:not(.active) {
+        background: #e5e7eb;
+        color: #111827;
+      }
+
+      .filter-btn.all {
+        background-color: #3b82f6; /* Primary */
+      }
+
+      .filter-btn.all.active {
+        background-color: #3b82f6; /* Primary */
+      }
+
+      .filter-btn.pending {
+        background-color: #3b82f6; /* Info */
+      }
+
+      .filter-btn.pending.active {
+        background-color: #3b82f6; /* Info */
+      }
+
+      .filter-btn.processing {
+        background-color: #fbbf24; /* Warning */
+      }
+
+      .filter-btn.processing.active {
+        background-color: #fbbf24; /* Warning */
+      }
+
+      .filter-btn.shipped {
+        background-color: #3b82f6; /* Blue */
+      }
+
+      .filter-btn.shipped.active {
+        background-color: #3b82f6; /* Blue */
+      }
+
+      .filter-btn.outfordelivery {
+        background-color: #3b82f6; /* Info */
+      }
+
+      .filter-btn.outfordelivery.active {
+        background-color: #3b82f6; /* Info */
+      }
+
+      .filter-btn.delivered {
+        background-color: #22c55e; /* Success */
+      }
+
+      .filter-btn.delivered.active {
+        background-color: #22c55e; /* Success */
+      }
+
+      .filter-btn.cancelled {
+        background: #fee2e2;
+        color: #b91c1c;
+      }
+
+      .filter-btn.cancelled.active {
+        background-color: #dc3545; /* Danger */
+        color: white;
+      }
+
+      .badge {
+        background-color: white;
+        color: #333;
+        padding: 2px 6px;
+        border-radius: 12px;
+        font-size: 0.8em;
+      }
+
+      .search-bar {
+        display: flex;
+        gap: 6px;
+        margin-bottom: 20px;
+      }
+
+      .search-bar input {
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+
+      .btn-search {
+        background-color: #6366f1;
+        color: white;
+        border: none;
+        padding: 6px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .orders-table table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .orders-table th,
+      .orders-table td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+
+      .orders-table thead {
+        background: #f5f5f5;
+      }
+
+      .order-status {
+        display: inline-block;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.85em;
+        font-weight: 600;
+        color: #fff;
+      }
+
+      .order-status.pending {
+        background-color: #f59e0b;
+      }
+
+      .order-status.processing {
+        background-color: #fbbf24;
+      }
+
+      .order-status.shipped {
+        background-color: #3b82f6;
+      }
+
+      .order-status.outfordelivery {
+        background-color: #06b6d4;
+      }
+
+      .order-status.delivered {
+        background-color: #22c55e;
+      }
+
+      .order-status.cancelled {
+        background-color: #dc3545;
+      }
+
+      .btn-soft.btn-mint {
+        background: #20c997;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 6px;
+        text-decoration: none;
+        transition: 0.2s;
+      }
+
+      .btn-soft.btn-mint:hover {
+        background: #17a589;
+      }
+
+      .no-orders {
+        text-align: center;
+        padding: 40px 0;
+        color: #6b7280;
+      }
+
+      .no-orders img {
+        width: 50px;
+        margin-bottom: 10px;
+      }
