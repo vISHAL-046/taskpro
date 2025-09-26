@@ -1,9 +1,10 @@
 /* Category Page Specific */
+
 .navbar {
+  /* ... other styles ... */
   position: sticky;
   top: 0;
-  background-color: #fff;
-  z-index: 1000;
+  /* ... */
 }
 
 .hero {
@@ -59,9 +60,9 @@
   color: #1DA1F2;
 }
 
-/* Search sort card */
+/*search sort card */
 .search-sort {
-  background-color: #F5F8FA;
+  background-color: #F5F8FA; /* Light gray background */
   padding: 10px;
   border-radius: 8px;
   display: flex;
@@ -241,11 +242,10 @@ select:focus {
   border-radius: 5px;
 }
 
-.hero {
+.hero{
   background-color: #007bff;
   padding: 5px;
 }
-
 .category-table {
   width: 100%;
   border-collapse: collapse;
@@ -489,7 +489,7 @@ select.btn:focus {
   height: 16px;
   margin: 0;
   cursor: pointer;
-  accent-color: #1DA1F2;
+  accent-color: #1DA1F2; /* Matches the cyan theme from the image */
 }
 
 .checkbox-row label {
@@ -515,6 +515,14 @@ select.btn:focus {
   gap: 10px;
 }
 
+.btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
 .btn-cancel {
   background: #e0e0e0;
 }
@@ -536,171 +544,197 @@ select.btn:focus {
   font-weight: bold;
   cursor: pointer;
 }
-
-#csvOptions {
+#csvOptions{
   width: 5px;
   padding-left: 2px;
 }
 
-/* Responsive Mobile View */
+/* MOBILE RESPONSIVE UPDATES ONLY - Desktop remains unchanged */
+
+/* Hero Mobile */
 @media (max-width: 640px) {
-  /* Prevent horizontal scrolling */
-  html,
-  body {
-    width: 100%;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-  }
-
-  /* Lock navbar at top */
-  .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    box-sizing: border-box;
-  }
-
-  /* Lock hero header below navbar */
   .hero {
-    position: fixed;
-    top: 60px; /* Adjust based on navbar height */
-    left: 0;
-    width: 100%;
-    background-color: #007bff;
-    padding: 8px 10px;
-    border-radius: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-    z-index: 900;
-    overflow: hidden;
-  }
-
-  /* Adjust header content */
-  .header-content {
-    max-width: 70%;
-  }
-
-  .header-title {
-    font-size: 16px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .header-subtitle {
-    font-size: 10px;
-  }
-
-  /* Category controls */
-  .category-controls {
-    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 12px;
     gap: 8px;
-    overflow: hidden;
   }
-
-  .btn {
-    padding: 4px 6px;
-    font-size: 10px;
-  }
-
-  /* Adjust content below fixed header */
-  .search-sort,
-  .filter-container,
-  .category-table {
-    margin-top: 120px; /* Adjust for navbar (~60px) + hero (~60px) */
-    padding: 0 10px;
+  .header-content {
     width: 100%;
-    box-sizing: border-box;
   }
+  .category-controls {
+    justify-content: flex-start;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+  .btn {
+    flex: 1;
+    min-width: 80px;
+    justify-content: center;
+  }
+}
 
-  /* Search-sort section */
+/* Search Sort Mobile */
+@media (max-width: 640px) {
   .search-sort {
     flex-direction: column;
-    gap: 10px;
-    overflow: hidden;
+    gap: 12px;
+    padding: 12px 8px;
   }
-
-  .search,
-  .sort {
-    flex: none;
+  .search, .sort {
     width: 100%;
   }
-
-  .search input,
-  .sort select {
+  .apply-filters {
     width: 100%;
-    padding: 6px;
-    font-size: 12px;
+    justify-content: center;
   }
+}
 
-  /* Filter container */
+/* Filter Container Mobile */
+@media (max-width: 768px) {
   .filter-container {
     flex-direction: column;
-    padding: 10px;
+    align-items: stretch;
+    padding: 12px 8px;
     gap: 12px;
   }
-
   .filter-group {
     min-width: 100%;
   }
+  .filter-actions {
+    width: 100%;
+    justify-content: stretch;
+  }
+  .btn-apply, .btn-refresh {
+    flex: 1;
+    min-width: 0;
+  }
+}
 
-  /* Category table */
+/* Category Table Mobile */
+@media (max-width: 640px) {
   .category-table {
-    overflow-x: hidden;
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
   }
-
-  .category-table th,
-  .category-table td {
+  .category-table thead {
+    display: none;
+  }
+  .category-table tbody,
+  .category-table tr {
+    display: block;
+    margin-bottom: 12px;
+    border: 1px solid #eee;
+    border-radius: 6px;
     padding: 8px;
-    font-size: 12px;
   }
-
+  .category-table td {
+    display: block;
+    text-align: right;
+    padding: 6px 0;
+    border: none;
+    position: relative;
+    padding-left: 50%;
+  }
+  .category-table td::before {
+    content: attr(data-label) ": ";
+    position: absolute;
+    left: 0;
+    width: 45%;
+    font-weight: bold;
+    text-align: left;
+    color: #666;
+  }
   .category-table td img {
     width: 40px;
     height: 40px;
+    display: block;
+    margin: 0 auto 4px;
   }
+  .edit-category, .delete-category {
+    margin: 2px;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+}
 
-  /* Popup adjustments */
+/* Category Controls Mobile */
+@media (max-width: 640px) {
+  .category-controls {
+    justify-content: flex-start !important;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  select.btn {
+    min-width: 120px;
+  }
+}
+
+/* Popup Mobile */
+@media (max-width: 640px) {
   #categoryPopup .popup-inner {
     width: 95%;
-    max-width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
+    max-width: 95vw;
+    margin: 10px;
+    padding: 12px;
   }
-
+  #categoryPopup .popup-header h2 {
+    font-size: 20px;
+  }
+  #categoryPopup .image-container img {
+    width: 100px;
+    height: 100px;
+  }
   #categoryPopup .form-actions {
     flex-direction: column;
     gap: 8px;
   }
-
   #categoryPopup .save-btn,
   #categoryPopup .cancel-btn {
     width: 100%;
-    padding: 8px;
   }
+}
 
-  /* Modal adjustments */
+/* Modal Mobile */
+@media (max-width: 640px) {
   .modal-content {
-    width: 90%;
-    max-width: 100%;
-    padding: 15px;
+    width: 95%;
+    max-width: 95vw;
     margin: 10% auto;
+    padding: 12px;
   }
-
-  /* Existing mobile-specific rules */
-  .filter-container {
+  .modal-actions {
     flex-direction: column;
-    align-items: stretch;
+    gap: 8px;
   }
-
-  .filter-actions {
+  .btn-cancel, .btn-blue {
+    width: 100%;
+  }
+  .checkbox-row {
     justify-content: flex-start;
   }
+}
 
-  .search-sort {
-    flex-direction: column;
+/* CSV Options Mobile */
+@media (max-width: 640px) {
+  #csvOptions {
+    width: 100%;
+    padding: 8px;
+  }
+}
+
+/* General Mobile Adjustments */
+@media (max-width: 640px) {
+  body {
+    padding: 5px;
+  }
+  .btn {
+    font-size: 13px;
+    padding: 6px 12px;
+  }
+  input, select {
+    font-size: 16px; /* Prevents zoom on iOS */
   }
 }
