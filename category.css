@@ -15,7 +15,7 @@
     padding: 6px 12px;
   }
   input, select {
-    font-size: 16px;
+    font-size: 16px; /* Prevent iOS zoom */
     max-width: 100%;
   }
 }
@@ -30,6 +30,9 @@
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
+    background-color: #1DA1F2; /* Ensure background fills entire area */
+    border-radius: 8px; /* Maintain rounded corners */
+    margin: 0; /* Remove any margins causing gaps */
   }
   .header-content {
     width: 100%;
@@ -77,70 +80,28 @@
   }
 }
 
-/* Filter Container Mobile */
-@media (max-width: 768px) {
-  .filter-container {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 12px 8px;
-    gap: 12px;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-  }
-  .filter-group {
-    min-width: 100%;
-    max-width: 100%;
-  }
-  .filter-actions {
-    width: 100%;
-    justify-content: stretch;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .btn-apply, .btn-refresh {
-    width: 100%;
-    max-width: 100%;
-    text-align: center;
-  }
-}
-
 /* Category Table Mobile */
 @media (max-width: 640px) {
   .category-table {
     width: 100%;
     max-width: 100%;
-    overflow-x: hidden;
+    overflow-x: auto; /* Enable horizontal scrolling for entire table */
+    overflow-y: auto; /* Allow vertical scrolling only if needed */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   }
   .category-table table {
+    min-width: 600px; /* Ensure table is wide enough to require horizontal scrolling */
     width: 100%;
-    max-width: 100%;
   }
-  .category-table thead {
-    display: table-header-group;
-    width: 100%;
-    max-width: 100%;
-  }
-  .category-table th {
-    font-size: 13px;
-    padding: 6px 8px;
-    white-space: nowrap;
-    max-width: 100%;
-  }
-  .table-body-wrapper {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    width: 100%;
-    max-width: 100%;
-  }
-  .category-table tbody {
-    display: table-row-group;
-    min-width: 600px; /* Ensure content is wide enough to scroll if needed */
-  }
+  .category-table th,
   .category-table td {
     padding: 6px 8px;
-    min-width: 100px;
-    white-space: nowrap;
+    min-width: 100px; /* Ensure columns have minimum width */
+    white-space: nowrap; /* Prevent text wrapping */
+    font-size: 13px;
+  }
+  .category-table th {
+    background: #f9f9f9;
   }
   .category-table td img {
     width: 40px;
