@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="subcategory.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="nav-profile.css" />
-    <!-- Responsive CSS -->
+    <!-- Refined Responsive CSS -->
     <style>
       /* responsive.css */
       * {
@@ -121,6 +121,8 @@
         .stats-container .btn {
           width: 100%;
           margin: 5px 0;
+          padding: 10px;
+          font-size: 1rem;
         }
       }
 
@@ -161,12 +163,17 @@
         }
         .filter-sort-options select {
           max-width: none;
+          margin-bottom: 10px;
+          padding: 10px;
+          font-size: 1rem;
         }
         .actions {
           flex-direction: column;
         }
         .actions .btn {
           width: 100%;
+          padding: 12px;
+          font-size: 1rem;
         }
       }
 
@@ -200,7 +207,8 @@
 
       .ecommerce-form input, .ecommerce-form select {
         width: 100%;
-        padding: 8px;
+        padding: 10px; /* Increased padding for mobile tap targets */
+        font-size: 1rem;
       }
 
       .form-actions {
@@ -209,8 +217,9 @@
       }
 
       .form-actions button {
-        padding: 10px;
+        padding: 12px; /* Larger tap target */
         flex: 1;
+        font-size: 1rem;
       }
 
       .image-container img {
@@ -229,6 +238,20 @@
         .form-actions button {
           width: 100%;
           margin: 5px 0;
+          padding: 14px; /* Enhanced tap area */
+          font-size: 1.1rem; /* Larger text for readability */
+        }
+        .ecommerce-form input, .ecommerce-form select {
+          padding: 12px; /* Adjusted for mobile comfort */
+          font-size: 1.1rem; /* Larger text */
+        }
+        .image-container img {
+          width: 120px; /* Reduced image size for mobile */
+          height: 120px;
+        }
+        .image-btn {
+          padding: 10px;
+          font-size: 1rem;
         }
       }
 
@@ -943,74 +966,6 @@
           alert("An error occurred while saving. Check the console for details.");
         }
       });
-
-      // Optional fix for form submission (uncomment to use)
-      /*
-      subcategoryForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        try {
-          // Enhanced validation
-          const errors = [];
-          if (!subcategoryCategorySelect.value) errors.push("Category is required.");
-          if (!subcategoryNameInput.value.trim()) errors.push("Subcategory name is required.");
-          if (!productNameInput.value.trim()) errors.push("Product name is required.");
-          if (!priceInput.value || isNaN(parseFloat(priceInput.value)) || parseFloat(priceInput.value) < 0) errors.push("Valid price is required.");
-          if (!quantityInput.value || isNaN(parseInt(quantityInput.value)) || parseInt(quantityInput.value) < 0) errors.push("Valid quantity is required.");
-          if (!subcategoryDescInput.value.trim()) errors.push("Description is required.");
-          if (errors.length > 0) {
-            console.error("Validation errors:", errors);
-            alert("Errors:\n" + errors.join("\n"));
-            return;
-          }
-          // Check for duplicate subcategories
-          const subcategory = {
-            category: subcategoryCategorySelect.value.trim(),
-            subcategory: subcategoryNameInput.value.trim(),
-            productName: productNameInput.value.trim(),
-            price: parseFloat(priceInput.value),
-            quantity: parseInt(quantityInput.value),
-            desc: subcategoryDescInput.value.trim(),
-            image: subcategoryImg.src || defaultImage,
-            createdAt: editingIndex >= 0 ? subcategories[editingIndex].createdAt || new Date().toISOString() : new Date().toISOString()
-          };
-          const exists = subcategories.some((sub, idx) => 
-            idx !== editingIndex && 
-            sub.productName.toLowerCase() === subcategory.productName.toLowerCase() && 
-            sub.category.toLowerCase() === subcategory.category.toLowerCase()
-          );
-          if (exists) {
-            console.error("Duplicate subcategory detected:", subcategory);
-            alert("A subcategory with this product name and category already exists.");
-            return;
-          }
-          if (editingIndex >= 0) {
-            subcategories[editingIndex] = subcategory;
-          } else {
-            subcategories.push(subcategory);
-          }
-          console.log("Saving to localStorage:", subcategory);
-          localStorage.setItem("subcategories", JSON.stringify(subcategories));
-          console.log("Subcategories after save:", subcategories);
-          // Reset filters to ensure new item is visible
-          searchInput.value = "";
-          categorySelect.value = "all";
-          renderSubcategories("", "all");
-          subcategoryPopup.style.display = "none";
-          // Reset form
-          const uniqueCategories = deduplicateCategories(categories);
-          subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
-          subcategoryNameInput.value = "";
-          productNameInput.value = "";
-          priceInput.value = "";
-          quantityInput.value = "";
-          subcategoryDescInput.value = "";
-          subcategoryImg.src = uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image || defaultImage;
-        } catch (error) {
-          console.error("Error during form submission:", error);
-          alert("An error occurred while saving. Check the console for details.");
-        }
-      });
-      */
 
       document.querySelectorAll(".cancel-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
