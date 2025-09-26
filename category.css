@@ -620,6 +620,8 @@ select.btn:focus {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     box-sizing: border-box;
+    margin: 0; /* Remove any margin */
+    padding: 0; /* Remove any padding */
   }
   .category-table thead {
     display: table-header-group;
@@ -628,6 +630,7 @@ select.btn:focus {
     background: #f9f9f9;
     z-index: 10;
     width: 100%;
+    min-width: 100%; /* Ensure full width of scrollable content */
     box-sizing: border-box;
   }
   .category-table th,
@@ -647,7 +650,7 @@ select.btn:focus {
   .category-table th:nth-child(4),
   .category-table td:nth-child(4) { width: 30%; min-width: 120px; } /* Description */
   .category-table th:nth-child(5),
-  .category-table td:nth-child(5) { width: 20%; min-width: 80px; } /* ACTIONS */
+  .category-table td:nth-child(5) { width: 25%; min-width: 100px; } /* ACTIONS */
   .category-table th {
     background: #f9f9f9;
     white-space: nowrap;
@@ -660,14 +663,15 @@ select.btn:focus {
   }
   .edit-category,
   .delete-category {
-    padding: 2px 4px; /* Reduced padding to fit side by side */
-    font-size: 10px; /* Reduced font size */
-    margin-right: 2px;
-    display: inline-block; /* Ensure inline behavior */
+    padding: 5px 10px; /* Reverted to match landscape */
+    font-size: 12px; /* Reverted to match landscape or default .btn */
+    margin-right: 5px;
+    display: inline-block;
   }
   .category-table td:nth-child(5) {
     display: flex;
-    gap: 4px; /* Space between buttons */
+    justify-content: center; /* Center the buttons */
+    gap: 5px; /* Match landscape spacing */
     align-items: center;
   }
   .table-wrapper {
@@ -677,6 +681,8 @@ select.btn:focus {
     display: block;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    margin: 0; /* Remove any margin */
+    padding: 0; /* Remove any padding */
   }
   .table-wrapper::-webkit-scrollbar {
     display: none;
