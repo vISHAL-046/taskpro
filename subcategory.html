@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="subcategory.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="nav-profile.css" />
-    <!-- New responsive CSS -->
+    <!-- Responsive CSS -->
     <style>
       /* responsive.css */
       * {
@@ -878,31 +878,125 @@
         }
       });
 
+      // Debugging for Save button issue
       subcategoryForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        if (!subcategoryCategorySelect.value || !subcategoryNameInput.value || !productNameInput.value || !priceInput.value || !quantityInput.value || !subcategoryDescInput.value) {
-          alert("Please fill all fields.");
-          return;
-        }
-        const subcategory = {
+        console.log("Save button clicked. Form data:", {
           category: subcategoryCategorySelect.value,
           subcategory: subcategoryNameInput.value,
           productName: productNameInput.value,
-          price: parseFloat(priceInput.value),
-          quantity: parseInt(quantityInput.value),
+          price: priceInput.value,
+          quantity: quantityInput.value,
           desc: subcategoryDescInput.value,
           image: subcategoryImg.src,
-          createdAt: editingIndex >= 0 ? subcategories[editingIndex].createdAt || new Date().toISOString() : new Date().toISOString()
-        };
-        if (editingIndex >= 0) {
-          subcategories[editingIndex] = subcategory;
-        } else {
-          subcategories.push(subcategory);
+          editingIndex: editingIndex
+        });
+        try {
+          if (!subcategoryCategorySelect.value || !subcategoryNameInput.value || !productNameInput.value || !priceInput.value || !quantityInput.value || !subcategoryDescInput.value) {
+            console.error("Validation failed: Some fields are empty or invalid.");
+            alert("Please fill all fields.");
+            return;
+          }
+          const subcategory = {
+            category: subcategoryCategorySelect.value,
+            subcategory: subcategoryNameInput.value,
+            productName: productNameInput.value,
+            price: parseFloat(priceInput.value),
+            quantity: parseInt(quantityInput.value),
+            desc: subcategoryDescInput.value,
+            image: subcategoryImg.src,
+            createdAt: editingIndex >= 0 ? subcategories[editingIndex].createdAt || new Date().toISOString() : new Date().toISOString()
+          };
+          if (editingIndex >= 0) {
+            subcategories[editingIndex] = subcategory;
+          } else {
+            subcategories.push(subcategory);
+          }
+          console.log("Saving to localStorage:", subcategory);
+          localStorage.setItem("subcategories", JSON.stringify(subcategories));
+          console.log("Subcategories after save:", subcategories);
+          renderSubcategories(searchInput.value, categorySelect.value);
+          subcategoryPopup.style.display = "none";
+          if (editingIndex === -1) {
+            const uniqueCategories = deduplicateCategories(categories);
+            subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
+            subcategoryNameInput.value = "";
+            productNameInput.value = "";
+            priceInput.value = "";
+            quantityInput.value = "";
+            subcategoryDescInput.value = "";
+            subcategoryImg.src =
+              uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
+              defaultImage;
+          } else {
+            const sub = subcategories[editingIndex];
+            subcategoryCategorySelect.value = sub.category;
+            subcategoryNameInput.value = sub.subcategory;
+            productNameInput.value = sub.productName;
+            priceInput.value = sub.price;
+            quantityInput.value = sub.quantity;
+            subcategoryDescInput.value = sub.desc;
+            subcategoryImg.src = sub.image || defaultImage;
+          }
+        } catch (error) {
+          console.error("Error during form submission:", error);
+          alert("An error occurred while saving. Check the console for details.");
         }
-        localStorage.setItem("subcategories", JSON.stringify(subcategories));
-        renderSubcategories(searchInput.value, categorySelect.value);
-        subcategoryPopup.style.display = "none";
-        if (editingIndex === -1) {
+      });
+
+      // Optional fix for form submission (uncomment to use)
+      /*
+      subcategoryForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        try {
+          // Enhanced validation
+          const errors = [];
+          if (!subcategoryCategorySelect.value) errors.push("Category is required.");
+          if (!subcategoryNameInput.value.trim()) errors.push("Subcategory name is required.");
+          if (!productNameInput.value.trim()) errors.push("Product name is required.");
+          if (!priceInput.value || isNaN(parseFloat(priceInput.value)) || parseFloat(priceInput.value) < 0) errors.push("Valid price is required.");
+          if (!quantityInput.value || isNaN(parseInt(quantityInput.value)) || parseInt(quantityInput.value) < 0) errors.push("Valid quantity is required.");
+          if (!subcategoryDescInput.value.trim()) errors.push("Description is required.");
+          if (errors.length > 0) {
+            console.error("Validation errors:", errors);
+            alert("Errors:\n" + errors.join("\n"));
+            return;
+          }
+          // Check for duplicate subcategories
+          const subcategory = {
+            category: subcategoryCategorySelect.value.trim(),
+            subcategory: subcategoryNameInput.value.trim(),
+            productName: productNameInput.value.trim(),
+            price: parseFloat(priceInput.value),
+            quantity: parseInt(quantityInput.value),
+            desc: subcategoryDescInput.value.trim(),
+            image: subcategoryImg.src || defaultImage,
+            createdAt: editingIndex >= 0 ? subcategories[editingIndex].createdAt || new Date().toISOString() : new Date().toISOString()
+          };
+          const exists = subcategories.some((sub, idx) => 
+            idx !== editingIndex && 
+            sub.productName.toLowerCase() === subcategory.productName.toLowerCase() && 
+            sub.category.toLowerCase() === subcategory.category.toLowerCase()
+          );
+          if (exists) {
+            console.error("Duplicate subcategory detected:", subcategory);
+            alert("A subcategory with this product name and category already exists.");
+            return;
+          }
+          if (editingIndex >= 0) {
+            subcategories[editingIndex] = subcategory;
+          } else {
+            subcategories.push(subcategory);
+          }
+          console.log("Saving to localStorage:", subcategory);
+          localStorage.setItem("subcategories", JSON.stringify(subcategories));
+          console.log("Subcategories after save:", subcategories);
+          // Reset filters to ensure new item is visible
+          searchInput.value = "";
+          categorySelect.value = "all";
+          renderSubcategories("", "all");
+          subcategoryPopup.style.display = "none";
+          // Reset form
           const uniqueCategories = deduplicateCategories(categories);
           subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
           subcategoryNameInput.value = "";
@@ -910,20 +1004,13 @@
           priceInput.value = "";
           quantityInput.value = "";
           subcategoryDescInput.value = "";
-          subcategoryImg.src =
-            uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
-            defaultImage;
-        } else {
-          const sub = subcategories[editingIndex];
-          subcategoryCategorySelect.value = sub.category;
-          subcategoryNameInput.value = sub.subcategory;
-          productNameInput.value = sub.productName;
-          priceInput.value = sub.price;
-          quantityInput.value = sub.quantity;
-          subcategoryDescInput.value = sub.desc;
-          subcategoryImg.src = sub.image || defaultImage;
+          subcategoryImg.src = uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image || defaultImage;
+        } catch (error) {
+          console.error("Error during form submission:", error);
+          alert("An error occurred while saving. Check the console for details.");
         }
       });
+      */
 
       document.querySelectorAll(".cancel-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -1132,6 +1219,9 @@
         window.URL.revokeObjectURL(url);
         exportModal.style.display = "none";
       });
+
+      // Debugging: Check localStorage usage
+      console.log("LocalStorage used: ", new Blob([JSON.stringify(localStorage)]).size / 1024 / 1024, "MB");
     </script>
   </body>
 </html>
