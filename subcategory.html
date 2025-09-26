@@ -5,77 +5,251 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Subcategory Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-RvQxD1xX9Z+nq87shL6oI6+3w+OkMDWimk3L0m3vT/cslS+9f5TjL44z4Qjwhh69f7gD8mKjIfd1z+7klXJpHg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="subcategory.css" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="nav-profile.css" />
-    <!-- Refined Responsive CSS - Fixes header layout -->
     <style>
-      /* responsive.css - Targeted for mobile only, preserves original header spacing */
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-      }
-
-      /* Navbar */
+      /* Your subcategory.css integrated */
       .navbar {
-        width: 100%;
+        background-color: #1DA1F2;
         padding: 10px 20px;
+        color: white;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
       }
 
       .nav-inner {
-        max-width: 1200px;
-        margin: 0 auto;
         display: flex;
-        align-items: center;
         justify-content: space-between;
+        align-items: center;
       }
 
-      .brand, .nav-actions {
+      .brand {
         display: flex;
         align-items: center;
       }
 
-      .dashboard-pill, .profile {
-        margin: 0 10px;
+      .logo svg {
+        margin-right: 10px;
       }
 
-      /* Main Container - Preserves original padding for heading */
+      .brand-name {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .dashboard-pill {
+        display: flex;
+        align-items: center;
+        color: white;
+        text-decoration: none;
+        margin-right: 20px;
+      }
+
+      .dashboard-pill svg {
+        margin-right: 5px;
+      }
+
+      .profile {
+        position: relative;
+      }
+
+      .profile-trigger img {
+        cursor: pointer;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+      }
+
+      .profile-dropdown {
+        display: none;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        min-width: 150px;
+        z-index: 1000;
+      }
+
+      .profile-dropdown ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .profile-dropdown li a {
+        display: block;
+        padding: 10px;
+        color: #333;
+        text-decoration: none;
+      }
+
+      .profile-dropdown li a:hover {
+        background-color: #f5f5f5;
+      }
+
+      /* Main Container Styles */
       .container {
-        max-width: 1200px;
-        margin: 0 auto;
+        margin-top: 80px; /* Increased to clear fixed navbar */
         padding: 20px;
       }
 
+      /* Subcategory Banner */
       .subcategory-banner {
-        width: 100%;
-        padding: 20px; /* Matches original - no extra front/behind */
-        position: relative; /* Ensures no z-index overlaps */
-        z-index: 1;
+        background: linear-gradient(90deg, #007bff, #6f42c1);
+        color: white;
+        padding: 40px 20px;
+        text-align: center;
+        border-radius: 12px;
+        margin-bottom: 25px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       }
 
       .subcategory-content {
-        margin: 0; /* Preserves original spacing around heading */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
       }
 
       .subcategory-title {
-        margin-bottom: 10px; /* Keeps heading tight to icon */
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: center;
       }
 
-      /* Search and Stats */
+      .subcategory-icon svg {
+        color: white;
+      }
+
+      .subcategory-banner h1 {
+        font-size: 28px;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .subcategory-banner p {
+        font-size: 16px;
+        opacity: 0.9;
+        margin: 0;
+      }
+
+      /* Stats Cards */
+      .stats-container {
+        display: flex;
+        justify-content: space-between;
+        height: 30vh;
+      }
+
+      .card {
+        background: #FFFFFF;
+        border-radius: 8px;
+        padding: 15px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 48%;
+        text-align: center;
+        margin-bottom: 10vh;
+      }
+
+      .stats-card {
+        text-align: left;
+        padding: 15px;
+        max-width: 260px;
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        margin-bottom: 10vh;
+      }
+
+      .stats-card h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #007bff;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 14px;
+      }
+
+      .total-box {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: linear-gradient(90deg, #007bff, #6f42c1);
+        color: white;
+        padding: 6px 14px;
+        border-radius: 50px;
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 14px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+      }
+
+      .total-box svg {
+        width: 16px;
+        height: 16px;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 8px;
+        justify-content: center;
+      }
+
+      .btn {
+        padding: 6px 12px;
+        font-size: 14px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-import {
+        background-color: #28a745;
+        color: white;
+      }
+
+      .btn-export {
+        background-color: #007bff;
+        color: white;
+      }
+
+      /* Search Container */
       .search-stats-wrapper {
         display: flex;
         justify-content: space-between;
-        margin: 20px 0;
+        align-items: flex-start;
+        margin-top: 5px;
+        margin-bottom: 20px;
+        gap: 20px;
       }
 
-      .search-container, .stats-container {
-        flex: 1;
-        margin: 0 10px;
+      .search-container {
+        margin-top: 20px;
+        background-color: #FFFFFF;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        width: 65%;
+        max-width: 900px;
+        height: 20vh;
+      }
+
+      .search {
+        padding: 20px;
+        color: #1DA1F2;
+        font-size: 18px;
+        font-weight: bold;
+        margin-right: 10px;
+        display: inline-block;
       }
 
       .search-bar {
@@ -84,31 +258,80 @@
         width: 100%;
       }
 
-      .search-bar input {
-        width: 100%;
-        padding: 8px;
+      .search-bar svg {
+        margin-right: 10px;
       }
 
-      /* Filter and Sort */
+      .search-bar input {
+        flex: 1;
+        padding: 8px;
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+
+      /* Filter Sort Container */
       .filter-sort-container {
-        margin: 20px 0;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        background: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .filter-sort-header {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 10px;
+      }
+
+      .filter-sort-label {
+        font-weight: bold;
+        color: #1DA1F2;
       }
 
       .filter-sort-content {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        justify-content: flex-end;
       }
 
       .filter-sort-options {
         display: flex;
         gap: 10px;
+        margin-right: 600px;
       }
 
-      .filter-sort-options select {
-        width: 100%;
-        max-width: 200px;
-        padding: 8px;
+      .pill {
+        padding: 8px 12px;
+        border: 1px solid #CED4DA;
+        border-radius: 20px;
+        background: #fff;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .category-select,
+      .sort-select {
+        appearance: none;
+        border: 1px solid #CED4DA;
+        padding: 8px 12px;
+        border-radius: 20px;
+        background: none;
+        font-size: 14px;
+        width: 150px;
+      }
+
+      .category-select:focus,
+      .sort-select:focus {
+        outline: none;
+        border-color: #1DA1F2;
       }
 
       .actions {
@@ -116,8 +339,87 @@
         gap: 10px;
       }
 
-      /* Popups and Modals */
-      .profile-popup, .modal {
+      .btn.apply {
+        background-color: #A461D8;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .btn.add-new-btn {
+        background-color: #6f42c1;
+        color: white;
+        padding: 8px 19px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      /* Table */
+      .category-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #FFFFFF;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .category-table th,
+      .category-table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #E1E8ED;
+      }
+
+      .category-table th {
+        background-color: #F5F8FA;
+        color: #657786;
+      }
+
+      .category-table td img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+      }
+
+      .category-table .actions button {
+        padding: 5px 10px;
+        margin-right: 5px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .edit-subcategory,
+      .delete-subcategory {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-right: 5px;
+      }
+
+      .edit-subcategory {
+        background-color: #1e88e5;
+        color: white;
+      }
+
+      .delete-subcategory {
+        background-color: #ff4444;
+        color: white;
+      }
+
+      /* Popup Styles */
+      .profile-popup {
         display: none;
         position: fixed;
         top: 0;
@@ -125,29 +427,71 @@
         width: 100%;
         height: 100%;
         background: rgba(0, 0, 0, 0.5);
-        justify-content: center;
         align-items: center;
+        justify-content: center;
         z-index: 1000;
       }
 
-      .popup-inner, .modal-content {
+      .popup-inner {
         background: white;
         padding: 20px;
         border-radius: 8px;
-        width: 90%;
-        max-width: 500px;
-        max-height: 90vh;
-        overflow-y: auto;
+        width: 90%; /* Adjusted for mobile compatibility */
+        max-width: 400px;
+        position: relative;
+      }
+
+      .popup-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .close-btn {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .image-container {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .image-container img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+      }
+
+      .image-btn {
+        margin-top: 10px;
+        padding: 5px 10px;
+        background-color: #1DA1F2;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
       }
 
       .ecommerce-form .form-group {
-        margin-bottom: 15px;
+        margin-bottom: 1px;
       }
 
-      .ecommerce-form input, .ecommerce-form select {
+      .ecommerce-form label {
+        display: block;
+        font-size: 14px;
+        margin-bottom: 5px;
+      }
+
+      .ecommerce-form input,
+      .ecommerce-form select {
         width: 100%;
-        padding: 10px;
-        font-size: 1rem;
+        padding: 8px;
+        border: 1px solid #CED4DA;
+        border-radius: 4px;
       }
 
       .form-actions {
@@ -155,119 +499,234 @@
         gap: 10px;
       }
 
-      .form-actions button {
-        padding: 12px;
-        flex: 1;
-        font-size: 1rem;
+      .save-btn {
+        background-color: #1DA1F2;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
       }
 
-      .image-container img {
-        max-width: 100%;
-        height: auto;
+      .cancel-btn {
+        background-color: #E1E8ED;
+        color: #1DA1F2;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      /* Modal Styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 80%;
+        background: rgba(0, 0, 0, 0.5);
+      }
+
+      .modal-content {
+        background: #fff;
+        margin: 5% auto;
+        padding: 20px 24px;
+        width: 420px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        position: relative;
+      }
+
+      .modal-content h2 {
+        margin: 0 0 15px;
+        font-size: 18px;
+        color: #333;
+      }
+
+      .modal-content label {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 6px;
+      }
+
+      .modal-content input[type="file"] {
+        display: block;
+        width: 100%;
+        padding: 8px;
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        margin-bottom: 8px;
+      }
+
+      .hint {
+        font-size: 12px;
+        color: #666;
+        margin-bottom: 12px;
+      }
+
+      .hint code {
+        background: #f1f1f1;
+        padding: 2px 6px;
+        border-radius: 4px;
+      }
+
+      .checkbox-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+      }
+
+      .checkbox-row input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        margin: 0;
+        cursor: pointer;
+        accent-color: #1DA1F2;
+      }
+
+      .checkbox-row label {
+        font-size: 14px;
+        color: #444;
+        font-weight: 500;
+        margin: 0;
+      }
+
+      .warning {
+        background: #fff3cd;
+        border: 1px solid #ffeeba;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 13px;
+        color: #856404;
+        margin-bottom: 16px;
+      }
+
+      .modal-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+
+      .btn {
+        padding: 8px 14px;
+        border-radius: 6px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+      }
+
+      .btn-cancel {
+        background: #e0e0e0;
+      }
+
+      .btn-blue {
+        background: #007bff;
+        color: white;
+      }
+
+      .btn-blue:hover {
+        background: #0056b3;
+      }
+
+      .close {
+        position: absolute;
+        right: 16px;
+        top: 10px;
+        font-size: 22px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      #csvOptions {
+        width: 5px;
+        padding-left: 2px;
       }
 
       /* Footer */
       .footer {
         text-align: center;
-        padding: 20px;
-        font-size: 0.9rem;
+        padding: 10px;
+        color: #657786;
+        margin-top: 20px;
       }
 
-      /* Mobile-Specific Overrides Only */
+      /* Responsive Design */
       @media (max-width: 768px) {
-        .nav-inner {
+        .stats-container {
           flex-direction: column;
-          align-items: flex-start;
-        }
-        .nav-actions {
-          flex-direction: column;
-          width: 100%;
-          margin-top: 10px;
-        }
-        .dashboard-pill, .profile {
-          width: 100%;
-          text-align: center;
-          margin: 5px 0;
-        }
-        .profile-dropdown {
-          position: static;
-          width: 100%;
-          box-shadow: none;
-        }
-        .profile-dropdown ul {
-          width: 100%;
-        }
-        .profile-dropdown li {
-          text-align: center;
+          gap: 15px;
         }
 
-        .search-stats-wrapper {
-          flex-direction: column;
-        }
-        .search-container, .stats-container {
-          margin: 10px 0;
-        }
-        .stats-container .buttons {
-          display: flex;
-          flex-direction: column;
-        }
-        .stats-container .btn {
+        .card {
           width: 100%;
-          margin: 5px 0;
-          padding: 10px;
-          font-size: 1rem;
+        }
+
+        .search-container {
+          flex-direction: column;
+          gap: 15px;
+          width: 100%;
+          height: auto;
+        }
+
+        .filter-sort-container {
+          flex-direction: column;
+          gap: 15px;
         }
 
         .filter-sort-content {
           flex-direction: column;
           align-items: stretch;
         }
+
         .filter-sort-options {
           flex-direction: column;
-        }
-        .filter-sort-options select {
-          max-width: none;
-          margin-bottom: 10px;
-          padding: 10px;
-          font-size: 1rem;
-        }
-        .actions {
-          flex-direction: column;
-        }
-        .actions .btn {
+          margin-right: 0;
           width: 100%;
-          padding: 12px;
-          font-size: 1rem;
         }
 
-        .popup-inner, .modal-content {
-          width: 95%;
-          padding: 15px;
+        .category-select,
+        .sort-select {
+          width: 100%;
+          max-width: none;
         }
+
+        .actions {
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .actions .btn {
+          width: 100%;
+          margin: 5px 0;
+        }
+
+        .popup-inner {
+          width: 90%;
+          max-width: none;
+        }
+
+        .image-container img {
+          width: 120px;
+          height: 120px;
+        }
+
+        .ecommerce-form input,
+        .ecommerce-form select {
+          padding: 10px;
+          font-size: 16px;
+        }
+
         .form-actions {
           flex-direction: column;
         }
+
         .form-actions button {
           width: 100%;
           margin: 5px 0;
-          padding: 14px;
-          font-size: 1.1rem;
-        }
-        .ecommerce-form input, .ecommerce-form select {
           padding: 12px;
-          font-size: 1.1rem;
-        }
-        .image-container img {
-          width: 120px !important;
-          height: 120px;
-        }
-        .image-btn {
-          padding: 10px;
-          font-size: 1rem;
-        }
-
-        .footer {
-          font-size: 0.8rem;
         }
       }
     </style>
@@ -383,7 +842,6 @@
               <button class="btn btn-export">
                 <i class="fas fa-download"></i> Export
               </button>
-              <!-- Reset Storage Button (for debugging quota issues) -->
               <button id="resetStorageBtn" style="background: #ff6b6b; color: white; margin-top: 5px; display: none;">Reset Storage</button>
             </div>
           </div>
@@ -598,7 +1056,7 @@
     </footer>
 
     <script>
-      // Profile functionality (unchanged)
+      // Profile functionality
       const savedUsername = localStorage.getItem("username") || "owner";
       const savedEmail = localStorage.getItem("email") || "owner@signaltone.com";
       const savedProfileImg = localStorage.getItem("profileImg") || "download.jpeg";
@@ -691,7 +1149,7 @@
         profilePopup.style.display = "none";
       });
 
-      // Subcategory functionality (unchanged except for form submission enhancement)
+      // Subcategory functionality
       let categories = JSON.parse(localStorage.getItem("categories")) || [];
       let subcategories = JSON.parse(localStorage.getItem("subcategories")) || [];
 
@@ -913,7 +1371,7 @@
         }
       });
 
-      // Enhanced form submission with image bloat protection and detailed logging
+      // Enhanced form submission with validation and storage checks
       subcategoryForm.addEventListener("submit", (e) => {
         e.preventDefault();
         console.log("Save button clicked. Form data:", {
@@ -932,6 +1390,13 @@
             alert("Please fill all fields.");
             return;
           }
+          const priceValue = parseFloat(priceInput.value);
+          const quantityValue = parseInt(quantityInput.value);
+          if (isNaN(priceValue) || isNaN(quantityValue)) {
+            console.error("Validation failed: Price or quantity is not a number.");
+            alert("Price and quantity must be valid numbers.");
+            return;
+          }
           let imageSrc = subcategoryImg.src;
           // Prevent bloat: If image is base64 and too long, fallback to default
           if (imageSrc.startsWith('data:') && imageSrc.length > 1000000) { // ~1MB threshold
@@ -942,8 +1407,8 @@
             category: subcategoryCategorySelect.value,
             subcategory: subcategoryNameInput.value,
             productName: productNameInput.value,
-            price: parseFloat(priceInput.value),
-            quantity: parseInt(quantityInput.value),
+            price: priceValue,
+            quantity: quantityValue,
             desc: subcategoryDescInput.value,
             image: imageSrc,
             createdAt: editingIndex >= 0 ? subcategories[editingIndex].createdAt || new Date().toISOString() : new Date().toISOString()
@@ -1081,145 +1546,5 @@
         renderSubcategories(searchInput.value, categorySelect.value);
       });
 
-      // Reset Storage Button Handler (for quota issues)
-      resetStorageBtn.addEventListener("click", () => {
-        if (confirm("This will clear all subcategories and categories. Are you sure?")) {
-          localStorage.removeItem("subcategories");
-          localStorage.removeItem("categories");
-          subcategories = [];
-          categories = [];
-          renderSubcategories();
-          populateCategoryDropdowns();
-          alert("Storage reset! Reload the page.");
-          location.reload();
-        }
-      });
-      // Show reset button if storage is bloated
-      if (new Blob([JSON.stringify(localStorage)]).size > 4 * 1024 * 1024) {
-        resetStorageBtn.style.display = "block";
-      }
-
-      // Import functionality (unchanged)
-      const importModal = document.getElementById("importModal");
-      const csvFileInput = document.getElementById("csvFile");
-      const closeImportModal = document.querySelector("#importModal .close");
-      const importBtn = document.getElementById("importSubcategoriesBtn");
-      const headerCheckbox = importModal.querySelector("#containsHeaders");
-
-      document.querySelectorAll(".btn-import").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          importModal.style.display = "flex";
-        });
-      });
-
-      closeImportModal.addEventListener("click", () => {
-        importModal.style.display = "none";
-        csvFileInput.value = "";
-      });
-
-      importBtn.addEventListener("click", () => {
-        const file = csvFileInput.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            const text = e.target.result;
-            const rows = text.split("\n");
-            const hasHeaders = headerCheckbox.checked;
-            const startIndex = hasHeaders ? 1 : 0;
-
-            rows.slice(startIndex).forEach((row) => {
-              const [category, subcategory, productName, price, desc, image, quantity, createdAt] = row
-                .split(",")
-                .map((item) => item.trim());
-              if (category && subcategory && productName && price && desc) {
-                const validCreatedAt = createdAt && !isNaN(new Date(createdAt)) 
-                  ? createdAt 
-                  : new Date().toISOString();
-                const newSubcategory = {
-                  category: category.trim(),
-                  subcategory: subcategory.trim(),
-                  productName: productName.trim(),
-                  price: parseFloat(price.trim()),
-                  quantity: quantity ? parseInt(quantity.trim()) : 0,
-                  desc: desc.trim(),
-                  image: image ? image.trim() : defaultImage,
-                  createdAt: validCreatedAt
-                };
-                const existingIndex = subcategories.findIndex(
-                  (sub) =>
-                    sub.productName === newSubcategory.productName &&
-                    (sub.category || "").trim().toLowerCase() === (newSubcategory.category || "").trim().toLowerCase()
-                );
-                if (existingIndex >= 0) {
-                  subcategories[existingIndex] = newSubcategory;
-                } else {
-                  subcategories.push(newSubcategory);
-                }
-              } else {
-                console.error("Invalid row data:", row);
-              }
-            });
-            localStorage.setItem("subcategories", JSON.stringify(subcategories));
-            renderSubcategories(searchInput.value, categorySelect.value);
-            importModal.style.display = "none";
-            csvFileInput.value = "";
-          };
-          reader.readAsText(file);
-        } else {
-          alert("Please select a CSV file.");
-        }
-      });
-
-      // Close modal when clicking outside
-      window.addEventListener("click", (e) => {
-        if (e.target === importModal) {
-          importModal.style.display = "none";
-          csvFileInput.value = "";
-        }
-      });
-
-      // Export functionality (unchanged)
-      const exportModal = document.getElementById("exportModal");
-      const closeExportModal = document.querySelector("#exportModal .close");
-      const downloadCsvBtn = document.getElementById("downloadCsvBtn");
-
-      document.querySelectorAll(".btn-export").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          exportModal.style.display = "flex";
-        });
-      });
-
-      closeExportModal.addEventListener("click", () => {
-        exportModal.style.display = "none";
-      });
-
-      window.addEventListener("click", (e) => {
-        if (e.target === exportModal) {
-          exportModal.style.display = "none";
-        }
-      });
-
-      downloadCsvBtn.addEventListener("click", () => {
-        const csv = [
-          "Category,Subcategory,Product Name,Price,Description,Image,Quantity,CreatedAt",
-          ...subcategories.map((sub) =>
-            `${sub.category},${sub.subcategory},${sub.productName},${sub.price},${sub.desc},${sub.image},${sub.quantity},${sub.createdAt || ''}`
-          ),
-        ].join("\n");
-        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "subcategories.csv";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
-        exportModal.style.display = "none";
-      });
-
-      // Debugging: Check localStorage usage
-      console.log("LocalStorage used: ", new Blob([JSON.stringify(localStorage)]).size / 1024 / 1024, "MB");
-    </script>
-  </body>
-</html>
+      // Reset Storage Button Handler
+      resetStorageBtn.addEventListener("click", () =>
