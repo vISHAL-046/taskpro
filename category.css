@@ -556,18 +556,18 @@ select.btn:focus {
 @media (max-width: 640px) {
   body {
     padding: 5px;
-    overflow-x: hidden; /* Prevent horizontal scrolling */
+    overflow-x: hidden;
     box-sizing: border-box;
   }
   * {
-    box-sizing: border-box; /* Ensure all elements respect padding/margins */
+    box-sizing: border-box;
   }
   .btn {
     font-size: 13px;
     padding: 6px 12px;
   }
   input, select {
-    font-size: 16px; /* Prevent iOS zoom */
+    font-size: 16px;
     max-width: 100%;
   }
 }
@@ -581,14 +581,14 @@ select.btn:focus {
     gap: 8px;
     width: 100%;
     max-width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
   }
   .header-content {
     width: 100%;
     max-width: 100%;
   }
   .header-title {
-    font-size: 16px; /* Slightly smaller for better fit */
+    font-size: 16px;
   }
   .header-subtitle {
     font-size: 11px;
@@ -598,6 +598,7 @@ select.btn:focus {
     width: 100%;
     flex-wrap: wrap;
     gap: 8px;
+    overflow-x: hidden;
   }
   .btn, select.btn {
     flex: 1;
@@ -615,7 +616,7 @@ select.btn:focus {
     padding: 8px;
     width: 100%;
     max-width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
   }
   .search, .sort {
     width: 100%;
@@ -637,7 +638,7 @@ select.btn:focus {
     gap: 12px;
     width: 100%;
     max-width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
   }
   .filter-group {
     min-width: 100%;
@@ -659,58 +660,48 @@ select.btn:focus {
 /* Category Table Mobile */
 @media (max-width: 640px) {
   .category-table {
-    display: block;
     width: 100%;
     max-width: 100%;
     overflow-x: hidden;
   }
-  .category-table thead {
-    display: none; /* Hide header to avoid cutoff */
-  }
-  .category-table tbody,
-  .category-table tr {
-    display: block;
+  .category-table table {
     width: 100%;
     max-width: 100%;
-    margin-bottom: 12px;
-    padding: 8px;
-    border: 1px solid #eee;
-    border-radius: 6px;
-    box-sizing: border-box;
+  }
+  .category-table thead {
+    display: table-header-group;
+    width: 100%;
+    max-width: 100%;
+  }
+  .category-table th {
+    font-size: 13px;
+    padding: 6px 8px;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+  .table-body-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    max-width: 100%;
+  }
+  .category-table tbody {
+    display: table-row-group;
+    min-width: 600px; /* Ensure content is wide enough to scroll if needed */
   }
   .category-table td {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    text-align: right;
     padding: 6px 8px;
-    border: none;
-    position: relative;
-    padding-left: 50%;
-  }
-  .category-table td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 8px;
-    width: 45%;
-    font-weight: bold;
-    text-align: left;
-    color: #666;
+    min-width: 100px;
+    white-space: nowrap;
   }
   .category-table td img {
     width: 40px;
     height: 40px;
-    margin: 0 auto 4px;
-    display: block;
   }
   .edit-category, .delete-category {
-    width: 100%;
-    max-width: 100px;
-    margin: 2px auto;
     padding: 4px 8px;
     font-size: 12px;
-    display: block;
-    text-align: center;
+    min-width: 60px;
   }
 }
 
@@ -722,6 +713,7 @@ select.btn:focus {
     gap: 6px;
     width: 100%;
     max-width: 100%;
+    overflow-x: hidden;
   }
   select.btn {
     min-width: 100px;
@@ -736,7 +728,7 @@ select.btn:focus {
     max-width: 95vw;
     margin: 10px auto;
     padding: 12px;
-    overflow: hidden;
+    overflow-x: hidden;
   }
   #categoryPopup .popup-header h2 {
     font-size: 20px;
@@ -763,7 +755,7 @@ select.btn:focus {
     max-width: 95vw;
     margin: 10% auto;
     padding: 12px;
-    overflow: hidden;
+    overflow-x: hidden;
   }
   .modal-actions {
     flex-direction: column;
@@ -776,6 +768,7 @@ select.btn:focus {
   .checkbox-row {
     justify-content: flex-start;
     width: 100%;
+    max-width: 100%;
   }
 }
 
