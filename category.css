@@ -615,7 +615,7 @@ select.btn:focus {
 @media (max-width: 480px) {
   .category-table {
     width: 100%;
-    border-collapse: collapse; /* Ensure borders connect */
+    border-collapse: collapse; /* Ensure borders connect horizontally */
     display: table;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
@@ -635,7 +635,7 @@ select.btn:focus {
   .category-table td {
     padding: 6px;
     text-align: left;
-    border: 1px solid #eee; /* Connect all borders */
+    border-bottom: 1px solid #eee; /* Horizontal lines only */
     font-size: 13px;
     vertical-align: middle;
   }
