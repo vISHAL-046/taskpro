@@ -741,8 +741,7 @@
     display: table-header-group;
     position: sticky;
     top: 0;
-    background-color: #F5F8FA;
-    color: #657786;
+    background: #f9f9f9;
     z-index: 10;
   }
 
@@ -753,11 +752,16 @@
 
   .category-table th,
   .category-table td {
-    padding: 8px !important;
+    padding: 10px !important;
     text-align: left;
-    border-bottom: 1px solid #E1E8ED;
+    border-bottom: 1px solid #eee;
     font-size: 14px;
     min-width: 0 !important;
+  }
+
+  .category-table th {
+    background: #f9f9f9;
+    white-space: nowrap;
   }
 
   .category-table td img {
