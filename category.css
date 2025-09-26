@@ -1,14 +1,12 @@
 /* Category Page Specific */
-
 .navbar {
-  /* ... other styles ... */
   position: sticky;
   top: 0;
-  /* ... */
+  z-index: 1000;
 }
 
 .hero {
-  background-color: #1DA1F2;
+  background-color: #007bff;
   color: white;
   padding: 10px 20px;
   border-radius: 8px;
@@ -18,31 +16,39 @@
   width: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .header-content {
   display: flex;
   flex-direction: column;
 }
+
 .title-wrapper {
   display: flex;
   align-items: center;
   gap: 5px;
 }
+
 .header-icon {
   margin-right: 5px;
 }
+
 .header-title {
   font-size: 18px;
   font-weight: bold;
 }
+
 .header-subtitle {
   font-size: 12px;
   margin: 5px 0 0 0;
   color: #E1E8ED;
 }
+
 .category-controls {
   display: flex;
+  align-items: center;
   gap: 10px;
 }
+
 .btn {
   background-color: white;
   border: none;
@@ -51,33 +57,38 @@
   cursor: pointer;
   font-size: 12px;
 }
+
 .btn-soft {
   background-color: #E1E8ED;
   color: #1DA1F2;
 }
+
 .btn-smokewhite {
   background-color: #F5F8FA;
   color: #1DA1F2;
 }
 
-/*search sort card */
+/* Search Sort Card */
 .search-sort {
-  background-color: #F5F8FA; /* Light gray background */
+  background-color: #F5F8FA;
   padding: 10px;
   border-radius: 8px;
   display: flex;
   align-items: center;
   gap: 20px;
 }
+
 .search, .sort {
   flex: 1;
 }
+
 label {
   display: block;
   font-size: 12px;
   color: #657786;
   margin-bottom: 5px;
 }
+
 input, select {
   width: 100%;
   padding: 8px;
@@ -85,6 +96,7 @@ input, select {
   border-radius: 4px;
   font-size: 14px;
 }
+
 .apply-filters {
   background-color: #A461D8;
   color: white;
@@ -114,7 +126,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* Each group */
 .filter-group {
   display: flex;
   flex-direction: column;
@@ -129,7 +140,6 @@ body {
   color: #1f2937;
 }
 
-/* Search box */
 .search-box {
   position: relative;
   display: flex;
@@ -156,7 +166,6 @@ body {
   box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
 }
 
-/* Select */
 select {
   padding: 10px 12px;
   border: 1px solid #d1d5db;
@@ -171,7 +180,6 @@ select:focus {
   background: #fff;
 }
 
-/* Buttons */
 .filter-actions {
   display: flex;
   gap: 10px;
@@ -195,7 +203,6 @@ select:focus {
   flex-shrink: 0;
 }
 
-/* Apply Filters button */
 .btn-apply {
   background: linear-gradient(90deg, #6366f1, #8b5cf6);
   color: white;
@@ -205,7 +212,6 @@ select:focus {
   opacity: 0.9;
 }
 
-/* Refresh button */
 .btn-refresh {
   background: #fff;
   border: 1px solid #d1d5db;
@@ -216,36 +222,6 @@ select:focus {
   background: #f9fafb;
 }
 
-.category-controls {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.search-sort {
-  display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-
-.search,
-.sort {
-  flex: 1;
-}
-
-.search input,
-.sort select {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.hero{
-  background-color: #007bff;
-  padding: 5px;
-}
 .category-table {
   width: 100%;
   border-collapse: collapse;
@@ -289,7 +265,6 @@ select:focus {
   color: white;
 }
 
-/* Category Popup */
 #categoryPopup .popup-inner {
   width: 500px;
   text-align: center;
@@ -404,12 +379,6 @@ select:focus {
   color: black;
 }
 
-.category-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
 select.btn {
   padding: 8px 14px;
   border-radius: 6px;
@@ -489,7 +458,7 @@ select.btn:focus {
   height: 16px;
   margin: 0;
   cursor: pointer;
-  accent-color: #1DA1F2; /* Matches the cyan theme from the image */
+  accent-color: #1DA1F2;
 }
 
 .checkbox-row label {
@@ -515,14 +484,6 @@ select.btn:focus {
   gap: 10px;
 }
 
-.btn {
-  padding: 8px 14px;
-  border-radius: 6px;
-  border: none;
-  cursor: pointer;
-  font-weight: 600;
-}
-
 .btn-cancel {
   background: #e0e0e0;
 }
@@ -544,84 +505,93 @@ select.btn:focus {
   font-weight: bold;
   cursor: pointer;
 }
-#csvOptions{
+
+#csvOptions {
   width: 5px;
   padding-left: 2px;
 }
 
-/* MOBILE RESPONSIVE UPDATES ONLY - Desktop remains unchanged */
-
-/* Hero Mobile */
+/* Mobile Responsive Updates Only - Desktop remains unchanged */
 @media (max-width: 640px) {
   .hero {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
     flex-direction: column;
     align-items: flex-start;
     padding: 8px 12px;
     gap: 8px;
+    border-radius: 0;
+    margin: 0;
   }
+
   .header-content {
     width: 100%;
   }
+
   .category-controls {
     justify-content: flex-start;
     width: 100%;
     flex-wrap: wrap;
   }
+
   .btn {
     flex: 1;
     min-width: 80px;
     justify-content: center;
   }
-}
 
-/* Search Sort Mobile */
-@media (max-width: 640px) {
   .search-sort {
     flex-direction: column;
     gap: 12px;
     padding: 12px 8px;
+    margin-top: 60px; /* Adjust for fixed header */
   }
+
   .search, .sort {
     width: 100%;
   }
+
   .apply-filters {
     width: 100%;
     justify-content: center;
   }
-}
 
-/* Filter Container Mobile */
-@media (max-width: 768px) {
   .filter-container {
     flex-direction: column;
     align-items: stretch;
     padding: 12px 8px;
     gap: 12px;
   }
+
   .filter-group {
     min-width: 100%;
   }
+
   .filter-actions {
     width: 100%;
     justify-content: stretch;
   }
+
   .btn-apply, .btn-refresh {
     flex: 1;
     min-width: 0;
   }
-}
 
-/* Category Table Mobile */
-@media (max-width: 640px) {
   .category-table {
     display: block;
     width: 100%;
     overflow-x: auto;
     white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
   }
+
   .category-table thead {
     display: none;
   }
+
   .category-table tbody,
   .category-table tr {
     display: block;
@@ -630,6 +600,7 @@ select.btn:focus {
     border-radius: 6px;
     padding: 8px;
   }
+
   .category-table td {
     display: block;
     text-align: right;
@@ -638,6 +609,7 @@ select.btn:focus {
     position: relative;
     padding-left: 50%;
   }
+
   .category-table td::before {
     content: attr(data-label) ": ";
     position: absolute;
@@ -647,94 +619,76 @@ select.btn:focus {
     text-align: left;
     color: #666;
   }
+
   .category-table td img {
     width: 40px;
     height: 40px;
     display: block;
     margin: 0 auto 4px;
   }
+
   .edit-category, .delete-category {
     margin: 2px;
     padding: 4px 8px;
     font-size: 12px;
   }
-}
 
-/* Category Controls Mobile */
-@media (max-width: 640px) {
-  .category-controls {
-    justify-content: flex-start !important;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  select.btn {
-    min-width: 120px;
-  }
-}
-
-/* Popup Mobile */
-@media (max-width: 640px) {
   #categoryPopup .popup-inner {
     width: 95%;
     max-width: 95vw;
     margin: 10px;
     padding: 12px;
   }
+
   #categoryPopup .popup-header h2 {
     font-size: 20px;
   }
+
   #categoryPopup .image-container img {
     width: 100px;
     height: 100px;
   }
+
   #categoryPopup .form-actions {
     flex-direction: column;
     gap: 8px;
   }
+
   #categoryPopup .save-btn,
   #categoryPopup .cancel-btn {
     width: 100%;
   }
-}
 
-/* Modal Mobile */
-@media (max-width: 640px) {
   .modal-content {
     width: 95%;
     max-width: 95vw;
     margin: 10% auto;
     padding: 12px;
   }
+
   .modal-actions {
     flex-direction: column;
     gap: 8px;
   }
+
   .btn-cancel, .btn-blue {
     width: 100%;
   }
+
   .checkbox-row {
     justify-content: flex-start;
   }
-}
 
-/* CSV Options Mobile */
-@media (max-width: 640px) {
   #csvOptions {
     width: 100%;
     padding: 8px;
   }
-}
 
-/* General Mobile Adjustments */
-@media (max-width: 640px) {
   body {
     padding: 5px;
   }
-  .btn {
-    font-size: 13px;
-    padding: 6px 12px;
-  }
+
   input, select {
-    font-size: 16px; /* Prevents zoom on iOS */
+    font-size: 16px;
   }
 }
