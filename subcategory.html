@@ -333,7 +333,7 @@
     </footer>
 
     <script>
-      // Profile functionality
+      // Profile functionality (unchanged)
       const savedUsername = localStorage.getItem("username") || "owner";
       const savedEmail = localStorage.getItem("email") || "owner@signaltone.com";
       const savedProfileImg = localStorage.getItem("profileImg") || "download.jpeg";
@@ -463,6 +463,12 @@
 
       const defaultImage = "https://images.unsplash.com/photo-1600585152280-be6161a56a0c?auto=format&fit=crop&w=150&q=80";
 
+      // Ensure categories array is not empty
+      if (!categories.length) {
+        categories = [{ name: "Default Category", image: defaultImage }];
+        localStorage.setItem("categories", JSON.stringify(categories));
+      }
+
       // Function to deduplicate categories by name (case-insensitive)
       function deduplicateCategories(cats) {
         const seen = new Map();
@@ -477,8 +483,22 @@
         return Array.from(seen.values());
       }
 
-      // Initialize categories with deduplication
-      categories = deduplicateCategories(categories);
+      // Function to reset the subcategory form
+      function resetSubcategoryForm() {
+        const uniqueCategories = deduplicateCategories(categories);
+        subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
+        subcategoryNameInput.value = "";
+        productNameInput.value = "";
+        priceInput.value = "";
+        quantityInput.value = "";
+        subcategoryDescInput.value = "";
+        subcategoryImg.src =
+          uniqueCategories.find(
+            (cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase()
+          )?.image || defaultImage;
+        editingIndex = -1;
+        popupTitle.textContent = "Add Subcategory";
+      }
 
       // Function to populate category dropdowns
       function populateCategoryDropdowns() {
@@ -604,18 +624,7 @@
           console.error("Add New button not found!");
           return;
         }
-        popupTitle.textContent = "Add Subcategory";
-        const uniqueCategories = deduplicateCategories(categories);
-        subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
-        subcategoryNameInput.value = "";
-        productNameInput.value = "";
-        priceInput.value = "";
-        quantityInput.value = "";
-        subcategoryDescInput.value = "";
-        subcategoryImg.src =
-          uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
-          defaultImage;
-        editingIndex = -1;
+        resetSubcategoryForm();
         subcategoryPopup.style.display = "flex";
       });
 
@@ -641,6 +650,7 @@
         }
       });
 
+      // Subcategory form submission
       subcategoryForm.addEventListener("submit", (e) => {
         e.preventDefault();
         if (!subcategoryCategorySelect.value || !subcategoryNameInput.value || !productNameInput.value || !priceInput.value || !quantityInput.value || !subcategoryDescInput.value) {
@@ -665,80 +675,15 @@
         localStorage.setItem("subcategories", JSON.stringify(subcategories));
         renderSubcategories(searchInput.value, categorySelect.value);
         subcategoryPopup.style.display = "none";
-        if (editingIndex === -1) {
-          const uniqueCategories = deduplicateCategories(categories);
-          subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
-          subcategoryNameInput.value = "";
-          productNameInput.value = "";
-          priceInput.value = "";
-          quantityInput.value = "";
-          subcategoryDescInput.value = "";
-          subcategoryImg.src =
-            uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
-            defaultImage;
-        } else {
-          const sub = subcategories[editingIndex];
-          subcategoryCategorySelect.value = sub.category;
-          subcategoryNameInput.value = sub.subcategory;
-          productNameInput.value = sub.productName;
-          priceInput.value = sub.price;
-          quantityInput.value = sub.quantity;
-          subcategoryDescInput.value = sub.desc;
-          subcategoryImg.src = sub.image || defaultImage;
-        }
+        resetSubcategoryForm();
       });
 
-      document.querySelectorAll(".cancel-btn").forEach((btn) => {
+      // Cancel and Close buttons
+      document.querySelectorAll(".cancel-btn, #closePopupBtn").forEach((btn) => {
         btn.addEventListener("click", () => {
           subcategoryPopup.style.display = "none";
-          profilePopup.style.display = "none";
-          if (editingIndex >= 0) {
-            const sub = subcategories[editingIndex];
-            subcategoryCategorySelect.value = sub.category;
-            subcategoryNameInput.value = sub.subcategory;
-            productNameInput.value = sub.productName;
-            priceInput.value = sub.price;
-            quantityInput.value = sub.quantity;
-            subcategoryDescInput.value = sub.desc;
-            subcategoryImg.src = sub.image || defaultImage;
-          } else {
-            const uniqueCategories = deduplicateCategories(categories);
-            subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
-            subcategoryNameInput.value = "";
-            productNameInput.value = "";
-            priceInput.value = "";
-            quantityInput.value = "";
-            subcategoryDescInput.value = "";
-            subcategoryImg.src =
-              uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
-              defaultImage;
-          }
+          resetSubcategoryForm();
         });
-      });
-
-      closePopupBtn.addEventListener("click", () => {
-        subcategoryPopup.style.display = "none";
-        if (editingIndex >= 0) {
-          const sub = subcategories[editingIndex];
-          subcategoryCategorySelect.value = sub.category;
-          subcategoryNameInput.value = sub.subcategory;
-          productNameInput.value = sub.productName;
-          priceInput.value = sub.price;
-          quantityInput.value = sub.quantity;
-          subcategoryDescInput.value = sub.desc;
-          subcategoryImg.src = sub.image || defaultImage;
-        } else {
-          const uniqueCategories = deduplicateCategories(categories);
-          subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
-          subcategoryNameInput.value = "";
-          productNameInput.value = "";
-          priceInput.value = "";
-          quantityInput.value = "";
-          subcategoryDescInput.value = "";
-          subcategoryImg.src =
-            uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
-            defaultImage;
-        }
       });
 
       subcategoryTableBody.addEventListener("click", (e) => {
