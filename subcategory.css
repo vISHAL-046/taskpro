@@ -714,8 +714,7 @@
     align-items: center;
   }
 
-  .brand-name {
-    font-size: 18px;
+  .brand {
     margin-bottom: 10px;
   }
 
@@ -723,16 +722,19 @@
     flex-direction: column;
     width: 100%;
     gap: 10px;
+    order: 2; /* Move nav-actions below brand */
   }
 
   .dashboard-pill {
     margin: 0;
     width: 100%;
     text-align: center;
+    order: 1; /* Ensure dashboard comes first in nav-actions */
   }
 
   .profile {
     width: 100%;
+    order: 2; /* Profile pic after dashboard */
   }
 
   .profile-trigger img {
@@ -755,7 +757,7 @@
   }
 
   .container {
-    margin-top: 70px;
+    margin-top: 80px; /* Increased to ensure heading is below navbar */
     padding: 10px;
   }
 
