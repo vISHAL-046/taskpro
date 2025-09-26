@@ -9,17 +9,12 @@
   background-color: #007bff;
   color: white;
   padding: 10px 20px;
-  border-radius: 0;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  margin: 0;
 }
 
 .header-content {
@@ -81,7 +76,6 @@
   display: flex;
   align-items: center;
   gap: 20px;
-  margin-top: 60px; /* Adjust for fixed header */
 }
 
 .search, .sort {
@@ -553,7 +547,7 @@ select.btn:focus {
     flex-direction: column;
     gap: 12px;
     padding: 12px 8px;
-    margin-top: 60px;
+    margin-top: 60px; /* Adjust for fixed header */
   }
 
   .search, .sort {
@@ -587,7 +581,7 @@ select.btn:focus {
   }
 
   .category-table {
-    display: table;
+    display: block;
     width: 100%;
     overflow-x: auto;
     white-space: nowrap;
@@ -595,34 +589,48 @@ select.btn:focus {
   }
 
   .category-table thead {
-    display: table-header-group;
+    display: none;
   }
 
   .category-table tbody,
   .category-table tr {
-    display: table-row-group;
+    display: block;
+    margin-bottom: 12px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 8px;
   }
 
   .category-table td {
-    display: table-cell;
+    display: block;
+    text-align: right;
+    padding: 6px 0;
+    border: none;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  .category-table td::before {
+    content: attr(data-label) ": ";
+    position: absolute;
+    left: 0;
+    width: 45%;
+    font-weight: bold;
     text-align: left;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
+    color: #666;
   }
 
   .category-table td img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 0 auto 4px;
   }
 
   .edit-category, .delete-category {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 5px;
+    margin: 2px;
+    padding: 4px 8px;
+    font-size: 12px;
   }
 
   #categoryPopup .popup-inner {
