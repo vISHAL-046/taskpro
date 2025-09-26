@@ -619,7 +619,7 @@ select.btn:focus {
     display: table;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    /* Removed min-width to allow natural scaling */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
   }
   .category-table thead {
     display: table-header-group;
@@ -627,6 +627,8 @@ select.btn:focus {
     top: 0;
     background: #f9f9f9;
     z-index: 10;
+    width: 100%; /* Ensure full width */
+    box-sizing: border-box; /* Include padding in width calculation */
   }
   .category-table th,
   .category-table td {
