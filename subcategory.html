@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="subcategory.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="nav-profile.css" />
-    <!-- Refined Responsive CSS -->
+    <!-- Refined Responsive CSS - Fixes header layout -->
     <style>
-      /* responsive.css */
+      /* responsive.css - Targeted for mobile only, preserves original header spacing */
       * {
         box-sizing: border-box;
       }
@@ -44,35 +44,7 @@
         margin: 0 10px;
       }
 
-      @media (max-width: 768px) {
-        .nav-inner {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .nav-actions {
-          flex-direction: column;
-          width: 100%;
-          margin-top: 10px;
-        }
-        .dashboard-pill, .profile {
-          width: 100%;
-          text-align: center;
-          margin: 5px 0;
-        }
-        .profile-dropdown {
-          position: static;
-          width: 100%;
-          box-shadow: none;
-        }
-        .profile-dropdown ul {
-          width: 100%;
-        }
-        .profile-dropdown li {
-          text-align: center;
-        }
-      }
-
-      /* Main Container */
+      /* Main Container - Preserves original padding for heading */
       .container {
         max-width: 1200px;
         margin: 0 auto;
@@ -81,7 +53,17 @@
 
       .subcategory-banner {
         width: 100%;
-        padding: 20px;
+        padding: 20px; /* Matches original - no extra front/behind */
+        position: relative; /* Ensures no z-index overlaps */
+        z-index: 1;
+      }
+
+      .subcategory-content {
+        margin: 0; /* Preserves original spacing around heading */
+      }
+
+      .subcategory-title {
+        margin-bottom: 10px; /* Keeps heading tight to icon */
       }
 
       /* Search and Stats */
@@ -105,25 +87,6 @@
       .search-bar input {
         width: 100%;
         padding: 8px;
-      }
-
-      @media (max-width: 600px) {
-        .search-stats-wrapper {
-          flex-direction: column;
-        }
-        .search-container, .stats-container {
-          margin: 10px 0;
-        }
-        .stats-container .buttons {
-          display: flex;
-          flex-direction: column;
-        }
-        .stats-container .btn {
-          width: 100%;
-          margin: 5px 0;
-          padding: 10px;
-          font-size: 1rem;
-        }
       }
 
       /* Filter and Sort */
@@ -151,30 +114,6 @@
       .actions {
         display: flex;
         gap: 10px;
-      }
-
-      @media (max-width: 600px) {
-        .filter-sort-content {
-          flex-direction: column;
-          align-items: stretch;
-        }
-        .filter-sort-options {
-          flex-direction: column;
-        }
-        .filter-sort-options select {
-          max-width: none;
-          margin-bottom: 10px;
-          padding: 10px;
-          font-size: 1rem;
-        }
-        .actions {
-          flex-direction: column;
-        }
-        .actions .btn {
-          width: 100%;
-          padding: 12px;
-          font-size: 1rem;
-        }
       }
 
       /* Popups and Modals */
@@ -207,7 +146,7 @@
 
       .ecommerce-form input, .ecommerce-form select {
         width: 100%;
-        padding: 10px; /* Increased padding for mobile tap targets */
+        padding: 10px;
         font-size: 1rem;
       }
 
@@ -217,7 +156,7 @@
       }
 
       .form-actions button {
-        padding: 12px; /* Larger tap target */
+        padding: 12px;
         flex: 1;
         font-size: 1rem;
       }
@@ -227,7 +166,80 @@
         height: auto;
       }
 
-      @media (max-width: 600px) {
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 20px;
+        font-size: 0.9rem;
+      }
+
+      /* Mobile-Specific Overrides Only */
+      @media (max-width: 768px) {
+        .nav-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .nav-actions {
+          flex-direction: column;
+          width: 100%;
+          margin-top: 10px;
+        }
+        .dashboard-pill, .profile {
+          width: 100%;
+          text-align: center;
+          margin: 5px 0;
+        }
+        .profile-dropdown {
+          position: static;
+          width: 100%;
+          box-shadow: none;
+        }
+        .profile-dropdown ul {
+          width: 100%;
+        }
+        .profile-dropdown li {
+          text-align: center;
+        }
+
+        .search-stats-wrapper {
+          flex-direction: column;
+        }
+        .search-container, .stats-container {
+          margin: 10px 0;
+        }
+        .stats-container .buttons {
+          display: flex;
+          flex-direction: column;
+        }
+        .stats-container .btn {
+          width: 100%;
+          margin: 5px 0;
+          padding: 10px;
+          font-size: 1rem;
+        }
+
+        .filter-sort-content {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .filter-sort-options {
+          flex-direction: column;
+        }
+        .filter-sort-options select {
+          max-width: none;
+          margin-bottom: 10px;
+          padding: 10px;
+          font-size: 1rem;
+        }
+        .actions {
+          flex-direction: column;
+        }
+        .actions .btn {
+          width: 100%;
+          padding: 12px;
+          font-size: 1rem;
+        }
+
         .popup-inner, .modal-content {
           width: 95%;
           padding: 15px;
@@ -238,31 +250,22 @@
         .form-actions button {
           width: 100%;
           margin: 5px 0;
-          padding: 14px; /* Enhanced tap area */
-          font-size: 1.1rem; /* Larger text for readability */
+          padding: 14px;
+          font-size: 1.1rem;
         }
         .ecommerce-form input, .ecommerce-form select {
-          padding: 12px; /* Adjusted for mobile comfort */
-          font-size: 1.1rem; /* Larger text */
+          padding: 12px;
+          font-size: 1.1rem;
         }
         .image-container img {
-          width: 120px; /* Reduced image size for mobile */
+          width: 120px !important;
           height: 120px;
         }
         .image-btn {
           padding: 10px;
           font-size: 1rem;
         }
-      }
 
-      /* Footer */
-      .footer {
-        text-align: center;
-        padding: 20px;
-        font-size: 0.9rem;
-      }
-
-      @media (max-width: 600px) {
         .footer {
           font-size: 0.8rem;
         }
@@ -380,6 +383,8 @@
               <button class="btn btn-export">
                 <i class="fas fa-download"></i> Export
               </button>
+              <!-- Reset Storage Button (for debugging quota issues) -->
+              <button id="resetStorageBtn" style="background: #ff6b6b; color: white; margin-top: 5px; display: none;">Reset Storage</button>
             </div>
           </div>
         </div>
@@ -593,7 +598,7 @@
     </footer>
 
     <script>
-      // Profile functionality
+      // Profile functionality (unchanged)
       const savedUsername = localStorage.getItem("username") || "owner";
       const savedEmail = localStorage.getItem("email") || "owner@signaltone.com";
       const savedProfileImg = localStorage.getItem("profileImg") || "download.jpeg";
@@ -686,7 +691,7 @@
         profilePopup.style.display = "none";
       });
 
-      // Subcategory functionality
+      // Subcategory functionality (unchanged except for form submission enhancement)
       let categories = JSON.parse(localStorage.getItem("categories")) || [];
       let subcategories = JSON.parse(localStorage.getItem("subcategories")) || [];
 
@@ -719,6 +724,7 @@
       const applyFiltersBtn = document.getElementById("applyFiltersBtn");
       const closePopupBtn = document.getElementById("closePopupBtn");
       const categorySelect = document.getElementById("categorySelect");
+      const resetStorageBtn = document.getElementById("resetStorageBtn");
       let editingIndex = -1;
 
       const defaultImage = "https://images.unsplash.com/photo-1600585152280-be6161a56a0c?auto=format&fit=crop&w=150&q=80";
@@ -893,6 +899,12 @@
       subcategoryPhotoInput.addEventListener("change", (e) => {
         const file = e.target.files[0];
         if (file) {
+          // Check file size to prevent bloat (limit 500KB)
+          if (file.size > 500 * 1024) {
+            alert("Image too large! Use a smaller image to avoid storage issues.");
+            subcategoryImg.src = defaultImage;
+            return;
+          }
           const reader = new FileReader();
           reader.onload = (event) => {
             subcategoryImg.src = event.target.result;
@@ -901,7 +913,7 @@
         }
       });
 
-      // Debugging for Save button issue
+      // Enhanced form submission with image bloat protection and detailed logging
       subcategoryForm.addEventListener("submit", (e) => {
         e.preventDefault();
         console.log("Save button clicked. Form data:", {
@@ -920,6 +932,12 @@
             alert("Please fill all fields.");
             return;
           }
+          let imageSrc = subcategoryImg.src;
+          // Prevent bloat: If image is base64 and too long, fallback to default
+          if (imageSrc.startsWith('data:') && imageSrc.length > 1000000) { // ~1MB threshold
+            console.warn("Image too large for storage, using default.");
+            imageSrc = defaultImage;
+          }
           const subcategory = {
             category: subcategoryCategorySelect.value,
             subcategory: subcategoryNameInput.value,
@@ -927,7 +945,7 @@
             price: parseFloat(priceInput.value),
             quantity: parseInt(quantityInput.value),
             desc: subcategoryDescInput.value,
-            image: subcategoryImg.src,
+            image: imageSrc,
             createdAt: editingIndex >= 0 ? subcategories[editingIndex].createdAt || new Date().toISOString() : new Date().toISOString()
           };
           if (editingIndex >= 0) {
@@ -936,9 +954,16 @@
             subcategories.push(subcategory);
           }
           console.log("Saving to localStorage:", subcategory);
+          // Check storage quota before saving
+          if (JSON.stringify(subcategories).length > 5 * 1024 * 1024) { // ~5MB check
+            throw new Error("Storage quota exceeded - too many/large images. Clear storage and try again.");
+          }
           localStorage.setItem("subcategories", JSON.stringify(subcategories));
           console.log("Subcategories after save:", subcategories);
-          renderSubcategories(searchInput.value, categorySelect.value);
+          // Reset filters to show new item
+          searchInput.value = "";
+          categorySelect.value = "all";
+          renderSubcategories("", "all");
           subcategoryPopup.style.display = "none";
           if (editingIndex === -1) {
             const uniqueCategories = deduplicateCategories(categories);
@@ -962,8 +987,8 @@
             subcategoryImg.src = sub.image || defaultImage;
           }
         } catch (error) {
-          console.error("Error during form submission:", error);
-          alert("An error occurred while saving. Check the console for details.");
+          console.error("Error during form submission:", error.name, error.message);
+          alert(`An error occurred while saving: ${error.message}. Check the console for details. (Likely storage quota - try smaller images or reset storage.)`);
         }
       });
 
@@ -1056,7 +1081,25 @@
         renderSubcategories(searchInput.value, categorySelect.value);
       });
 
-      // Import functionality
+      // Reset Storage Button Handler (for quota issues)
+      resetStorageBtn.addEventListener("click", () => {
+        if (confirm("This will clear all subcategories and categories. Are you sure?")) {
+          localStorage.removeItem("subcategories");
+          localStorage.removeItem("categories");
+          subcategories = [];
+          categories = [];
+          renderSubcategories();
+          populateCategoryDropdowns();
+          alert("Storage reset! Reload the page.");
+          location.reload();
+        }
+      });
+      // Show reset button if storage is bloated
+      if (new Blob([JSON.stringify(localStorage)]).size > 4 * 1024 * 1024) {
+        resetStorageBtn.style.display = "block";
+      }
+
+      // Import functionality (unchanged)
       const importModal = document.getElementById("importModal");
       const csvFileInput = document.getElementById("csvFile");
       const closeImportModal = document.querySelector("#importModal .close");
@@ -1135,7 +1178,7 @@
         }
       });
 
-      // Export functionality
+      // Export functionality (unchanged)
       const exportModal = document.getElementById("exportModal");
       const closeExportModal = document.querySelector("#exportModal .close");
       const downloadCsvBtn = document.getElementById("downloadCsvBtn");
