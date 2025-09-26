@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Subcategory Manager</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-RvQxD1xX9Z+nq87shL6oI6+3w+OkMDWimk3L0m3vT/cslS+9f5TjL44z4Qjwhh69f7gD8mKjIfd1z+7klXJpHg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="subcategory.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="nav-profile.css" />
@@ -566,10 +566,24 @@
     </div>
 
     <footer class="footer">
-      <small>©️ 2025 TaskPro — Dashboard prototype (Last updated: 10:18 PM IST, Thursday, September 25, 2025)</small>
+      <small>©️ 2025 TaskPro — Dashboard prototype (Last updated: 06:05 PM IST, Friday, September 26, 2025)</small>
     </footer>
 
     <script>
+      // Check localStorage availability
+      function isLocalStorageAvailable() {
+        try {
+          const test = "__test__";
+          localStorage.setItem(test, test);
+          localStorage.removeItem(test);
+          return true;
+        } catch (e) {
+          console.error("localStorage is not available:", e);
+          alert("localStorage is disabled. Please enable it or try a different browser.");
+          return false;
+        }
+      }
+
       // Profile functionality
       const savedUsername = localStorage.getItem("username") || "owner";
       const savedEmail = localStorage.getItem("email") || "owner@signaltone.com";
@@ -641,6 +655,7 @@
 
       profileForm.addEventListener("submit", (e) => {
         e.preventDefault();
+        if (!isLocalStorageAvailable()) return;
         const username = usernameInput.value;
         const email = emailInput.value;
         const profileImgSrc = profileImg.src;
@@ -664,8 +679,23 @@
       });
 
       // Subcategory functionality
-      let categories = JSON.parse(localStorage.getItem("categories")) || [];
-      let subcategories = JSON.parse(localStorage.getItem("subcategories")) || [];
+      let categories = [];
+      let subcategories = [];
+      if (isLocalStorageAvailable()) {
+        try {
+          categories = JSON.parse(localStorage.getItem("categories")) || [];
+          subcategories = JSON.parse(localStorage.getItem("subcategories")) || [];
+        } catch (error) {
+          console.error("Error parsing localStorage:", error);
+          categories = [];
+          subcategories = [];
+          localStorage.setItem("categories", JSON.stringify(categories));
+          localStorage.setItem("subcategories", JSON.stringify(subcategories));
+        }
+      } else {
+        categories = [];
+        subcategories = [];
+      }
 
       // Validate and normalize createdAt for subcategories
       subcategories = subcategories.map(sub => {
@@ -674,7 +704,9 @@
           : new Date().toISOString();
         return { ...sub, createdAt };
       });
-      localStorage.setItem("subcategories", JSON.stringify(subcategories));
+      if (isLocalStorageAvailable()) {
+        localStorage.setItem("subcategories", JSON.stringify(subcategories));
+      }
 
       const subcategoryTableBody = document.getElementById("subcategoryTableBody");
       const totalSubcategories = document.getElementById("totalSubcategories");
@@ -721,10 +753,13 @@
       function populateCategoryDropdowns() {
         subcategoryCategorySelect.innerHTML = "";
         categorySelect.innerHTML = '<option value="all">Category: All Categories</option>';
-
         const uniqueCategories = deduplicateCategories(categories);
         console.log("Populating dropdowns with categories:", uniqueCategories);
-
+        if (uniqueCategories.length === 0) {
+          console.warn("No categories available");
+          subcategoryCategorySelect.innerHTML = '<option value="">No categories available</option>';
+          return;
+        }
         uniqueCategories.forEach((cat) => {
           const option1 = document.createElement("option");
           option1.value = (cat.name || "").trim().toLowerCase();
@@ -747,7 +782,7 @@
 
       // Listen for changes to categories in localStorage
       window.addEventListener("storage", (e) => {
-        if (e.key === "categories") {
+        if (e.key === "categories" && isLocalStorageAvailable()) {
           categories = JSON.parse(e.newValue) || [];
           categories = deduplicateCategories(categories);
           console.log("Categories updated:", categories);
@@ -757,8 +792,12 @@
       });
 
       function renderSubcategories(searchFilter = "", filterCategory = "all") {
+        console.log("Rendering subcategories:", subcategories, { searchFilter, filterCategory });
+        if (!subcategoryTableBody) {
+          console.error("subcategoryTableBody element not found");
+          return;
+        }
         subcategoryTableBody.innerHTML = "";
-        console.log("Filtering with:", { searchFilter, filterCategory });
         let filteredSubcategories = subcategories.filter((sub) => {
           const matchesSearch =
             (sub.productName || "").toLowerCase().includes(searchFilter.toLowerCase()) ||
@@ -863,11 +902,7 @@
           defaultImage;
       });
 
-      changeSubcategoryPhotoBtn.addEventListener("click", () => {
-        subcategoryPhotoInput.click();
-      });
-
-      subcategoryPhotoInput.addEventListener("change", (e) => {
+      changeSubcategoryPhotoBtn.addEventListener("change", (e) => {
         const file = e.target.files[0];
         if (file) {
           const reader = new FileReader();
@@ -880,29 +915,53 @@
 
       subcategoryForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        if (!subcategoryCategorySelect.value || !subcategoryNameInput.value || !productNameInput.value || !priceInput.value || !quantityInput.value || !subcategoryDescInput.value) {
-          alert("Please fill all fields.");
-          return;
-        }
-        const subcategory = {
+        console.log("Submitting subcategory form", {
           category: subcategoryCategorySelect.value,
           subcategory: subcategoryNameInput.value,
           productName: productNameInput.value,
-          price: parseFloat(priceInput.value),
-          quantity: parseInt(quantityInput.value),
+          price: priceInput.value,
+          quantity: quantityInput.value,
           desc: subcategoryDescInput.value,
           image: subcategoryImg.src,
-          createdAt: editingIndex >= 0 ? subcategories[editingIndex].createdAt || new Date().toISOString() : new Date().toISOString()
-        };
-        if (editingIndex >= 0) {
-          subcategories[editingIndex] = subcategory;
-        } else {
-          subcategories.push(subcategory);
-        }
-        localStorage.setItem("subcategories", JSON.stringify(subcategories));
-        renderSubcategories(searchInput.value, categorySelect.value);
-        subcategoryPopup.style.display = "none";
-        if (editingIndex === -1) {
+          editingIndex
+        });
+        try {
+          if (!isLocalStorageAvailable()) {
+            alert("Cannot save: localStorage is disabled.");
+            return;
+          }
+          if (categories.length === 0) {
+            console.error("No categories available");
+            alert("No categories available. Please add a category in the Category Manager first.");
+            return;
+          }
+          if (!subcategoryCategorySelect.value || !subcategoryNameInput.value || !productNameInput.value || !priceInput.value || !quantityInput.value || !subcategoryDescInput.value) {
+            console.error("Form validation failed: Missing fields");
+            alert("Please fill all fields.");
+            return;
+          }
+          const subcategory = {
+            category: subcategoryCategorySelect.value.trim(),
+            subcategory: subcategoryNameInput.value.trim(),
+            productName: productNameInput.value.trim(),
+            price: parseFloat(priceInput.value),
+            quantity: parseInt(quantityInput.value),
+            desc: subcategoryDescInput.value.trim(),
+            image: subcategoryImg.src,
+            createdAt: editingIndex >= 0 ? subcategories[editingIndex].createdAt || new Date().toISOString() : new Date().toISOString()
+          };
+          if (editingIndex >= 0) {
+            subcategories[editingIndex] = subcategory;
+          } else {
+            subcategories.push(subcategory);
+          }
+          localStorage.setItem("subcategories", JSON.stringify(subcategories));
+          console.log("Subcategories saved:", subcategories);
+          searchInput.value = "";
+          categorySelect.value = "all";
+          sortSelect.value = "default";
+          renderSubcategories("", "all");
+          subcategoryPopup.style.display = "none";
           const uniqueCategories = deduplicateCategories(categories);
           subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
           subcategoryNameInput.value = "";
@@ -913,15 +972,9 @@
           subcategoryImg.src =
             uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
             defaultImage;
-        } else {
-          const sub = subcategories[editingIndex];
-          subcategoryCategorySelect.value = sub.category;
-          subcategoryNameInput.value = sub.subcategory;
-          productNameInput.value = sub.productName;
-          priceInput.value = sub.price;
-          quantityInput.value = sub.quantity;
-          subcategoryDescInput.value = sub.desc;
-          subcategoryImg.src = sub.image || defaultImage;
+        } catch (error) {
+          console.error("Error saving subcategory:", error);
+          alert("Failed to save subcategory. Check console for details.");
         }
       });
 
@@ -974,7 +1027,7 @@
           subcategoryDescInput.value = "";
           subcategoryImg.src =
             uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
-            defaultImage;
+              defaultImage;
         }
       });
 
@@ -995,7 +1048,9 @@
           const index = parseInt(e.target.getAttribute("data-index"));
           if (confirm("Are you sure you want to delete this subcategory?")) {
             subcategories.splice(index, 1);
-            localStorage.setItem("subcategories", JSON.stringify(subcategories));
+            if (isLocalStorageAvailable()) {
+              localStorage.setItem("subcategories", JSON.stringify(subcategories));
+            }
             renderSubcategories(searchInput.value, categorySelect.value);
           }
         }
@@ -1033,6 +1088,10 @@
       });
 
       importBtn.addEventListener("click", () => {
+        if (!isLocalStorageAvailable()) {
+          alert("Cannot import: localStorage is disabled.");
+          return;
+        }
         const file = csvFileInput.files[0];
         if (file) {
           const reader = new FileReader();
