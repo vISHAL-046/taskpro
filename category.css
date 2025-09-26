@@ -615,11 +615,10 @@ select.btn:focus {
 @media (max-width: 480px) {
   .category-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: collapse; /* Ensure borders connect */
     display: table;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
   }
@@ -631,15 +630,14 @@ select.btn:focus {
     z-index: 10;
     width: 100%;
     min-width: 100%;
-    box-sizing: border-box;
   }
   .category-table th,
   .category-table td {
     padding: 6px;
     text-align: left;
-    border-bottom: 1px solid #eee;
+    border: 1px solid #eee; /* Connect all borders */
     font-size: 13px;
-    vertical-align: middle; /* Align content vertically with buttons */
+    vertical-align: middle;
   }
   .category-table th:nth-child(1),
   .category-table td:nth-child(1) { width: 10%; min-width: 40px; } /* ID */
@@ -654,30 +652,25 @@ select.btn:focus {
   .category-table th {
     background: #f9f9f9;
     white-space: nowrap;
-    vertical-align: middle; /* Align header text */
+    vertical-align: middle;
   }
   .category-table td img {
     width: 35px;
     height: 35px;
     object-fit: cover;
     border-radius: 4px;
-    vertical-align: middle; /* Align images */
+    vertical-align: middle;
   }
   .edit-category,
   .delete-category {
     padding: 5px 10px;
     font-size: 12px;
-    margin-right: 5px;
+    margin: 0 2px;
     display: inline-block;
-    vertical-align: middle; /* Align buttons with text baseline */
+    vertical-align: middle;
   }
   .category-table td:nth-child(5) {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    align-items: center; /* Center buttons within the cell */
-    border-bottom: 1px solid #eee;
-    box-sizing: border-box;
+    text-align: center; /* Center buttons */
     padding: 6px;
   }
   .table-wrapper {
