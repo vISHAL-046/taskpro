@@ -485,13 +485,10 @@
 
       // Function to reset the subcategory form
       function resetSubcategoryForm() {
+        console.log("Resetting subcategory form");
         const uniqueCategories = deduplicateCategories(categories);
+        subcategoryForm.reset(); // Reset form inputs
         subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
-        subcategoryNameInput.value = "";
-        productNameInput.value = "";
-        priceInput.value = "";
-        quantityInput.value = "";
-        subcategoryDescInput.value = "";
         subcategoryImg.src =
           uniqueCategories.find(
             (cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase()
@@ -624,6 +621,7 @@
           console.error("Add New button not found!");
           return;
         }
+        console.log("Opening Add New Subcategory form");
         resetSubcategoryForm();
         subcategoryPopup.style.display = "flex";
       });
@@ -653,26 +651,51 @@
       // Subcategory form submission
       subcategoryForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        if (!subcategoryCategorySelect.value || !subcategoryNameInput.value || !productNameInput.value || !priceInput.value || !quantityInput.value || !subcategoryDescInput.value) {
-          alert("Please fill all fields.");
-          return;
-        }
-        const subcategory = {
+        console.log("Form submitted with values:", {
           category: subcategoryCategorySelect.value,
           subcategory: subcategoryNameInput.value,
           productName: productNameInput.value,
+          price: priceInput.value,
+          quantity: quantityInput.value,
+          desc: subcategoryDescInput.value,
+          image: subcategoryImg.src
+        });
+
+        // Enhanced validation
+        if (
+          !subcategoryCategorySelect.value ||
+          !subcategoryNameInput.value.trim() ||
+          !productNameInput.value.trim() ||
+          !priceInput.value || isNaN(parseFloat(priceInput.value)) || parseFloat(priceInput.value) <= 0 ||
+          !quantityInput.value || isNaN(parseInt(quantityInput.value)) || parseInt(quantityInput.value) < 0 ||
+          !subcategoryDescInput.value.trim()
+        ) {
+          console.error("Validation failed: Please fill all fields with valid values");
+          alert("Please fill all fields with valid values.");
+          return;
+        }
+
+        const subcategory = {
+          category: subcategoryCategorySelect.value.trim(),
+          subcategory: subcategoryNameInput.value.trim(),
+          productName: productNameInput.value.trim(),
           price: parseFloat(priceInput.value),
           quantity: parseInt(quantityInput.value),
-          desc: subcategoryDescInput.value,
+          desc: subcategoryDescInput.value.trim(),
           image: subcategoryImg.src,
           createdAt: editingIndex >= 0 ? subcategories[editingIndex].createdAt || new Date().toISOString() : new Date().toISOString()
         };
+
+        console.log("Adding/Updating subcategory:", subcategory);
+
         if (editingIndex >= 0) {
           subcategories[editingIndex] = subcategory;
         } else {
           subcategories.push(subcategory);
         }
+
         localStorage.setItem("subcategories", JSON.stringify(subcategories));
+        console.log("Subcategories after save:", subcategories);
         renderSubcategories(searchInput.value, categorySelect.value);
         subcategoryPopup.style.display = "none";
         resetSubcategoryForm();
@@ -681,6 +704,7 @@
       // Cancel and Close buttons
       document.querySelectorAll(".cancel-btn, #closePopupBtn").forEach((btn) => {
         btn.addEventListener("click", () => {
+          console.log("Cancel/Close button clicked");
           subcategoryPopup.style.display = "none";
           resetSubcategoryForm();
         });
