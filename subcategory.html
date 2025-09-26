@@ -170,66 +170,6 @@
         }
       }
 
-      /* Table */
-      .category-table {
-        width: 100%;
-        border-collapse: collapse;
-        display: table;
-      }
-
-      .category-table th, .category-table td {
-        padding: 10px;
-        text-align: left;
-        border: 1px solid #ddd;
-      }
-
-      .category-table img {
-        max-width: 50px;
-        height: auto;
-      }
-
-      @media (max-width: 600px) {
-        .category-table {
-          display: block;
-          overflow-x: auto;
-          white-space: nowrap;
-        }
-        .category-table thead {
-          display: none;
-        }
-        .category-table tbody {
-          display: block;
-        }
-        .category-table tr {
-          display: block;
-          margin-bottom: 15px;
-          border: 1px solid #ddd;
-          padding: 10px;
-        }
-        .category-table td {
-          display: flex;
-          justify-content: space-between;
-          padding: 8px;
-          border-bottom: 1px solid #eee;
-        }
-        .category-table td:before {
-          content: attr(data-label);
-          font-weight: bold;
-          width: 40%;
-          white-space: nowrap;
-        }
-        .category-table td:last-child {
-          border-bottom: none;
-        }
-        .category-table td img {
-          max-width: 40px;
-        }
-        .category-table td button {
-          width: 100%;
-          margin: 5px 0;
-        }
-      }
-
       /* Popups and Modals */
       .profile-popup, .modal {
         display: none;
@@ -876,15 +816,15 @@
         filteredSubcategories.forEach((sub, index) => {
           const row = document.createElement("tr");
           row.innerHTML = `
-            <td data-label="ID">${index + 1}</td>
-            <td data-label="Image"><img src="${sub.image || defaultImage}" alt="${sub.productName || ''}" style="width: 50px; height: 50px; object-fit: cover;"></td>
-            <td data-label="Category">${sub.category || ''}</td>
-            <td data-label="Subcategory">${sub.subcategory || ''}</td>
-            <td data-label="Product Name">${sub.productName || ''}</td>
-            <td data-label="Price">$${sub.price ? sub.price.toFixed(2) : '0.00'}</td>
-            <td data-label="Quantity">${sub.quantity || 0}</td>
-            <td data-label="Description">${sub.desc || ''}</td>
-            <td data-label="Actions">
+            <td>${index + 1}</td>
+            <td><img src="${sub.image || defaultImage}" alt="${sub.productName || ''}" style="width: 50px; height: 50px; object-fit: cover;"></td>
+            <td>${sub.category || ''}</td>
+            <td>${sub.subcategory || ''}</td>
+            <td>${sub.productName || ''}</td>
+            <td>$${sub.price ? sub.price.toFixed(2) : '0.00'}</td>
+            <td>${sub.quantity || 0}</td>
+            <td>${sub.desc || ''}</td>
+            <td>
               <button class="edit-subcategory" data-index="${index}">Edit</button>
               <button class="delete-subcategory" data-index="${index}">Delete</button>
             </td>
