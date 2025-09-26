@@ -667,7 +667,7 @@
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .btn-cancel {
@@ -706,26 +706,27 @@
 /* Mobile Preview */
 @media (max-width: 768px) {
   .navbar {
-    padding: 5px 10px;
+    padding: 10px;
   }
 
   .nav-inner {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
 
   .brand-name {
-    font-size: 16px;
+    font-size: 18px;
+    margin-bottom: 10px;
   }
 
   .nav-actions {
     flex-direction: column;
     width: 100%;
-    margin-top: 10px;
+    gap: 10px;
   }
 
   .dashboard-pill {
-    margin: 5px 0;
+    margin: 0;
     width: 100%;
     text-align: center;
   }
@@ -753,21 +754,18 @@
     text-align: center;
   }
 
-  .profile-dropdown li a {
-    padding: 8px;
-  }
-
   .container {
-    margin-top: 60px;
+    margin-top: 70px;
     padding: 10px;
   }
 
   .subcategory-banner {
-    padding: 20px 10px;
+    padding: 20px;
+    border-radius: 12px;
   }
 
   .subcategory-banner h1 {
-    font-size: 22px;
+    font-size: 24px;
   }
 
   .subcategory-banner p {
@@ -776,23 +774,34 @@
 
   .search-stats-wrapper {
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
   }
 
   .search-container {
     width: 100%;
     height: auto;
-    margin-top: 10px;
+    margin-top: 0;
   }
 
   .search {
     padding: 10px;
     font-size: 16px;
+    margin-right: 0;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-bar svg {
+    margin-bottom: 5px;
   }
 
   .search-bar input {
-    padding: 6px;
-    font-size: 12px;
+    width: 100%;
+    padding: 10px 12px 10px 32px;
+    font-size: 14px;
   }
 
   .stats-container {
@@ -802,149 +811,165 @@
 
   .card {
     width: 100%;
-    margin-bottom: 5vh;
+    margin-bottom: 20px;
   }
 
   .buttons {
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
   }
 
   .btn {
     width: 100%;
-    padding: 8px;
-    font-size: 12px;
+    padding: 10px;
+    font-size: 14px;
   }
 
   .filter-sort-container {
-    padding: 5px;
+    padding: 15px;
+    border-radius: 12px;
+  }
+
+  .filter-sort-header {
+    margin-bottom: 15px;
   }
 
   .filter-sort-content {
     flex-direction: column;
     align-items: stretch;
+    gap: 15px;
   }
 
   .filter-sort-options {
     flex-direction: column;
     margin-right: 0;
     width: 100%;
+    gap: 10px;
   }
 
   .category-select,
   .sort-select {
     width: 100%;
-    max-width: none;
-    padding: 6px;
-    font-size: 12px;
+    padding: 10px;
+    font-size: 14px;
   }
 
   .actions {
     flex-direction: column;
     width: 100%;
+    gap: 10px;
   }
 
   .actions .btn {
     width: 100%;
-    margin: 5px 0;
-    padding: 8px;
+    padding: 10px;
     font-size: 14px;
   }
 
   .category-table th,
   .category-table td {
-    padding: 8px;
-    font-size: 12px;
+    padding: 10px;
+    font-size: 14px;
   }
 
   .category-table td img {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
   }
 
   .edit-subcategory,
   .delete-subcategory {
-    padding: 4px 8px;
-    font-size: 12px;
+    padding: 8px 12px;
+    font-size: 14px;
   }
 
   .popup-inner {
     width: 90%;
-    max-width: none;
     padding: 15px;
+    border-radius: 12px;
+  }
+
+  .popup-header {
+    margin-bottom: 15px;
   }
 
   .image-container img {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
   }
 
   .image-btn {
-    padding: 4px 8px;
-    font-size: 12px;
+    padding: 8px 12px;
+    font-size: 14px;
   }
 
   .ecommerce-form input,
   .ecommerce-form select {
-    padding: 6px;
-    font-size: 12px;
+    padding: 8px;
+    font-size: 14px;
   }
 
   .form-actions {
     flex-direction: column;
+    gap: 10px;
   }
 
   .form-actions button {
     width: 100%;
-    margin: 5px 0;
-    padding: 8px;
+    padding: 10px;
     font-size: 14px;
   }
 
   .modal-content {
     width: 90%;
-    margin: 10% auto;
     padding: 15px;
+    border-radius: 12px;
+    margin: 10% auto;
   }
 
   .modal-content h2 {
-    font-size: 16px;
+    font-size: 18px;
+    margin-bottom: 15px;
   }
 
   .modal-content input[type="file"] {
-    padding: 6px;
-  }
-
-  .hint {
-    font-size: 10px;
-  }
-
-  .checkbox-row label {
-    font-size: 12px;
-  }
-
-  .warning {
-    font-size: 11px;
     padding: 8px;
   }
 
-  .modal-actions .btn {
-    padding: 6px 12px;
+  .hint {
     font-size: 12px;
+    margin-bottom: 12px;
+  }
+
+  .checkbox-row {
+    gap: 8px;
+  }
+
+  .checkbox-row label {
+    font-size: 14px;
+  }
+
+  .warning {
+    font-size: 13px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+
+  .modal-actions {
+    gap: 10px;
+  }
+
+  .btn {
+    padding: 8px 14px;
+    font-size: 14px;
   }
 
   .close {
-    font-size: 18px;
+    font-size: 22px;
   }
 
   .footer {
-    font-size: 12px;
-    padding: 5px;
-  }
-}
-
-  .filter-sort,
-  .actions {
-    width: 100%;
+    padding: 10px;
+    font-size: 14px;
   }
 }
