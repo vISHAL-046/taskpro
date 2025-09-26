@@ -614,49 +614,51 @@ select.btn:focus {
 /* Category Table Mobile */
 @media (max-width: 640px) {
   .category-table {
-    display: block;
     width: 100%;
+    border-collapse: collapse;
+    display: table;
     overflow-x: auto;
-    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
   }
   .category-table thead {
-    display: none;
+    display: table-header-group;
+    position: sticky;
+    top: 0;
+    background: #f9f9f9;
+    z-index: 10;
   }
   .category-table tbody,
   .category-table tr {
-    display: block;
-    margin-bottom: 12px;
-    border: 1px solid #eee;
-    border-radius: 6px;
-    padding: 8px;
+    display: table-row;
   }
+  .category-table th,
   .category-table td {
-    display: block;
-    text-align: right;
-    padding: 6px 0;
-    border: none;
-    position: relative;
-    padding-left: 50%;
-  }
-  .category-table td::before {
-    content: attr(data-label) ": ";
-    position: absolute;
-    left: 0;
-    width: 45%;
-    font-weight: bold;
+    padding: 8px;
     text-align: left;
-    color: #666;
+    border-bottom: 1px solid #eee;
+    font-size: 14px;
+  }
+  .category-table th {
+    background: #f9f9f9;
+    white-space: nowrap;
   }
   .category-table td img {
     width: 40px;
     height: 40px;
-    display: block;
-    margin: 0 auto 4px;
+    object-fit: cover;
+    border-radius: 4px;
   }
-  .edit-category, .delete-category {
-    margin: 2px;
+  .edit-category,
+  .delete-category {
     padding: 4px 8px;
     font-size: 12px;
+    margin-right: 4px;
+  }
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+    display: block;
   }
 }
 
