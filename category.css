@@ -620,8 +620,8 @@ select.btn:focus {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     box-sizing: border-box;
-    margin: 0; /* Remove any margin */
-    padding: 0; /* Remove any padding */
+    margin: 0;
+    padding: 0;
   }
   .category-table thead {
     display: table-header-group;
@@ -630,7 +630,7 @@ select.btn:focus {
     background: #f9f9f9;
     z-index: 10;
     width: 100%;
-    min-width: 100%; /* Ensure full width of scrollable content */
+    min-width: 100%;
     box-sizing: border-box;
   }
   .category-table th,
@@ -639,7 +639,6 @@ select.btn:focus {
     text-align: left;
     border-bottom: 1px solid #eee;
     font-size: 13px;
-    /* Explicit widths to enforce alignment */
   }
   .category-table th:nth-child(1),
   .category-table td:nth-child(1) { width: 10%; min-width: 40px; } /* ID */
@@ -650,7 +649,7 @@ select.btn:focus {
   .category-table th:nth-child(4),
   .category-table td:nth-child(4) { width: 30%; min-width: 120px; } /* Description */
   .category-table th:nth-child(5),
-  .category-table td:nth-child(5) { width: 25%; min-width: 100px; } /* ACTIONS */
+  .category-table td:nth-child(5) { width: 20%; min-width: 120px; } /* ACTIONS (adjusted min-width) */
   .category-table th {
     background: #f9f9f9;
     white-space: nowrap;
@@ -663,16 +662,19 @@ select.btn:focus {
   }
   .edit-category,
   .delete-category {
-    padding: 5px 10px; /* Reverted to match landscape */
-    font-size: 12px; /* Reverted to match landscape or default .btn */
+    padding: 5px 10px;
+    font-size: 12px;
     margin-right: 5px;
     display: inline-block;
   }
   .category-table td:nth-child(5) {
     display: flex;
-    justify-content: center; /* Center the buttons */
-    gap: 5px; /* Match landscape spacing */
+    justify-content: center;
+    gap: 5px;
     align-items: center;
+    border-bottom: 1px solid #eee; /* Ensure line spans full cell */
+    box-sizing: border-box; /* Include padding in width */
+    padding: 6px; /* Match other td padding */
   }
   .table-wrapper {
     overflow-x: auto;
@@ -681,8 +683,8 @@ select.btn:focus {
     display: block;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    margin: 0; /* Remove any margin */
-    padding: 0; /* Remove any padding */
+    margin: 0;
+    padding: 0;
   }
   .table-wrapper::-webkit-scrollbar {
     display: none;
