@@ -8,6 +8,303 @@
     <link rel="stylesheet" href="subcategory.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="nav-profile.css" />
+    <!-- New responsive CSS -->
+    <style>
+      /* responsive.css */
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+      }
+
+      /* Navbar */
+      .navbar {
+        width: 100%;
+        padding: 10px 20px;
+      }
+
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand, .nav-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .dashboard-pill, .profile {
+        margin: 0 10px;
+      }
+
+      @media (max-width: 768px) {
+        .nav-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .nav-actions {
+          flex-direction: column;
+          width: 100%;
+          margin-top: 10px;
+        }
+        .dashboard-pill, .profile {
+          width: 100%;
+          text-align: center;
+          margin: 5px 0;
+        }
+        .profile-dropdown {
+          position: static;
+          width: 100%;
+          box-shadow: none;
+        }
+        .profile-dropdown ul {
+          width: 100%;
+        }
+        .profile-dropdown li {
+          text-align: center;
+        }
+      }
+
+      /* Main Container */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .subcategory-banner {
+        width: 100%;
+        padding: 20px;
+      }
+
+      /* Search and Stats */
+      .search-stats-wrapper {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+      }
+
+      .search-container, .stats-container {
+        flex: 1;
+        margin: 0 10px;
+      }
+
+      .search-bar {
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+
+      .search-bar input {
+        width: 100%;
+        padding: 8px;
+      }
+
+      @media (max-width: 600px) {
+        .search-stats-wrapper {
+          flex-direction: column;
+        }
+        .search-container, .stats-container {
+          margin: 10px 0;
+        }
+        .stats-container .buttons {
+          display: flex;
+          flex-direction: column;
+        }
+        .stats-container .btn {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+
+      /* Filter and Sort */
+      .filter-sort-container {
+        margin: 20px 0;
+      }
+
+      .filter-sort-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .filter-sort-options {
+        display: flex;
+        gap: 10px;
+      }
+
+      .filter-sort-options select {
+        width: 100%;
+        max-width: 200px;
+        padding: 8px;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      @media (max-width: 600px) {
+        .filter-sort-content {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .filter-sort-options {
+          flex-direction: column;
+        }
+        .filter-sort-options select {
+          max-width: none;
+        }
+        .actions {
+          flex-direction: column;
+        }
+        .actions .btn {
+          width: 100%;
+        }
+      }
+
+      /* Table */
+      .category-table {
+        width: 100%;
+        border-collapse: collapse;
+        display: table;
+      }
+
+      .category-table th, .category-table td {
+        padding: 10px;
+        text-align: left;
+        border: 1px solid #ddd;
+      }
+
+      .category-table img {
+        max-width: 50px;
+        height: auto;
+      }
+
+      @media (max-width: 600px) {
+        .category-table {
+          display: block;
+          overflow-x: auto;
+          white-space: nowrap;
+        }
+        .category-table thead {
+          display: none;
+        }
+        .category-table tbody {
+          display: block;
+        }
+        .category-table tr {
+          display: block;
+          margin-bottom: 15px;
+          border: 1px solid #ddd;
+          padding: 10px;
+        }
+        .category-table td {
+          display: flex;
+          justify-content: space-between;
+          padding: 8px;
+          border-bottom: 1px solid #eee;
+        }
+        .category-table td:before {
+          content: attr(data-label);
+          font-weight: bold;
+          width: 40%;
+          white-space: nowrap;
+        }
+        .category-table td:last-child {
+          border-bottom: none;
+        }
+        .category-table td img {
+          max-width: 40px;
+        }
+        .category-table td button {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+
+      /* Popups and Modals */
+      .profile-popup, .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .popup-inner, .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 500px;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      .ecommerce-form .form-group {
+        margin-bottom: 15px;
+      }
+
+      .ecommerce-form input, .ecommerce-form select {
+        width: 100%;
+        padding: 8px;
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .form-actions button {
+        padding: 10px;
+        flex: 1;
+      }
+
+      .image-container img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      @media (max-width: 600px) {
+        .popup-inner, .modal-content {
+          width: 95%;
+          padding: 15px;
+        }
+        .form-actions {
+          flex-direction: column;
+        }
+        .form-actions button {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 20px;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 600px) {
+        .footer {
+          font-size: 0.8rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- NAVBAR -->
@@ -333,7 +630,7 @@
     </footer>
 
     <script>
-      // Profile functionality (unchanged)
+      // Profile functionality
       const savedUsername = localStorage.getItem("username") || "owner";
       const savedEmail = localStorage.getItem("email") || "owner@signaltone.com";
       const savedProfileImg = localStorage.getItem("profileImg") || "download.jpeg";
@@ -463,12 +760,6 @@
 
       const defaultImage = "https://images.unsplash.com/photo-1600585152280-be6161a56a0c?auto=format&fit=crop&w=150&q=80";
 
-      // Ensure categories array is not empty
-      if (!categories.length) {
-        categories = [{ name: "Default Category", image: defaultImage }];
-        localStorage.setItem("categories", JSON.stringify(categories));
-      }
-
       // Function to deduplicate categories by name (case-insensitive)
       function deduplicateCategories(cats) {
         const seen = new Map();
@@ -483,19 +774,8 @@
         return Array.from(seen.values());
       }
 
-      // Function to reset the subcategory form
-      function resetSubcategoryForm() {
-        console.log("Resetting subcategory form");
-        const uniqueCategories = deduplicateCategories(categories);
-        subcategoryForm.reset(); // Reset form inputs
-        subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
-        subcategoryImg.src =
-          uniqueCategories.find(
-            (cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase()
-          )?.image || defaultImage;
-        editingIndex = -1;
-        popupTitle.textContent = "Add Subcategory";
-      }
+      // Initialize categories with deduplication
+      categories = deduplicateCategories(categories);
 
       // Function to populate category dropdowns
       function populateCategoryDropdowns() {
@@ -596,15 +876,15 @@
         filteredSubcategories.forEach((sub, index) => {
           const row = document.createElement("tr");
           row.innerHTML = `
-            <td>${index + 1}</td>
-            <td><img src="${sub.image || defaultImage}" alt="${sub.productName || ''}" style="width: 50px; height: 50px; object-fit: cover;"></td>
-            <td>${sub.category || ''}</td>
-            <td>${sub.subcategory || ''}</td>
-            <td>${sub.productName || ''}</td>
-            <td>$${sub.price ? sub.price.toFixed(2) : '0.00'}</td>
-            <td>${sub.quantity || 0}</td>
-            <td>${sub.desc || ''}</td>
-            <td>
+            <td data-label="ID">${index + 1}</td>
+            <td data-label="Image"><img src="${sub.image || defaultImage}" alt="${sub.productName || ''}" style="width: 50px; height: 50px; object-fit: cover;"></td>
+            <td data-label="Category">${sub.category || ''}</td>
+            <td data-label="Subcategory">${sub.subcategory || ''}</td>
+            <td data-label="Product Name">${sub.productName || ''}</td>
+            <td data-label="Price">$${sub.price ? sub.price.toFixed(2) : '0.00'}</td>
+            <td data-label="Quantity">${sub.quantity || 0}</td>
+            <td data-label="Description">${sub.desc || ''}</td>
+            <td data-label="Actions">
               <button class="edit-subcategory" data-index="${index}">Edit</button>
               <button class="delete-subcategory" data-index="${index}">Delete</button>
             </td>
@@ -621,8 +901,18 @@
           console.error("Add New button not found!");
           return;
         }
-        console.log("Opening Add New Subcategory form");
-        resetSubcategoryForm();
+        popupTitle.textContent = "Add Subcategory";
+        const uniqueCategories = deduplicateCategories(categories);
+        subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
+        subcategoryNameInput.value = "";
+        productNameInput.value = "";
+        priceInput.value = "";
+        quantityInput.value = "";
+        subcategoryDescInput.value = "";
+        subcategoryImg.src =
+          uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
+          defaultImage;
+        editingIndex = -1;
         subcategoryPopup.style.display = "flex";
       });
 
@@ -648,66 +938,104 @@
         }
       });
 
-      // Subcategory form submission
       subcategoryForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        console.log("Form submitted with values:", {
+        if (!subcategoryCategorySelect.value || !subcategoryNameInput.value || !productNameInput.value || !priceInput.value || !quantityInput.value || !subcategoryDescInput.value) {
+          alert("Please fill all fields.");
+          return;
+        }
+        const subcategory = {
           category: subcategoryCategorySelect.value,
           subcategory: subcategoryNameInput.value,
           productName: productNameInput.value,
-          price: priceInput.value,
-          quantity: quantityInput.value,
-          desc: subcategoryDescInput.value,
-          image: subcategoryImg.src
-        });
-
-        // Enhanced validation
-        if (
-          !subcategoryCategorySelect.value ||
-          !subcategoryNameInput.value.trim() ||
-          !productNameInput.value.trim() ||
-          !priceInput.value || isNaN(parseFloat(priceInput.value)) || parseFloat(priceInput.value) <= 0 ||
-          !quantityInput.value || isNaN(parseInt(quantityInput.value)) || parseInt(quantityInput.value) < 0 ||
-          !subcategoryDescInput.value.trim()
-        ) {
-          console.error("Validation failed: Please fill all fields with valid values");
-          alert("Please fill all fields with valid values.");
-          return;
-        }
-
-        const subcategory = {
-          category: subcategoryCategorySelect.value.trim(),
-          subcategory: subcategoryNameInput.value.trim(),
-          productName: productNameInput.value.trim(),
           price: parseFloat(priceInput.value),
           quantity: parseInt(quantityInput.value),
-          desc: subcategoryDescInput.value.trim(),
+          desc: subcategoryDescInput.value,
           image: subcategoryImg.src,
           createdAt: editingIndex >= 0 ? subcategories[editingIndex].createdAt || new Date().toISOString() : new Date().toISOString()
         };
-
-        console.log("Adding/Updating subcategory:", subcategory);
-
         if (editingIndex >= 0) {
           subcategories[editingIndex] = subcategory;
         } else {
           subcategories.push(subcategory);
         }
-
         localStorage.setItem("subcategories", JSON.stringify(subcategories));
-        console.log("Subcategories after save:", subcategories);
         renderSubcategories(searchInput.value, categorySelect.value);
         subcategoryPopup.style.display = "none";
-        resetSubcategoryForm();
+        if (editingIndex === -1) {
+          const uniqueCategories = deduplicateCategories(categories);
+          subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
+          subcategoryNameInput.value = "";
+          productNameInput.value = "";
+          priceInput.value = "";
+          quantityInput.value = "";
+          subcategoryDescInput.value = "";
+          subcategoryImg.src =
+            uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
+            defaultImage;
+        } else {
+          const sub = subcategories[editingIndex];
+          subcategoryCategorySelect.value = sub.category;
+          subcategoryNameInput.value = sub.subcategory;
+          productNameInput.value = sub.productName;
+          priceInput.value = sub.price;
+          quantityInput.value = sub.quantity;
+          subcategoryDescInput.value = sub.desc;
+          subcategoryImg.src = sub.image || defaultImage;
+        }
       });
 
-      // Cancel and Close buttons
-      document.querySelectorAll(".cancel-btn, #closePopupBtn").forEach((btn) => {
+      document.querySelectorAll(".cancel-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
-          console.log("Cancel/Close button clicked");
           subcategoryPopup.style.display = "none";
-          resetSubcategoryForm();
+          profilePopup.style.display = "none";
+          if (editingIndex >= 0) {
+            const sub = subcategories[editingIndex];
+            subcategoryCategorySelect.value = sub.category;
+            subcategoryNameInput.value = sub.subcategory;
+            productNameInput.value = sub.productName;
+            priceInput.value = sub.price;
+            quantityInput.value = sub.quantity;
+            subcategoryDescInput.value = sub.desc;
+            subcategoryImg.src = sub.image || defaultImage;
+          } else {
+            const uniqueCategories = deduplicateCategories(categories);
+            subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
+            subcategoryNameInput.value = "";
+            productNameInput.value = "";
+            priceInput.value = "";
+            quantityInput.value = "";
+            subcategoryDescInput.value = "";
+            subcategoryImg.src =
+              uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
+              defaultImage;
+          }
         });
+      });
+
+      closePopupBtn.addEventListener("click", () => {
+        subcategoryPopup.style.display = "none";
+        if (editingIndex >= 0) {
+          const sub = subcategories[editingIndex];
+          subcategoryCategorySelect.value = sub.category;
+          subcategoryNameInput.value = sub.subcategory;
+          productNameInput.value = sub.productName;
+          priceInput.value = sub.price;
+          quantityInput.value = sub.quantity;
+          subcategoryDescInput.value = sub.desc;
+          subcategoryImg.src = sub.image || defaultImage;
+        } else {
+          const uniqueCategories = deduplicateCategories(categories);
+          subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
+          subcategoryNameInput.value = "";
+          productNameInput.value = "";
+          priceInput.value = "";
+          quantityInput.value = "";
+          subcategoryDescInput.value = "";
+          subcategoryImg.src =
+            uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
+            defaultImage;
+        }
       });
 
       subcategoryTableBody.addEventListener("click", (e) => {
