@@ -4,7 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Subcategory Manager</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-RvQxD1xX9Z+nq87shL6oI6+3w+OkMDWimk3L0m3vT/cslS+9f5TjL44z4Qjwhh69f7gD8mKjIfd1z+7klXJpHg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Updated Font Awesome to 6.5.1 with correct CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="subcategory.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="nav-profile.css" />
@@ -338,7 +339,8 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
             </svg>
-            <span class="search">Search Subcategories</span>
+            <!-- Replaced span with label for accessibility -->
+            <label for="searchInput" class="search">Search Subcategories</label>
             <input
               type="text"
               id="searchInput"
@@ -503,7 +505,8 @@
           <button class="close-btn" id="closeProfilePopupBtn">&times;</button>
         </div>
         <div class="image-container">
-          <img id="profileImg" alt="Profile" />
+          <!-- Added fallback src -->
+          <img id="profileImg" src="https://via.placeholder.com/100" alt="Profile" />
           <input
             type="file"
             id="photoInput"
@@ -566,15 +569,14 @@
     </div>
 
     <footer class="footer">
-      <small>©️ 2025 TaskPro — Dashboard prototype (Last updated: 10:18 PM IST, Thursday, September 25, 2025)</small>
+      < SMALL>©️ 2025 TaskPro — Dashboard prototype (Last updated: 10:18 PM IST, Thursday, September 25, 2025)</small>
     </footer>
 
-    <!-- Original Script -->
     <script>
       // Profile functionality
       const savedUsername = localStorage.getItem("username") || "owner";
       const savedEmail = localStorage.getItem("email") || "owner@signaltone.com";
-      const savedProfileImg = localStorage.getItem("profileImg") || "download.jpeg";
+      const savedProfileImg = localStorage.getItem("profileImg") || "https://via.placeholder.com/100";
 
       document.getElementById("username").value = savedUsername;
       document.getElementById("email").value = savedEmail;
@@ -599,6 +601,14 @@
       profileTrigger.addEventListener("click", (e) => {
         e.preventDefault();
         profileDropdown.style.display = profileDropdown.style.display === "block" ? "none" : "block";
+      });
+
+      // Added keyboard accessibility for profile dropdown
+      profileTrigger.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          profileDropdown.style.display = profileDropdown.style.display === "block" ? "none" : "block";
+        }
       });
 
       editProfileLink.addEventListener("click", (e) => {
@@ -700,6 +710,12 @@
       let editingIndex = -1;
 
       const defaultImage = "https://images.unsplash.com/photo-1600585152280-be6161a56a0c?auto=format&fit=crop&w=150&q=80";
+
+      // Added escapeHTML function to prevent XSS
+      function escapeHTML(str) {
+        if (!str) return '';
+        return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+      }
 
       // Function to deduplicate categories by name (case-insensitive)
       function deduplicateCategories(cats) {
@@ -816,15 +832,16 @@
 
         filteredSubcategories.forEach((sub, index) => {
           const row = document.createElement("tr");
+          // Modified to use escapeHTML for XSS prevention
           row.innerHTML = `
             <td>${index + 1}</td>
-            <td><img src="${sub.image || defaultImage}" alt="${sub.productName || ''}" style="width: 50px; height: 50px; object-fit: cover;"></td>
-            <td>${sub.category || ''}</td>
-            <td>${sub.subcategory || ''}</td>
-            <td>${sub.productName || ''}</td>
+            <td><img src="${escapeHTML(sub.image || defaultImage)}" alt="${escapeHTML(sub.productName || '')}" style="width: 50px; height: 50px; object-fit: cover;"></td>
+            <td>${escapeHTML(sub.category || '')}</td>
+            <td>${escapeHTML(sub.subcategory || '')}</td>
+            <td>${escapeHTML(sub.productName || '')}</td>
             <td>$${sub.price ? sub.price.toFixed(2) : '0.00'}</td>
             <td>${sub.quantity || 0}</td>
-            <td>${sub.desc || ''}</td>
+            <td>${escapeHTML(sub.desc || '')}</td>
             <td>
               <button class="edit-subcategory" data-index="${index}">Edit</button>
               <button class="delete-subcategory" data-index="${index}">Delete</button>
@@ -944,74 +961,6 @@
           alert("An error occurred while saving. Check the console for details.");
         }
       });
-
-      // Optional fix for form submission (uncomment to use)
-      /*
-      subcategoryForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        try {
-          // Enhanced validation
-          const errors = [];
-          if (!subcategoryCategorySelect.value) errors.push("Category is required.");
-          if (!subcategoryNameInput.value.trim()) errors.push("Subcategory name is required.");
-          if (!productNameInput.value.trim()) errors.push("Product name is required.");
-          if (!priceInput.value || isNaN(parseFloat(priceInput.value)) || parseFloat(priceInput.value) < 0) errors.push("Valid price is required.");
-          if (!quantityInput.value || isNaN(parseInt(quantityInput.value)) || parseInt(quantityInput.value) < 0) errors.push("Valid quantity is required.");
-          if (!subcategoryDescInput.value.trim()) errors.push("Description is required.");
-          if (errors.length > 0) {
-            console.error("Validation errors:", errors);
-            alert("Errors:\n" + errors.join("\n"));
-            return;
-          }
-          // Check for duplicate subcategories
-          const subcategory = {
-            category: subcategoryCategorySelect.value.trim(),
-            subcategory: subcategoryNameInput.value.trim(),
-            productName: productNameInput.value.trim(),
-            price: parseFloat(priceInput.value),
-            quantity: parseInt(quantityInput.value),
-            desc: subcategoryDescInput.value.trim(),
-            image: subcategoryImg.src || defaultImage,
-            createdAt: editingIndex >= 0 ? subcategories[editingIndex].createdAt || new Date().toISOString() : new Date().toISOString()
-          };
-          const exists = subcategories.some((sub, idx) => 
-            idx !== editingIndex && 
-            sub.productName.toLowerCase() === subcategory.productName.toLowerCase() && 
-            sub.category.toLowerCase() === subcategory.category.toLowerCase()
-          );
-          if (exists) {
-            console.error("Duplicate subcategory detected:", subcategory);
-            alert("A subcategory with this product name and category already exists.");
-            return;
-          }
-          if (editingIndex >= 0) {
-            subcategories[editingIndex] = subcategory;
-          } else {
-            subcategories.push(subcategory);
-          }
-          console.log("Saving to localStorage:", subcategory);
-          localStorage.setItem("subcategories", JSON.stringify(subcategories));
-          console.log("Subcategories after save:", subcategories);
-          // Reset filters to ensure new item is visible
-          searchInput.value = "";
-          categorySelect.value = "all";
-          renderSubcategories("", "all");
-          subcategoryPopup.style.display = "none";
-          // Reset form
-          const uniqueCategories = deduplicateCategories(categories);
-          subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
-          subcategoryNameInput.value = "";
-          productNameInput.value = "";
-          priceInput.value = "";
-          quantityInput.value = "";
-          subcategoryDescInput.value = "";
-          subcategoryImg.src = uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image || defaultImage;
-        } catch (error) {
-          console.error("Error during form submission:", error);
-          alert("An error occurred while saving. Check the console for details.");
-        }
-      });
-      */
 
       document.querySelectorAll(".cancel-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
@@ -1167,6 +1116,11 @@
             importModal.style.display = "none";
             csvFileInput.value = "";
           };
+          // Added error handling for FileReader
+          reader.onerror = (e) => {
+            console.error("Error reading CSV file:", e);
+            alert("Failed to read the CSV file. Please check the file format.");
+          };
           reader.readAsText(file);
         } else {
           alert("Please select a CSV file.");
@@ -1223,82 +1177,6 @@
 
       // Debugging: Check localStorage usage
       console.log("LocalStorage used: ", new Blob([JSON.stringify(localStorage)]).size / 1024 / 1024, "MB");
-    </script>
-
-    <!-- Additional Script with Fixes (Added by Grok) -->
-    <script>
-      // Enhanced subcategoryForm submit handler (Added by Grok)
-      subcategoryForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        try {
-          // Enhanced validation
-          const errors = [];
-          if (!subcategoryCategorySelect.value) errors.push("Category is required.");
-          if (!subcategoryNameInput.value.trim()) errors.push("Subcategory name is required.");
-          if (!productNameInput.value.trim()) errors.push("Product name is required.");
-          if (!priceInput.value || isNaN(parseFloat(priceInput.value)) || parseFloat(priceInput.value) < 0) errors.push("Valid price is required.");
-          if (!quantityInput.value || isNaN(parseInt(quantityInput.value)) || parseInt(quantityInput.value) < 0) errors.push("Valid quantity is required.");
-          if (!subcategoryDescInput.value.trim()) errors.push("Description is required.");
-          if (errors.length > 0) {
-            console.error("Validation errors:", errors);
-            alert("Errors:\n" + errors.join("\n"));
-            return;
-          }
-          // Check for duplicate subcategories
-          const subcategory = {
-            category: subcategoryCategorySelect.value.trim(),
-            subcategory: subcategoryNameInput.value.trim(),
-            productName: productNameInput.value.trim(),
-            price: parseFloat(priceInput.value),
-            quantity: parseInt(quantityInput.value),
-            desc: subcategoryDescInput.value.trim(),
-            image: subcategoryImg.src || defaultImage,
-            createdAt: editingIndex >= 0 ? subcategories[editingIndex].createdAt || new Date().toISOString() : new Date().toISOString()
-          };
-          const exists = subcategories.some((sub, idx) => 
-            idx !== editingIndex && 
-            sub.productName.toLowerCase() === subcategory.productName.toLowerCase() && 
-            sub.category.toLowerCase() === subcategory.category.toLowerCase()
-          );
-          if (exists) {
-            console.error("Duplicate subcategory detected:", subcategory);
-            alert("A subcategory with this product name and category already exists.");
-            return;
-          }
-          if (editingIndex >= 0) {
-            subcategories[editingIndex] = subcategory;
-          } else {
-            subcategories.push(subcategory);
-          }
-          console.log("Saving to localStorage:", subcategory);
-          // Check storage quota before saving
-          const storage = JSON.stringify(localStorage);
-          if (new Blob([storage]).size > 5 * 1024 * 1024) { // 5MB limit check
-            console.error("LocalStorage quota exceeded!");
-            alert("Storage limit reached. Please clear some data or export subcategories.");
-            return;
-          }
-          localStorage.setItem("subcategories", JSON.stringify(subcategories));
-          console.log("Subcategories after save:", subcategories);
-          // Reset filters to ensure new item is visible
-          searchInput.value = "";
-          categorySelect.value = "all";
-          renderSubcategories("", "all");
-          subcategoryPopup.style.display = "none";
-          // Reset form
-          const uniqueCategories = deduplicateCategories(categories);
-          subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
-          subcategoryNameInput.value = "";
-          productNameInput.value = "";
-          priceInput.value = "";
-          quantityInput.value = "";
-          subcategoryDescInput.value = "";
-          subcategoryImg.src = uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image || defaultImage;
-        } catch (error) {
-          console.error("Error during form submission:", error);
-          alert("An error occurred while saving. Check the console for details.");
-        }
-      });
     </script>
   </body>
 </html>
