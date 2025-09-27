@@ -264,7 +264,7 @@
     </div>
 
     <footer class="footer">
-      <small>©️ <span id="year"></span> TaskPro — Dashboard prototype (Last updated: 09:09 PM IST, Friday, September 26, 2025)</small>
+      <small>©️ <span id="year"></span> TaskPro — Dashboard prototype (Last updated: 10:00 PM IST, Friday, September 26, 2025)</small>
     </footer>
 
     <script>
@@ -376,7 +376,7 @@
       const applyFiltersBtn = document.querySelector(".apply-filters");
       let editingIndex = -1;
 
-      const defaultImage = "https://images.unsplash.com/photo-1600585152280-be6161a56a0c?auto=format&fit=crop&w=150&q=80";
+      const defaultImage = "https://via.placeholder.com/50"; // Updated to a reliable default image
 
       function renderCategories() {
         categoryTableBody.innerHTML = "";
@@ -384,8 +384,6 @@
           cat.name.toLowerCase().includes(searchInput.value.toLowerCase()) ||
           cat.desc.toLowerCase().includes(searchInput.value.toLowerCase())
         );
-
-        console.log("Sort option:", sortSelect.value, "Filtered categories:", filteredCategories); // Debug log
 
         // Apply sorting
         switch (sortSelect.value) {
@@ -432,6 +430,11 @@
         categoryCountBtn.textContent = `${filteredCategories.length} Categories`;
       }
 
+      // Initialize with a fallback if no categories exist
+      if (!localStorage.getItem("categories")) {
+        categories = [];
+        localStorage.setItem("categories", JSON.stringify(categories));
+      }
       renderCategories();
 
       addNewCatBtn.addEventListener("click", () => {
