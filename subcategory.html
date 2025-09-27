@@ -8,299 +8,37 @@
     <link rel="stylesheet" href="subcategory.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="nav-profile.css" />
-    <!-- New responsive CSS -->
-    <style>
-      /* responsive.css */
-      * {
-        box-sizing: border-box;
-      }
-
-      body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        font-size: 16px;
-      }
-
-      /* Navbar */
-      .navbar {
-        width: 100%;
-        padding: 10px 20px;
-      }
-
-      .nav-inner {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-
-      .brand, .nav-actions {
-        display: flex;
-        align-items: center;
-      }
-
-      .dashboard-pill, .profile {
-        margin: 0 10px;
-      }
-
-      @media (max-width: 768px) {
-        .nav-inner {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .nav-actions {
-          flex-direction: column;
-          width: 100%;
-          margin-top: 10px;
-        }
-        .dashboard-pill, .profile {
-          width: 100%;
-          text-align: center;
-          margin: 5px 0;
-        }
-        .profile-dropdown {
-          position: static;
-          width: 100%;
-          box-shadow: none;
-        }
-        .profile-dropdown ul {
-          width: 100%;
-        }
-        .profile-dropdown li {
-          text-align: center;
-        }
-      }
-
-      /* Main Container */
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-      }
-
-      .subcategory-banner {
-        width: 100%;
-        padding: 20px;
-      }
-
-      /* Search and Stats */
-      .search-stats-wrapper {
-        display: flex;
-        justify-content: space-between;
-        margin: 20px 0;
-      }
-
-      .search-container, .stats-container {
-        flex: 1;
-        margin: 0 10px;
-      }
-
-      .search-bar {
-        display: flex;
-        align-items: center;
-        width: 100%;
-      }
-
-      .search-bar input {
-        width: 100%;
-        padding: 8px;
-      }
-
-      @media (max-width: 600px) {
-        .search-stats-wrapper {
-          flex-direction: column;
-        }
-        .search-container, .stats-container {
-          margin: 10px 0;
-        }
-        .stats-container .buttons {
-          display: flex;
-          flex-direction: column;
-        }
-        .stats-container .btn {
-          width: 100%;
-          margin: 5px 0;
-        }
-      }
-
-      /* Filter and Sort */
-      .filter-sort-container {
-        margin: 20px 0;
-      }
-
-      .filter-sort-content {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .filter-sort-options {
-        display: flex;
-        gap: 10px;
-      }
-
-      .filter-sort-options select {
-        width: 100%;
-        max-width: 200px;
-        padding: 8px;
-      }
-
-      .actions {
-        display: flex;
-        gap: 10px;
-      }
-
-      @media (max-width: 600px) {
-        .filter-sort-content {
-          flex-direction: column;
-          align-items: stretch;
-        }
-        .filter-sort-options {
-          flex-direction: column;
-        }
-        .filter-sort-options select {
-          max-width: none;
-        }
-        .actions {
-          flex-direction: column;
-        }
-        .actions .btn {
-          width: 100%;
-        }
-      }
-
-      /* Popups and Modals */
-      .profile-popup, .modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-      }
-
-      .popup-inner, .modal-content {
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        width: 90%;
-        max-width: 500px;
-        max-height: 90vh;
-        overflow-y: auto;
-      }
-
-      .ecommerce-form .form-group {
-        margin-bottom: 15px;
-      }
-
-      .ecommerce-form input, .ecommerce-form select {
-        width: 100%;
-        padding: 8px;
-      }
-
-      .form-actions {
-        display: flex;
-        gap: 10px;
-      }
-
-      .form-actions button {
-        padding: 10px;
-        flex: 1;
-      }
-
-      .image-container img {
-        max-width: 100%;
-        height: auto;
-      }
-
-      @media (max-width: 600px) {
-        .popup-inner, .modal-content {
-          width: 95%;
-          padding: 15px;
-        }
-        .form-actions {
-          flex-direction: column;
-        }
-        .form-actions button {
-          width: 100%;
-          margin: 5px 0;
-        }
-      }
-
-      /* Footer */
-      .footer {
-        text-align: center;
-        padding: 20px;
-        font-size: 0.9rem;
-      }
-
-      @media (max-width: 600px) {
-        .footer {
-          font-size: 0.8rem;
-        }
-      }
-    </style>
   </head>
   <body>
-    <!-- NAVBAR -->
-    <header class="navbar">
-      <div class="nav-inner">
-        <div class="brand">
-          <div class="logo">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="28"
-              fill="white"
-              class="bi bi-check2-square"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"
-              />
-              <path
-                d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"
-              />
-            </svg>
+    <!-- HEADER -->
+    <header class="hero">
+      <div class="header-content">
+        <div class="title-wrapper">
+          <div class="header-icon">
+            <i class="fas fa-check-square"></i>
           </div>
-          <span class="brand-name">TaskPro</span>
+          <span class="header-title">TaskPro</span>
         </div>
-        <div class="nav-actions">
-          <a href="dashboard.html" class="dashboard-pill">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              fill="white"
-              class="bi bi-house"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"
-              />
-            </svg>
-            <span class="dashboard-text">Dashboard</span>
-          </a>
-          <div class="profile" id="profile">
-            <div id="profileIcon" class="profile-trigger">
-              <img
-                src="download.jpeg"
-                alt="Profile"
-                style="width: 34px; height: 34px; border-radius: 50%"
-              />
-            </div>
-            <div id="profileDropdown" class="profile-dropdown">
-              <ul>
-                <li><a href="#" id="editProfileLink">Edit</a></li>
-                <li><a href="#" id="settingsLink">Settings</a></li>
-                <li><a href="#" id="logoutLink">Logout</a></li>
-              </ul>
-            </div>
+        <span class="header-subtitle">Subcategory Manager</span>
+      </div>
+      <div class="category-controls">
+        <a href="dashboard.html" class="btn btn-soft">
+          <i class="fas fa-house"></i> Dashboard
+        </a>
+        <div class="profile" id="profile">
+          <div id="profileIcon" class="profile-trigger">
+            <img
+              src="download.jpeg"
+              alt="Profile"
+              style="width: 34px; height: 34px; border-radius: 50%"
+            />
+          </div>
+          <div id="profileDropdown" class="profile-dropdown">
+            <ul>
+              <li><a href="#" id="editProfileLink">Edit</a></li>
+              <li><a href="#" id="settingsLink">Settings</a></li>
+              <li><a href="#" id="logoutLink">Logout</a></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -1027,7 +765,7 @@
           subcategoryDescInput.value = "";
           subcategoryImg.src =
             uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
-              defaultImage;
+            defaultImage;
         }
       });
 
