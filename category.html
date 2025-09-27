@@ -15,33 +15,36 @@
     <!-- NAVBAR -->
     <header class="navbar">
       <div class="nav-inner">
-        <div class="brand">
-          <div class="logo">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="28"
-              fill="white"
-              class="bi bi-check2-square"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"
-              />
-              <path
-                d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"
-              />
-            </svg>
+        <div class="header-content">
+          <div class="title-wrapper">
+            <span class="header-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                fill="white"
+                class="bi bi-check2-square"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"
+                />
+                <path
+                  d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"
+                />
+              </svg>
+            </span>
+            <h1 class="header-title">TaskPro</h1>
           </div>
-          <span class="brand-name">TaskPro</span>
+          <p class="header-subtitle">Manage your tasks efficiently</p>
         </div>
-        <div class="nav-actions">
-          <a href="dashboard.html" class="dashboard-pill">
+        <div class="category-controls">
+          <a href="dashboard.html" class="btn btn-soft">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
               height="18"
-              fill="white"
+              fill="currentColor"
               class="bi bi-house"
               viewBox="0 0 16 16"
             >
@@ -49,24 +52,16 @@
                 d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"
               />
             </svg>
-            <span class="dashboard-text">Dashboard</span>
+            Dashboard
           </a>
-          <div class="profile" id="profile">
-            <div id="profileIcon" class="profile-trigger">
-              <img
-                src="download.jpeg"
-                alt="Profile"
-                style="width: 34px; height: 34px; border-radius: 50%"
-              />
-            </div>
-            <div id="profileDropdown" class="profile-dropdown">
-              <ul>
-                <!-- <li><a href="#" id="editProfileLink">Edit</a></li> -->
-                <li><a href="#" id="settingsLink">Settings</a></li>
-                <li><a href="#" id="logoutLink">Logout</a></li>
-              </ul>
-            </div>
-          </div>
+          <button id="profileBtn" class="btn btn-smokewhite">
+            <img
+              src="download.jpeg"
+              alt="Profile"
+              style="width: 18px; height: 18px; border-radius: 50%; margin-right: 5px;"
+            />
+            Profile
+          </button>
         </div>
       </div>
     </header>
@@ -277,9 +272,8 @@
 
       document.getElementById("username").value = savedUsername;
       document.getElementById("email").value = savedEmail;
-      const profileIcon = document.getElementById("profileIcon");
       const profileImg = document.getElementById("profileImg");
-      const profileTrigger = document.querySelector(".profile-trigger");
+      const profileBtn = document.getElementById("profileBtn");
       const profilePopup = document.getElementById("profilePopup");
       const profileForm = document.getElementById("profileForm");
       const usernameInput = document.getElementById("username");
@@ -287,33 +281,24 @@
       const photoInput = document.getElementById("photoInput");
       const changePhotoBtn = document.getElementById("changePhoto");
       const closeProfilePopupBtn = document.getElementById("closeProfilePopupBtn");
-      const profileDropdown = document.getElementById("profileDropdown");
-      const editProfileLink = document.getElementById("editProfileLink");
-      const settingsLink = document.getElementById("settingsLink");
-      const logoutLink = document.getElementById("logoutLink");
 
       profileImg.src = savedProfileImg;
-      profileIcon.innerHTML = `<img src="${savedProfileImg}" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
+      profileBtn.innerHTML = `
+        <img src="${savedProfileImg}" alt="Profile" style="width: 18px; height: 18px; border-radius: 50%; margin-right: 5px;">
+        Profile
+      `;
 
-      profileTrigger.addEventListener("click", (e) => {
+      profileBtn.addEventListener("click", (e) => {
         e.preventDefault();
-        profileDropdown.style.display = profileDropdown.style.display === "block" ? "none" : "block";
-      });
-
-      settingsLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        profileDropdown.style.display = "none";
-        profilePopup.style.display = "flex";
-      });
-
-      logoutLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        profileDropdown.style.display = "none";
-        if (confirm("Are you sure you want to logout?")) {
-          localStorage.removeItem("username");
-          localStorage.removeItem("email");
-          localStorage.removeItem("profileImg");
-          window.location.href = "index.html";
+        if (confirm("Open profile settings? Click Cancel to logout.")) {
+          profilePopup.style.display = "flex";
+        } else {
+          if (confirm("Are you sure you want to logout?")) {
+            localStorage.removeItem("username");
+            localStorage.removeItem("email");
+            localStorage.removeItem("profileImg");
+            window.location.href = "index.html";
+          }
         }
       });
 
@@ -327,7 +312,10 @@
           const reader = new FileReader();
           reader.onload = (event) => {
             profileImg.src = event.target.result;
-            profileIcon.innerHTML = `<img src="${event.target.result}" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
+            profileBtn.innerHTML = `
+              <img src="${event.target.result}" alt="Profile" style="width: 18px; height: 18px; border-radius: 50%; margin-right: 5px;">
+              Profile
+            `;
           };
           reader.readAsDataURL(file);
         }
@@ -341,7 +329,10 @@
         localStorage.setItem("username", username);
         localStorage.setItem("email", email);
         localStorage.setItem("profileImg", profileImgSrc);
-        profileIcon.innerHTML = `<img src="${profileImgSrc}" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
+        profileBtn.innerHTML = `
+          <img src="${profileImgSrc}" alt="Profile" style="width: 18px; height: 18px; border-radius: 50%; margin-right: 5px;">
+          Profile
+        `;
         profilePopup.style.display = "none";
       });
 
@@ -349,8 +340,11 @@
         profilePopup.style.display = "none";
         usernameInput.value = localStorage.getItem("username") || "owner";
         emailInput.value = localStorage.getItem("email") || "owner@signaltone.com";
-        profileImg.src = localStorage.getItem("profileImg") || "https://via.placeholder.com/100";
-        profileIcon.innerHTML = `<img src="${profileImg.src}" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
+        profileImg.src = localStorage.getItem("profileImg") || "download.jpeg";
+        profileBtn.innerHTML = `
+          <img src="${profileImg.src}" alt="Profile" style="width: 18px; height: 18px; border-radius: 50%; margin-right: 5px;">
+          Profile
+        `;
       });
 
       closeProfilePopupBtn.addEventListener("click", () => {
@@ -517,16 +511,6 @@
 
       applyFiltersBtn.addEventListener("click", () => {
         renderCategories();
-      });
-
-      // Close dropdown when clicking outside
-      document.addEventListener("click", (e) => {
-        if (
-          !profileTrigger.contains(e.target) &&
-          !profileDropdown.contains(e.target)
-        ) {
-          profileDropdown.style.display = "none";
-        }
       });
 
       // import export csv file
