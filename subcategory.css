@@ -3,14 +3,7 @@
   box-sizing: border-box !important;
 }
 
-/* Navbar */
-.navbar {
-  /* ... other styles ... */
-  position: sticky;
-  top: 0;
-  /* ... */
-}
-
+/* Hero */
 .hero {
   background-color: #007bff;
   color: white;
@@ -38,7 +31,7 @@
   margin-right: 5px;
 }
 
-.header-icon svg {
+.header-icon i {
   width: 16px;
   height: 16px;
   color: white;
@@ -69,7 +62,7 @@
   font-size: 12px;
 }
 
-.btn svg {
+.btn i {
   width: 14px;
   height: 14px;
   vertical-align: middle;
