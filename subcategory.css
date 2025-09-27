@@ -1,11 +1,10 @@
-/* Subcategory Page Specific */
+/* Category Page Specific */
 
 /* Global Reset for Consistency */
 * {
   box-sizing: border-box !important;
 }
 
-/* Header Styles (Same as Category Page) */
 .navbar {
   background-color: #1DA1F2;
   padding: 10px 20px;
@@ -134,7 +133,7 @@
   color: #E1E8ED;
 }
 
-.subcategory-controls {
+.category-controls {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
@@ -326,7 +325,7 @@ select:focus {
   background: #f9fafb;
 }
 
-.subcategory-table {
+.category-table {
   width: 100%;
   border-collapse: collapse;
   background: #FFFFFF;
@@ -335,27 +334,27 @@ select:focus {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.subcategory-table th,
-.subcategory-table td {
+.category-table th,
+.category-table td {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #eee;
 }
 
-.subcategory-table th {
+.category-table th {
   background: #f9f9f9;
   white-space: nowrap;
 }
 
-.subcategory-table td img {
+.category-table td img {
   width: 50px;
   height: 50px;
   object-fit: cover;
   border-radius: 4px;
 }
 
-.edit-subcategory,
-.delete-subcategory {
+.edit-category,
+.delete-category {
   padding: 5px 10px;
   border: none;
   border-radius: 5px;
@@ -363,37 +362,37 @@ select:focus {
   margin-right: 5px;
 }
 
-.edit-subcategory {
+.edit-category {
   background: #1e88e5;
   color: white;
 }
 
-.delete-subcategory {
+.delete-category {
   background: #ff4444;
   color: white;
 }
 
-/* Subcategory Popup */
-#subcategoryPopup .popup-inner {
+/* Category Popup */
+#categoryPopup .popup-inner {
   width: 500px;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-#subcategoryPopup .popup-header {
+#categoryPopup .popup-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
 
-#subcategoryPopup .popup-header h2 {
+#categoryPopup .popup-header h2 {
   margin: 0;
   font-size: 24px;
   color: #333;
 }
 
-#subcategoryPopup .close-btn {
+#categoryPopup .close-btn {
   background: none;
   border: none;
   font-size: 24px;
@@ -402,15 +401,15 @@ select:focus {
   padding: 0 10px;
 }
 
-#subcategoryPopup .close-btn:hover {
+#categoryPopup .close-btn:hover {
   color: #ff4444;
 }
 
-#subcategoryPopup .image-container {
+#categoryPopup .image-container {
   margin-bottom: 20px;
 }
 
-#subcategoryPopup .image-container img {
+#categoryPopup .image-container img {
   width: 150px;
   height: 150px;
   border-radius: 8px;
@@ -418,7 +417,7 @@ select:focus {
   object-fit: cover;
 }
 
-#subcategoryPopup .image-btn {
+#categoryPopup .image-btn {
   background: #e8f0ff;
   color: #134e9d;
   border: none;
@@ -429,24 +428,24 @@ select:focus {
   font-size: 14px;
 }
 
-#subcategoryPopup .ecommerce-form {
+#categoryPopup .ecommerce-form {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
 
-#subcategoryPopup .form-group {
+#categoryPopup .form-group {
   text-align: left;
 }
 
-#subcategoryPopup .form-group label {
+#categoryPopup .form-group label {
   display: block;
   margin-bottom: 5px;
   font-weight: 500;
   color: #555;
 }
 
-#subcategoryPopup .form-group input {
+#categoryPopup .form-group input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
@@ -455,21 +454,21 @@ select:focus {
   box-sizing: border-box;
 }
 
-#subcategoryPopup .form-group input:focus {
+#categoryPopup .form-group input:focus {
   outline: none;
   border-color: #1e88e5;
   box-shadow: 0 0 5px rgba(30, 136, 229, 0.3);
 }
 
-#subcategoryPopup .form-actions {
+#categoryPopup .form-actions {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
   margin-top: 20px;
 }
 
-#subcategoryPopup .save-btn,
-#subcategoryPopup .cancel-btn {
+#categoryPopup .save-btn,
+#categoryPopup .cancel-btn {
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
@@ -478,12 +477,12 @@ select:focus {
   font-weight: 600;
 }
 
-#subcategoryPopup .save-btn {
+#categoryPopup .save-btn {
   background: #1e88e5;
   color: white;
 }
 
-#subcategoryPopup .cancel-btn {
+#categoryPopup .cancel-btn {
   background: #ccc;
   color: black;
 }
@@ -861,6 +860,25 @@ select.btn:focus {
   gap: 5px;
 }
 
+.edit-subcategory,
+.delete-subcategory {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.edit-subcategory {
+  background-color: #1e88e5;
+  color: white;
+}
+
+.delete-subcategory {
+  background-color: #ff4444;
+  color: white;
+}
+
 /* Popup Styles */
 .profile-popup {
   display: none;
@@ -994,7 +1012,7 @@ select.btn:focus {
     width: 100%;
   }
 
-  .subcategory-controls {
+  .category-controls {
     justify-content: flex-start !important;
     width: 100%;
     flex-wrap: wrap;
@@ -1096,29 +1114,29 @@ select.btn:focus {
     width: 100% !important;
   }
 
-  #subcategoryPopup .popup-inner {
+  #categoryPopup .popup-inner {
     width: 95%;
     max-width: 95vw;
     margin: 10px;
     padding: 12px;
   }
 
-  #subcategoryPopup .popup-header h2 {
+  #categoryPopup .popup-header h2 {
     font-size: 20px;
   }
 
-  #subcategoryPopup .image-container img {
+  #categoryPopup .image-container img {
     width: 100px;
     height: 100px;
   }
 
-  #subcategoryPopup .form-actions {
+  #categoryPopup .form-actions {
     flex-direction: column;
     gap: 8px;
   }
 
-  #subcategoryPopup .save-btn,
-  #subcategoryPopup .cancel-btn {
+  #categoryPopup .save-btn,
+  #categoryPopup .cancel-btn {
     width: 100%;
   }
 
@@ -1155,14 +1173,14 @@ select.btn:focus {
     font-size: 16px; /* Prevents zoom on iOS */
   }
 
-  .subcategory-table {
+  .category-table {
     display: block !important;
     overflow-x: auto !important;
     white-space: nowrap !important;
   }
 
-  .subcategory-table th,
-  .subcategory-table td {
+  .category-table th,
+  .category-table td {
     min-width: 100px !important;
   }
 
@@ -1180,9 +1198,9 @@ select.btn:focus {
   }
 }
 
-/* Subcategory Table Mobile - Finer Adjustments for Smaller Screens */
+/* Category Table Mobile - Finer Adjustments for Smaller Screens */
 @media (max-width: 480px) {
-  .subcategory-table {
+  .category-table {
     width: 100%;
     border-collapse: collapse;
     display: table;
@@ -1192,7 +1210,7 @@ select.btn:focus {
     padding: 0;
   }
 
-  .subcategory-table thead {
+  .category-table thead {
     display: table-header-group;
     position: sticky;
     top: 0;
@@ -1202,8 +1220,8 @@ select.btn:focus {
     min-width: 100%;
   }
 
-  .subcategory-table th,
-  .subcategory-table td {
+  .category-table th,
+  .category-table td {
     padding: 6px;
     text-align: left;
     border-bottom: 1px solid #eee;
@@ -1211,24 +1229,24 @@ select.btn:focus {
     vertical-align: middle;
   }
 
-  .subcategory-table th:nth-child(1),
-  .subcategory-table td:nth-child(1) { width: 10%; min-width: 40px; } /* ID */
-  .subcategory-table th:nth-child(2),
-  .subcategory-table td:nth-child(2) { width: 15%; min-width: 60px; } /* IMG */
-  .subcategory-table th:nth-child(3),
-  .subcategory-table td:nth-child(3) { width: 25%; min-width: 100px; } /* SUBCATEGORY */
-  .subcategory-table th:nth-child(4),
-  .subcategory-table td:nth-child(4) { width: 30%; min-width: 120px; } /* Description */
-  .subcategory-table th:nth-child(5),
-  .subcategory-table td:nth-child(5) { width: 20%; min-width: 120px; } /* ACTIONS */
+  .category-table th:nth-child(1),
+  .category-table td:nth-child(1) { width: 10%; min-width: 40px; } /* ID */
+  .category-table th:nth-child(2),
+  .category-table td:nth-child(2) { width: 15%; min-width: 60px; } /* IMG */
+  .category-table th:nth-child(3),
+  .category-table td:nth-child(3) { width: 25%; min-width: 100px; } /* CATEGORY */
+  .category-table th:nth-child(4),
+  .category-table td:nth-child(4) { width: 30%; min-width: 120px; } /* Description */
+  .category-table th:nth-child(5),
+  .category-table td:nth-child(5) { width: 20%; min-width: 120px; } /* ACTIONS */
 
-  .subcategory-table th {
+  .category-table th {
     background: #f9f9f9;
     white-space: nowrap;
     vertical-align: middle;
   }
 
-  .subcategory-table td img {
+  .category-table td img {
     width: 35px;
     height: 35px;
     object-fit: cover;
@@ -1236,8 +1254,8 @@ select.btn:focus {
     vertical-align: middle;
   }
 
-  .edit-subcategory,
-  .delete-subcategory {
+  .edit-category,
+  .delete-category {
     padding: 5px 10px;
     font-size: 12px;
     margin: 0 2px;
@@ -1245,7 +1263,7 @@ select.btn:focus {
     vertical-align: middle;
   }
 
-  .subcategory-table td:nth-child(5) {
+  .category-table td:nth-child(5) {
     text-align: center;
     padding: 6px;
   }
