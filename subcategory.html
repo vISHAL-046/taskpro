@@ -3,48 +3,280 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Category Manager</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <link rel="stylesheet" href="category.css" />
+    <title>Subcategory Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="subcategory.css" />
     <link rel="stylesheet" href="styles.css" />
     <link rel="stylesheet" href="nav-profile.css" />
+    <!-- New responsive CSS -->
+    <style>
+      /* responsive.css */
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+      }
+
+      /* Navbar */
+      .navbar {
+        width: 100%;
+        padding: 10px 20px;
+      }
+
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand, .nav-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .dashboard-pill, .profile {
+        margin: 0 10px;
+      }
+
+      @media (max-width: 768px) {
+        .nav-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .nav-actions {
+          flex-direction: column;
+          width: 100%;
+          margin-top: 10px;
+        }
+        .dashboard-pill, .profile {
+          width: 100%;
+          text-align: center;
+          margin: 5px 0;
+        }
+        .profile-dropdown {
+          position: static;
+          width: 100%;
+          box-shadow: none;
+        }
+        .profile-dropdown ul {
+          width: 100%;
+        }
+        .profile-dropdown li {
+          text-align: center;
+        }
+      }
+
+      /* Main Container */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .subcategory-banner {
+        width: 100%;
+        padding: 20px;
+      }
+
+      /* Search and Stats */
+      .search-stats-wrapper {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+      }
+
+      .search-container, .stats-container {
+        flex: 1;
+        margin: 0 10px;
+      }
+
+      .search-bar {
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+
+      .search-bar input {
+        width: 100%;
+        padding: 8px;
+      }
+
+      @media (max-width: 600px) {
+        .search-stats-wrapper {
+          flex-direction: column;
+        }
+        .search-container, .stats-container {
+          margin: 10px 0;
+        }
+        .stats-container .buttons {
+          display: flex;
+          flex-direction: column;
+        }
+        .stats-container .btn {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+
+      /* Filter and Sort */
+      .filter-sort-container {
+        margin: 20px 0;
+      }
+
+      .filter-sort-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .filter-sort-options {
+        display: flex;
+        gap: 10px;
+      }
+
+      .filter-sort-options select {
+        width: 100%;
+        max-width: 200px;
+        padding: 8px;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      @media (max-width: 600px) {
+        .filter-sort-content {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .filter-sort-options {
+          flex-direction: column;
+        }
+        .filter-sort-options select {
+          max-width: none;
+        }
+        .actions {
+          flex-direction: column;
+        }
+        .actions .btn {
+          width: 100%;
+        }
+      }
+
+      /* Popups and Modals */
+      .profile-popup, .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .popup-inner, .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 500px;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      .ecommerce-form .form-group {
+        margin-bottom: 15px;
+      }
+
+      .ecommerce-form input, .ecommerce-form select {
+        width: 100%;
+        padding: 8px;
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .form-actions button {
+        padding: 10px;
+        flex: 1;
+      }
+
+      .image-container img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      @media (max-width: 600px) {
+        .popup-inner, .modal-content {
+          width: 95%;
+          padding: 15px;
+        }
+        .form-actions {
+          flex-direction: column;
+        }
+        .form-actions button {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 20px;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 600px) {
+        .footer {
+          font-size: 0.8rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- NAVBAR -->
     <header class="navbar">
       <div class="nav-inner">
-        <div class="header-content">
-          <div class="title-wrapper">
-            <span class="header-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="28"
-                height="28"
-                fill="white"
-                class="bi bi-check2-square"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"
-                />
-                <path
-                  d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"
-                />
-              </svg>
-            </span>
-            <h1 class="header-title">TaskPro</h1>
+        <div class="brand">
+          <div class="logo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              fill="white"
+              class="bi bi-check2-square"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"
+              />
+              <path
+                d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"
+              />
+            </svg>
           </div>
-          <p class="header-subtitle">Manage your tasks efficiently</p>
+          <span class="brand-name">TaskPro</span>
         </div>
-        <div class="category-controls">
-          <a href="dashboard.html" class="btn btn-soft">
+        <div class="nav-actions">
+          <a href="dashboard.html" class="dashboard-pill">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
               height="18"
-              fill="currentColor"
+              fill="white"
               class="bi bi-house"
               viewBox="0 0 16 16"
             >
@@ -52,132 +284,207 @@
                 d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"
               />
             </svg>
-            Dashboard
+            <span class="dashboard-text">Dashboard</span>
           </a>
-          <button id="profileBtn" class="btn btn-smokewhite">
-            <img
-              src="download.jpeg"
-              alt="Profile"
-              style="width: 18px; height: 18px; border-radius: 50%; margin-right: 5px;"
-            />
-            Profile
-          </button>
+          <div class="profile" id="profile">
+            <div id="profileIcon" class="profile-trigger">
+              <img
+                src="download.jpeg"
+                alt="Profile"
+                style="width: 34px; height: 34px; border-radius: 50%"
+              />
+            </div>
+            <div id="profileDropdown" class="profile-dropdown">
+              <ul>
+                <li><a href="#" id="editProfileLink">Edit</a></li>
+                <li><a href="#" id="settingsLink">Settings</a></li>
+                <li><a href="#" id="logoutLink">Logout</a></li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </header>
 
-    <!-- Category Manager Content -->
+    <!-- Subcategory Manager Content -->
     <main class="container">
-      <section class="hero">
-        <div class="header-content">
-          <div class="title-wrapper">
-            <div class="header-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
-                <path d="M3 2v4.586l7 7L14.586 9l-7-7zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586z"/>
-                <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1m0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3M1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1z"/>
+      <div class="subcategory-banner">
+        <div class="subcategory-content">
+          <div class="subcategory-title">
+            <div class="subcategory-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="34"
+                height="34"
+                fill="white"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                />
               </svg>
             </div>
-            <span class="header-title">Category Manager</span>
+            <h1>Manage Subcategories</h1>
           </div>
-          <p class="header-subtitle">Organize and manage your product categories</p>
+          <p>Organize your products into categories and subcategories</p>
         </div>
-        <div class="category-controls">
-          <button id="categoryCount" class="btn btn-soft">0 Categories</button>
-          <button id="addNewCatBtn" class="btn btn-soft btn-smokewhite">Add New</button>
-          <select id="csvOptions" class="btn btn-soft">
-            <option value=""></option>
-            <option value="import">Import CSV</option>
-            <option value="export">Export CSV</option>
-          </select>
+      </div>
+      <div class="search-stats-wrapper">
+        <div class="search-container">
+          <div class="search-bar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+            </svg>
+            <span class="search">Search Subcategories</span>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search by name, category, or description..."
+            />
+          </div>
         </div>
-      </section>
-      <br>
-      <br>
-      <div class="search-sort">
-        <div class="search">
-          <label>Search Categories</label>
-          <input
-            type="text"
-            id="searchInput"
-            placeholder="Type at least 2 letters..."
-          />
+        <div class="stats-container">
+          <div class="card">
+            <h3>Statistics</h3>
+            <div class="total-box" id="totalSubcategories">Total: 0</div>
+            <div class="buttons">
+              <button class="btn btn-import">
+                <i class="fas fa-upload"></i> Import
+              </button>
+              <button class="btn btn-export">
+                <i class="fas fa-download"></i> Export
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="sort">
-          <label>Sort Options</label>
-          <select id="sortSelect">
-            <option>Default Sorting</option>
-            <option>Name(A-Z)</option>
-            <option>Name(Z-A)</option>
-            <option>Newest First</option>
-            <option>Oldest First</option>
-          </select>
-        </div>
-        <button class="apply-filters">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+      </div>
+      <div class="filter-sort-container">
+        <div class="filter-sort-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
             <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z"/>
           </svg>
-          Apply Filters
-        </button>
+          <span class="filter-sort-label">Filter & Sort</span>
+        </div>
+        <div class="filter-sort-content">
+          <div class="filter-sort-options">
+            <select class="pill category-select" id="categorySelect" style="border: 1px solid #CED4DA;">
+              <option value="all">Category: All Categories</option>
+              <!-- Categories will be populated dynamically -->
+            </select>
+            <select class="pill sort-select" id="sortSelect" style="border: 1px solid #CED4DA;">
+              <option value="default">Sort by: Default</option>
+              <option value="name-asc">Name (A-Z)</option>
+              <option value="name-desc">Name (Z-A)</option>
+              <option value="price-asc">Price (Low to High)</option>
+              <option value="price-desc">Price (High to Low)</option>
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+            </select>
+          </div>
+          <div class="actions">
+            <button class="btn apply" id="applyFiltersBtn">✔ Apply</button>
+            <button id="addNewSubBtnFilter" class="btn add-new-btn">➕ Add New</button>
+          </div>
+        </div>
       </div>
-
-      <div class="table-wrapper">
-        <table class="category-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>IMG</th>
-              <th>CATEGORY</th>
-              <th>Description</th>
-              <th>ACTIONS</th>
-            </tr>
-          </thead>
-          <tbody id="categoryTableBody">
-            <!-- Categories will be inserted here -->
-          </tbody>
-        </table>
-      </div>
+      
+      <table class="category-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>IMAGE</th>
+            <th>CATEGORY</th>
+            <th>SUBCATEGORY</th>
+            <th>PRODUCT NAME</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+            <th>DESCRIPTION</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody id="subcategoryTableBody">
+          <!-- Subcategories will be inserted here -->
+        </tbody>
+      </table>
     </main>
 
-    <!-- Add/Edit Category Popup -->
-    <div class="profile-popup" id="categoryPopup">
+    <!-- Add/Edit Subcategory Popup -->
+    <div class="profile-popup" id="subcategoryPopup">
       <div class="popup-inner">
         <div class="popup-header">
-          <h2 id="popupTitle">Add Category</h2>
+          <h2 id="popupTitle">Add Subcategory</h2>
           <button class="close-btn" id="closePopupBtn">&times;</button>
         </div>
         <div class="image-container">
           <img
-            id="categoryImg"
-            alt="Category Image"
+            id="subcategoryImg"
+            alt="Subcategory Image"
             style="width: 150px; height: 150px; object-fit: cover"
           />
           <input
             type="file"
-            id="categoryPhotoInput"
+            id="subcategoryPhotoInput"
             accept="image/*"
             style="display: none"
           />
-          <button id="changeCategoryPhoto" class="image-btn">
+          <button id="changeSubcategoryPhoto" class="image-btn">
             Change Image
           </button>
         </div>
-        <form id="categoryForm" class="ecommerce-form">
+        <form id="subcategoryForm" class="ecommerce-form">
           <div class="form-group">
-            <label>Category Name</label>
+            <label>Category</label>
+            <select id="subcategoryCategory" required>
+              <!-- Categories will be populated dynamically -->
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Subcategory</label>
             <input
               type="text"
-              id="categoryName"
+              id="subcategoryName"
               required
-              placeholder="e.g., Electronics"
+              placeholder="e.g., Table Fan"
+            />
+          </div>
+          <div class="form-group">
+            <label>Product Name</label>
+            <input
+              type="text"
+              id="productName"
+              required
+              placeholder="e.g., Premium Table Fan"
+            />
+          </div>
+          <div class="form-group">
+            <label>Price ($)</label>
+            <input
+              type="number"
+              id="price"
+              step="0.01"
+              required
+              placeholder="e.g., 49.99"
+            />
+          </div>
+          <div class="form-group">
+            <label>Quantity</label>
+            <input
+              type="number"
+              id="quantity"
+              required
+              placeholder="e.g., 50"
             />
           </div>
           <div class="form-group">
             <label>Description</label>
             <input
               type="text"
-              id="categoryDesc"
+              id="subcategoryDesc"
               required
-              placeholder="e.g., All electronic items"
+              placeholder="e.g., High-quality table fan"
             />
           </div>
           <div class="form-actions">
@@ -226,11 +533,11 @@
     <div id="importModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>📂 Import Categories from CSV</h2>
+        <h2>📂 Import Subcategories from CSV</h2>
         <label for="csvFile">CSV File</label>
         <input type="file" id="csvFile" accept=".csv" />
         <p class="hint">
-          CSV format: <code>name,description,image_path</code> (optional).
+          CSV format: <code>category,subcategory,productName,price,description,image,quantity,createdAt</code> (image, quantity, and createdAt optional).
           <a href="#" id="downloadTemplate">Download template</a>
         </p>
         <div class="checkbox-row">
@@ -238,12 +545,12 @@
           <label for="containsHeaders">First row contains headers</label>
         </div>
         <div class="warning">
-          ⚠️ Existing categories with the same name will be updated.<br />
-          New categories will be added with continuous IDs.
+          ⚠️ Existing subcategories with the same product name and category will be updated.<br />
+          New subcategories will be added.
         </div>
         <div class="modal-actions">
           <button class="btn btn-cancel">Cancel</button>
-          <button class="btn btn-blue">⬆ Import Categories</button>
+          <button class="btn btn-blue" id="importSubcategoriesBtn">⬆ Import Subcategories</button>
         </div>
       </div>
     </div>
@@ -252,18 +559,30 @@
     <div id="exportModal" class="modal">
       <div class="modal-content">
         <span class="close">&times;</span>
-        <h2>Export categories to CSV</h2>
-        <p>Click below to export all categories as a CSV file.</p>
+        <h2>Export subcategories to CSV</h2>
+        <p>Click below to export all subcategories as a CSV file.</p>
         <button class="btn btn-blue" id="downloadCsvBtn">Download CSV</button>
       </div>
     </div>
 
     <footer class="footer">
-      <small>©️ <span id="year"></span> TaskPro — Dashboard prototype (Last updated: 10:00 PM IST, Friday, September 26, 2025)</small>
+      <small>©️ 2025 TaskPro — Dashboard prototype (Last updated: 06:05 PM IST, Friday, September 26, 2025)</small>
     </footer>
 
     <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
+      // Check localStorage availability
+      function isLocalStorageAvailable() {
+        try {
+          const test = "__test__";
+          localStorage.setItem(test, test);
+          localStorage.removeItem(test);
+          return true;
+        } catch (e) {
+          console.error("localStorage is not available:", e);
+          alert("localStorage is disabled. Please enable it or try a different browser.");
+          return false;
+        }
+      }
 
       // Profile functionality
       const savedUsername = localStorage.getItem("username") || "owner";
@@ -272,8 +591,9 @@
 
       document.getElementById("username").value = savedUsername;
       document.getElementById("email").value = savedEmail;
+      const profileIcon = document.getElementById("profileIcon");
       const profileImg = document.getElementById("profileImg");
-      const profileBtn = document.getElementById("profileBtn");
+      const profileTrigger = document.querySelector(".profile-trigger");
       const profilePopup = document.getElementById("profilePopup");
       const profileForm = document.getElementById("profileForm");
       const usernameInput = document.getElementById("username");
@@ -281,24 +601,39 @@
       const photoInput = document.getElementById("photoInput");
       const changePhotoBtn = document.getElementById("changePhoto");
       const closeProfilePopupBtn = document.getElementById("closeProfilePopupBtn");
+      const profileDropdown = document.getElementById("profileDropdown");
+      const editProfileLink = document.getElementById("editProfileLink");
+      const settingsLink = document.getElementById("settingsLink");
+      const logoutLink = document.getElementById("logoutLink");
 
       profileImg.src = savedProfileImg;
-      profileBtn.innerHTML = `
-        <img src="${savedProfileImg}" alt="Profile" style="width: 18px; height: 18px; border-radius: 50%; margin-right: 5px;">
-        Profile
-      `;
+      profileIcon.innerHTML = `<img src="${savedProfileImg}" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
 
-      profileBtn.addEventListener("click", (e) => {
+      profileTrigger.addEventListener("click", (e) => {
         e.preventDefault();
-        if (confirm("Open profile settings? Click Cancel to logout.")) {
-          profilePopup.style.display = "flex";
-        } else {
-          if (confirm("Are you sure you want to logout?")) {
-            localStorage.removeItem("username");
-            localStorage.removeItem("email");
-            localStorage.removeItem("profileImg");
-            window.location.href = "index.html";
-          }
+        profileDropdown.style.display = profileDropdown.style.display === "block" ? "none" : "block";
+      });
+
+      editProfileLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        profileDropdown.style.display = "none";
+        profilePopup.style.display = "flex";
+      });
+
+      settingsLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        profileDropdown.style.display = "none";
+        alert("Settings page is not implemented yet.");
+      });
+
+      logoutLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        profileDropdown.style.display = "none";
+        if (confirm("Are you sure you want to logout?")) {
+          localStorage.removeItem("username");
+          localStorage.removeItem("email");
+          localStorage.removeItem("profileImg");
+          window.location.href = "index.html";
         }
       });
 
@@ -312,10 +647,7 @@
           const reader = new FileReader();
           reader.onload = (event) => {
             profileImg.src = event.target.result;
-            profileBtn.innerHTML = `
-              <img src="${event.target.result}" alt="Profile" style="width: 18px; height: 18px; border-radius: 50%; margin-right: 5px;">
-              Profile
-            `;
+            profileIcon.innerHTML = `<img src="${event.target.result}" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
           };
           reader.readAsDataURL(file);
         }
@@ -323,16 +655,14 @@
 
       profileForm.addEventListener("submit", (e) => {
         e.preventDefault();
+        if (!isLocalStorageAvailable()) return;
         const username = usernameInput.value;
         const email = emailInput.value;
         const profileImgSrc = profileImg.src;
         localStorage.setItem("username", username);
         localStorage.setItem("email", email);
         localStorage.setItem("profileImg", profileImgSrc);
-        profileBtn.innerHTML = `
-          <img src="${profileImgSrc}" alt="Profile" style="width: 18px; height: 18px; border-radius: 50%; margin-right: 5px;">
-          Profile
-        `;
+        profileIcon.innerHTML = `<img src="${profileImgSrc}" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
         profilePopup.style.display = "none";
       });
 
@@ -340,208 +670,526 @@
         profilePopup.style.display = "none";
         usernameInput.value = localStorage.getItem("username") || "owner";
         emailInput.value = localStorage.getItem("email") || "owner@signaltone.com";
-        profileImg.src = localStorage.getItem("profileImg") || "download.jpeg";
-        profileBtn.innerHTML = `
-          <img src="${profileImg.src}" alt="Profile" style="width: 18px; height: 18px; border-radius: 50%; margin-right: 5px;">
-          Profile
-        `;
+        profileImg.src = localStorage.getItem("profileImg") || "https://via.placeholder.com/100";
+        profileIcon.innerHTML = `<img src="${profileImg.src}" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
       });
 
       closeProfilePopupBtn.addEventListener("click", () => {
         profilePopup.style.display = "none";
       });
 
-      // Category functionality
-      let categories = JSON.parse(localStorage.getItem("categories")) || [];
-      const categoryTableBody = document.getElementById("categoryTableBody");
-      const categoryCountBtn = document.getElementById("categoryCount");
-      const addNewCatBtn = document.getElementById("addNewCatBtn");
-      const categoryPopup = document.getElementById("categoryPopup");
+      // Subcategory functionality
+      let categories = [];
+      let subcategories = [];
+      if (isLocalStorageAvailable()) {
+        try {
+          categories = JSON.parse(localStorage.getItem("categories")) || [];
+          subcategories = JSON.parse(localStorage.getItem("subcategories")) || [];
+        } catch (error) {
+          console.error("Error parsing localStorage:", error);
+          categories = [];
+          subcategories = [];
+          localStorage.setItem("categories", JSON.stringify(categories));
+          localStorage.setItem("subcategories", JSON.stringify(subcategories));
+        }
+      } else {
+        categories = [];
+        subcategories = [];
+      }
+
+      // Validate and normalize createdAt for subcategories
+      subcategories = subcategories.map(sub => {
+        const createdAt = sub.createdAt && !isNaN(new Date(sub.createdAt)) 
+          ? sub.createdAt 
+          : new Date().toISOString();
+        return { ...sub, createdAt };
+      });
+      if (isLocalStorageAvailable()) {
+        localStorage.setItem("subcategories", JSON.stringify(subcategories));
+      }
+
+      const subcategoryTableBody = document.getElementById("subcategoryTableBody");
+      const totalSubcategories = document.getElementById("totalSubcategories");
+      const addNewSubBtn = document.getElementById("addNewSubBtnFilter");
+      const subcategoryPopup = document.getElementById("subcategoryPopup");
       const popupTitle = document.getElementById("popupTitle");
-      const categoryForm = document.getElementById("categoryForm");
-      const categoryNameInput = document.getElementById("categoryName");
-      const categoryDescInput = document.getElementById("categoryDesc");
-      const categoryImg = document.getElementById("categoryImg");
-      const categoryPhotoInput = document.getElementById("categoryPhotoInput");
-      const changeCategoryPhotoBtn = document.getElementById("changeCategoryPhoto");
+      const subcategoryForm = document.getElementById("subcategoryForm");
+      const subcategoryCategorySelect = document.getElementById("subcategoryCategory");
+      const subcategoryNameInput = document.getElementById("subcategoryName");
+      const productNameInput = document.getElementById("productName");
+      const priceInput = document.getElementById("price");
+      const quantityInput = document.getElementById("quantity");
+      const subcategoryDescInput = document.getElementById("subcategoryDesc");
+      const subcategoryImg = document.getElementById("subcategoryImg");
+      const subcategoryPhotoInput = document.getElementById("subcategoryPhotoInput");
+      const changeSubcategoryPhotoBtn = document.getElementById("changeSubcategoryPhoto");
       const searchInput = document.getElementById("searchInput");
-      const closePopupBtn = document.getElementById("closePopupBtn");
       const sortSelect = document.getElementById("sortSelect");
-      const applyFiltersBtn = document.querySelector(".apply-filters");
+      const applyFiltersBtn = document.getElementById("applyFiltersBtn");
+      const closePopupBtn = document.getElementById("closePopupBtn");
+      const categorySelect = document.getElementById("categorySelect");
       let editingIndex = -1;
 
-      const defaultImage = "https://via.placeholder.com/50"; // Updated to a reliable default image
+      const defaultImage = "https://images.unsplash.com/photo-1600585152280-be6161a56a0c?auto=format&fit=crop&w=150&q=80";
 
-      function renderCategories() {
-        categoryTableBody.innerHTML = "";
-        let filteredCategories = categories.filter((cat) =>
-          cat.name.toLowerCase().includes(searchInput.value.toLowerCase()) ||
-          cat.desc.toLowerCase().includes(searchInput.value.toLowerCase())
-        );
+      // Function to deduplicate categories by name (case-insensitive)
+      function deduplicateCategories(cats) {
+        const seen = new Map();
+        cats.forEach((cat) => {
+          const nameLower = (cat.name || "").trim().toLowerCase();
+          if (nameLower && !seen.has(nameLower)) {
+            seen.set(nameLower, { ...cat, name: cat.name.trim() });
+          } else if (nameLower) {
+            seen.set(nameLower, { ...cat, name: cat.name.trim() });
+          }
+        });
+        return Array.from(seen.values());
+      }
+
+      // Initialize categories with deduplication
+      categories = deduplicateCategories(categories);
+
+      // Function to populate category dropdowns
+      function populateCategoryDropdowns() {
+        subcategoryCategorySelect.innerHTML = "";
+        categorySelect.innerHTML = '<option value="all">Category: All Categories</option>';
+        const uniqueCategories = deduplicateCategories(categories);
+        console.log("Populating dropdowns with categories:", uniqueCategories);
+        if (uniqueCategories.length === 0) {
+          console.warn("No categories available");
+          subcategoryCategorySelect.innerHTML = '<option value="">No categories available</option>';
+          return;
+        }
+        uniqueCategories.forEach((cat) => {
+          const option1 = document.createElement("option");
+          option1.value = (cat.name || "").trim().toLowerCase();
+          option1.textContent = cat.name || "";
+          subcategoryCategorySelect.appendChild(option1);
+
+          const option2 = document.createElement("option");
+          option2.value = (cat.name || "").trim().toLowerCase();
+          option2.textContent = cat.name || "";
+          categorySelect.appendChild(option2);
+        });
+
+        subcategoryImg.src =
+          uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
+          defaultImage;
+      }
+
+      // Initialize category dropdowns
+      populateCategoryDropdowns();
+
+      // Listen for changes to categories in localStorage
+      window.addEventListener("storage", (e) => {
+        if (e.key === "categories" && isLocalStorageAvailable()) {
+          categories = JSON.parse(e.newValue) || [];
+          categories = deduplicateCategories(categories);
+          console.log("Categories updated:", categories);
+          populateCategoryDropdowns();
+          renderSubcategories(searchInput.value, categorySelect.value);
+        }
+      });
+
+      function renderSubcategories(searchFilter = "", filterCategory = "all") {
+        console.log("Rendering subcategories:", subcategories, { searchFilter, filterCategory });
+        if (!subcategoryTableBody) {
+          console.error("subcategoryTableBody element not found");
+          return;
+        }
+        subcategoryTableBody.innerHTML = "";
+        let filteredSubcategories = subcategories.filter((sub) => {
+          const matchesSearch =
+            (sub.productName || "").toLowerCase().includes(searchFilter.toLowerCase()) ||
+            ((sub.category || "").trim().toLowerCase().includes(searchFilter.toLowerCase())) ||
+            (sub.desc || "").toLowerCase().includes(searchFilter.toLowerCase());
+          const matchesCategory = filterCategory === "all" || 
+            ((sub.category || "").trim().toLowerCase() === (filterCategory || "").trim().toLowerCase());
+          console.log("Subcategory:", sub.category, "Matches category:", matchesCategory);
+          return matchesSearch && matchesCategory;
+        });
 
         // Apply sorting
+        console.log("Sorting subcategories by:", sortSelect.value);
+        console.log("Before sorting:", filteredSubcategories.map(sub => ({ productName: sub.productName, createdAt: sub.createdAt })));
         switch (sortSelect.value) {
-          case "Name(A-Z)":
-            filteredCategories.sort((a, b) => 
-              (a.name || "").localeCompare(b.name || ""));
+          case "name-asc":
+            filteredSubcategories.sort((a, b) => 
+              (a.productName || "").localeCompare(b.productName || ""));
             break;
-          case "Name(Z-A)":
-            filteredCategories.sort((a, b) => 
-              (b.name || "").localeCompare(a.name || ""));
+          case "name-desc":
+            filteredSubcategories.sort((a, b) => 
+              (b.productName || "").localeCompare(a.productName || ""));
             break;
-          case "Newest First":
-            filteredCategories.sort((a, b) => {
-              const aTime = a.createdAt || 0;
-              const bTime = b.createdAt || 0;
-              return bTime - aTime;
+          case "price-asc":
+            filteredSubcategories.sort((a, b) => 
+              (a.price || 0) - (b.price || 0));
+            break;
+          case "price-desc":
+            filteredSubcategories.sort((a, b) => 
+              (b.price || 0) - (a.price || 0));
+            break;
+          case "newest":
+            filteredSubcategories.sort((a, b) => {
+              const dateA = new Date(a.createdAt || "1970-01-01T00:00:00Z");
+              const dateB = new Date(b.createdAt || "1970-01-01T00:00:00Z");
+              if (isNaN(dateA)) console.error("Invalid dateA:", a.createdAt);
+              if (isNaN(dateB)) console.error("Invalid dateB:", b.createdAt);
+              return dateB - dateA;
             });
             break;
-          case "Oldest First":
-            filteredCategories.sort((a, b) => {
-              const aTime = a.createdAt || 0;
-              const bTime = b.createdAt || 0;
-              return aTime - bTime;
+          case "oldest":
+            filteredSubcategories.sort((a, b) => {
+              const dateA = new Date(a.createdAt || "1970-01-01T00:00:00Z");
+              const dateB = new Date(b.createdAt || "1970-01-01T00:00:00Z");
+              if (isNaN(dateA)) console.error("Invalid dateA:", a.createdAt);
+              if (isNaN(dateB)) console.error("Invalid dateB:", b.createdAt);
+              return dateA - dateB;
             });
             break;
           default:
             break;
         }
+        console.log("After sorting:", filteredSubcategories.map(sub => ({ productName: sub.productName, createdAt: sub.createdAt })));
 
-        filteredCategories.forEach((cat, index) => {
+        filteredSubcategories.forEach((sub, index) => {
           const row = document.createElement("tr");
           row.innerHTML = `
             <td>${index + 1}</td>
-            <td><img src="${cat.image || defaultImage}" alt="${cat.name || ''}" style="width: 50px; height: 50px;"></td>
-            <td>${cat.name || ''}</td>
-            <td>${cat.desc || ''}</td>
+            <td><img src="${sub.image || defaultImage}" alt="${sub.productName || ''}" style="width: 50px; height: 50px; object-fit: cover;"></td>
+            <td>${sub.category || ''}</td>
+            <td>${sub.subcategory || ''}</td>
+            <td>${sub.productName || ''}</td>
+            <td>$${sub.price ? sub.price.toFixed(2) : '0.00'}</td>
+            <td>${sub.quantity || 0}</td>
+            <td>${sub.desc || ''}</td>
             <td>
-              <button class="edit-category" data-index="${index}">Edit</button>
-              <button class="delete-category" data-index="${index}">Delete</button>
+              <button class="edit-subcategory" data-index="${index}">Edit</button>
+              <button class="delete-subcategory" data-index="${index}">Delete</button>
             </td>
           `;
-          categoryTableBody.appendChild(row);
+          subcategoryTableBody.appendChild(row);
         });
-        categoryCountBtn.textContent = `${filteredCategories.length} Categories`;
+        totalSubcategories.textContent = `Total: ${filteredSubcategories.length}`;
       }
 
-      // Initialize with a fallback if no categories exist
-      if (!localStorage.getItem("categories")) {
-        categories = [];
-        localStorage.setItem("categories", JSON.stringify(categories));
-      }
-      renderCategories();
+      renderSubcategories();
 
-      addNewCatBtn.addEventListener("click", () => {
-        popupTitle.textContent = "Add Category";
-        categoryNameInput.value = "";
-        categoryDescInput.value = "";
-        categoryImg.src = defaultImage;
+      addNewSubBtn.addEventListener("click", () => {
+        if (!addNewSubBtn) {
+          console.error("Add New button not found!");
+          return;
+        }
+        popupTitle.textContent = "Add Subcategory";
+        const uniqueCategories = deduplicateCategories(categories);
+        subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
+        subcategoryNameInput.value = "";
+        productNameInput.value = "";
+        priceInput.value = "";
+        quantityInput.value = "";
+        subcategoryDescInput.value = "";
+        subcategoryImg.src =
+          uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
+          defaultImage;
         editingIndex = -1;
-        categoryPopup.style.display = "flex";
+        subcategoryPopup.style.display = "flex";
       });
 
-      changeCategoryPhotoBtn.addEventListener("click", () => {
-        categoryPhotoInput.click();
+      subcategoryCategorySelect.addEventListener("change", () => {
+        const uniqueCategories = deduplicateCategories(categories);
+        subcategoryImg.src =
+          uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
+          defaultImage;
       });
 
-      categoryPhotoInput.addEventListener("change", (e) => {
+      changeSubcategoryPhotoBtn.addEventListener("change", (e) => {
         const file = e.target.files[0];
         if (file) {
           const reader = new FileReader();
           reader.onload = (event) => {
-            categoryImg.src = event.target.result;
+            subcategoryImg.src = event.target.result;
           };
           reader.readAsDataURL(file);
         }
       });
 
-      categoryForm.addEventListener("submit", (e) => {
+      subcategoryForm.addEventListener("submit", (e) => {
         e.preventDefault();
-        const name = categoryNameInput.value;
-        const desc = categoryDescInput.value;
-        const image = categoryImg.src;
-        const createdAt = editingIndex === -1 ? Date.now() : (categories[editingIndex]?.createdAt || Date.now());
-
-        if (editingIndex === -1) {
-          categories.push({ name, desc, image, createdAt });
-        } else {
-          categories[editingIndex] = { name, desc, image, createdAt };
+        console.log("Submitting subcategory form", {
+          category: subcategoryCategorySelect.value,
+          subcategory: subcategoryNameInput.value,
+          productName: productNameInput.value,
+          price: priceInput.value,
+          quantity: quantityInput.value,
+          desc: subcategoryDescInput.value,
+          image: subcategoryImg.src,
+          editingIndex
+        });
+        try {
+          if (!isLocalStorageAvailable()) {
+            alert("Cannot save: localStorage is disabled.");
+            return;
+          }
+          if (categories.length === 0) {
+            console.error("No categories available");
+            alert("No categories available. Please add a category in the Category Manager first.");
+            return;
+          }
+          if (!subcategoryCategorySelect.value || !subcategoryNameInput.value || !productNameInput.value || !priceInput.value || !quantityInput.value || !subcategoryDescInput.value) {
+            console.error("Form validation failed: Missing fields");
+            alert("Please fill all fields.");
+            return;
+          }
+          const subcategory = {
+            category: subcategoryCategorySelect.value.trim(),
+            subcategory: subcategoryNameInput.value.trim(),
+            productName: productNameInput.value.trim(),
+            price: parseFloat(priceInput.value),
+            quantity: parseInt(quantityInput.value),
+            desc: subcategoryDescInput.value.trim(),
+            image: subcategoryImg.src,
+            createdAt: editingIndex >= 0 ? subcategories[editingIndex].createdAt || new Date().toISOString() : new Date().toISOString()
+          };
+          if (editingIndex >= 0) {
+            subcategories[editingIndex] = subcategory;
+          } else {
+            subcategories.push(subcategory);
+          }
+          localStorage.setItem("subcategories", JSON.stringify(subcategories));
+          console.log("Subcategories saved:", subcategories);
+          searchInput.value = "";
+          categorySelect.value = "all";
+          sortSelect.value = "default";
+          renderSubcategories("", "all");
+          subcategoryPopup.style.display = "none";
+          const uniqueCategories = deduplicateCategories(categories);
+          subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
+          subcategoryNameInput.value = "";
+          productNameInput.value = "";
+          priceInput.value = "";
+          quantityInput.value = "";
+          subcategoryDescInput.value = "";
+          subcategoryImg.src =
+            uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
+            defaultImage;
+        } catch (error) {
+          console.error("Error saving subcategory:", error);
+          alert("Failed to save subcategory. Check console for details.");
         }
-
-        localStorage.setItem("categories", JSON.stringify(categories));
-        renderCategories();
-        categoryPopup.style.display = "none";
       });
 
-      document.querySelector("#categoryPopup .cancel-btn").addEventListener("click", () => {
-        categoryPopup.style.display = "none";
+      document.querySelectorAll(".cancel-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          subcategoryPopup.style.display = "none";
+          profilePopup.style.display = "none";
+          if (editingIndex >= 0) {
+            const sub = subcategories[editingIndex];
+            subcategoryCategorySelect.value = sub.category;
+            subcategoryNameInput.value = sub.subcategory;
+            productNameInput.value = sub.productName;
+            priceInput.value = sub.price;
+            quantityInput.value = sub.quantity;
+            subcategoryDescInput.value = sub.desc;
+            subcategoryImg.src = sub.image || defaultImage;
+          } else {
+            const uniqueCategories = deduplicateCategories(categories);
+            subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
+            subcategoryNameInput.value = "";
+            productNameInput.value = "";
+            priceInput.value = "";
+            quantityInput.value = "";
+            subcategoryDescInput.value = "";
+            subcategoryImg.src =
+              uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
+              defaultImage;
+          }
+        });
       });
 
       closePopupBtn.addEventListener("click", () => {
-        categoryPopup.style.display = "none";
+        subcategoryPopup.style.display = "none";
+        if (editingIndex >= 0) {
+          const sub = subcategories[editingIndex];
+          subcategoryCategorySelect.value = sub.category;
+          subcategoryNameInput.value = sub.subcategory;
+          productNameInput.value = sub.productName;
+          priceInput.value = sub.price;
+          quantityInput.value = sub.quantity;
+          subcategoryDescInput.value = sub.desc;
+          subcategoryImg.src = sub.image || defaultImage;
+        } else {
+          const uniqueCategories = deduplicateCategories(categories);
+          subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
+          subcategoryNameInput.value = "";
+          productNameInput.value = "";
+          priceInput.value = "";
+          quantityInput.value = "";
+          subcategoryDescInput.value = "";
+          subcategoryImg.src =
+            uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
+              defaultImage;
+        }
       });
 
-      categoryTableBody.addEventListener("click", (e) => {
-        if (e.target.classList.contains("edit-category")) {
-          const index = e.target.dataset.index;
-          const cat = categories[index];
-          popupTitle.textContent = "Edit Category";
-          categoryNameInput.value = cat.name;
-          categoryDescInput.value = cat.desc;
-          categoryImg.src = cat.image || defaultImage;
-          editingIndex = index;
-          categoryPopup.style.display = "flex";
-        } else if (e.target.classList.contains("delete-category")) {
-          const index = e.target.dataset.index;
-          if (confirm("Are you sure you want to delete this category?")) {
-            categories.splice(index, 1);
-            localStorage.setItem("categories", JSON.stringify(categories));
-            renderCategories();
+      subcategoryTableBody.addEventListener("click", (e) => {
+        if (e.target.classList.contains("edit-subcategory")) {
+          editingIndex = parseInt(e.target.getAttribute("data-index"));
+          const sub = subcategories[editingIndex];
+          popupTitle.textContent = "Edit Subcategory";
+          subcategoryCategorySelect.value = (sub.category || "").trim().toLowerCase();
+          subcategoryNameInput.value = sub.subcategory;
+          productNameInput.value = sub.productName;
+          priceInput.value = sub.price;
+          quantityInput.value = sub.quantity;
+          subcategoryDescInput.value = sub.desc;
+          subcategoryImg.src = sub.image || defaultImage;
+          subcategoryPopup.style.display = "flex";
+        } else if (e.target.classList.contains("delete-subcategory")) {
+          const index = parseInt(e.target.getAttribute("data-index"));
+          if (confirm("Are you sure you want to delete this subcategory?")) {
+            subcategories.splice(index, 1);
+            if (isLocalStorageAvailable()) {
+              localStorage.setItem("subcategories", JSON.stringify(subcategories));
+            }
+            renderSubcategories(searchInput.value, categorySelect.value);
           }
         }
       });
 
       searchInput.addEventListener("input", (e) => {
-        renderCategories();
+        renderSubcategories(e.target.value, categorySelect.value);
       });
 
       sortSelect.addEventListener("change", () => {
-        renderCategories();
+        renderSubcategories(searchInput.value, categorySelect.value);
       });
 
       applyFiltersBtn.addEventListener("click", () => {
-        renderCategories();
+        console.log("Applying filters with category:", categorySelect.value);
+        renderSubcategories(searchInput.value, categorySelect.value);
       });
 
-      // import export csv file
-      const csvSelect = document.getElementById("csvOptions");
+      // Import functionality
       const importModal = document.getElementById("importModal");
-      const exportModal = document.getElementById("exportModal");
-      const closeBtns = document.querySelectorAll(".modal .close");
+      const csvFileInput = document.getElementById("csvFile");
+      const closeImportModal = document.querySelector("#importModal .close");
+      const importBtn = document.getElementById("importSubcategoriesBtn");
+      const headerCheckbox = importModal.querySelector("#containsHeaders");
 
-      csvSelect.addEventListener("change", (e) => {
-        if (e.target.value === "import") {
-          importModal.style.display = "block";
-        } else if (e.target.value === "export") {
-          exportModal.style.display = "block";
-        }
-        e.target.value = "";
-      });
-
-      closeBtns.forEach((btn) => {
+      document.querySelectorAll(".btn-import").forEach((btn) => {
         btn.addEventListener("click", () => {
-          btn.closest(".modal").style.display = "none";
+          importModal.style.display = "flex";
         });
       });
 
-      window.addEventListener("click", (e) => {
-        if (e.target.classList.contains("modal")) {
-          e.target.style.display = "none";
+      closeImportModal.addEventListener("click", () => {
+        importModal.style.display = "none";
+        csvFileInput.value = "";
+      });
+
+      importBtn.addEventListener("click", () => {
+        if (!isLocalStorageAvailable()) {
+          alert("Cannot import: localStorage is disabled.");
+          return;
+        }
+        const file = csvFileInput.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            const text = e.target.result;
+            const rows = text.split("\n");
+            const hasHeaders = headerCheckbox.checked;
+            const startIndex = hasHeaders ? 1 : 0;
+
+            rows.slice(startIndex).forEach((row) => {
+              const [category, subcategory, productName, price, desc, image, quantity, createdAt] = row
+                .split(",")
+                .map((item) => item.trim());
+              if (category && subcategory && productName && price && desc) {
+                const validCreatedAt = createdAt && !isNaN(new Date(createdAt)) 
+                  ? createdAt 
+                  : new Date().toISOString();
+                const newSubcategory = {
+                  category: category.trim(),
+                  subcategory: subcategory.trim(),
+                  productName: productName.trim(),
+                  price: parseFloat(price.trim()),
+                  quantity: quantity ? parseInt(quantity.trim()) : 0,
+                  desc: desc.trim(),
+                  image: image ? image.trim() : defaultImage,
+                  createdAt: validCreatedAt
+                };
+                const existingIndex = subcategories.findIndex(
+                  (sub) =>
+                    sub.productName === newSubcategory.productName &&
+                    (sub.category || "").trim().toLowerCase() === (newSubcategory.category || "").trim().toLowerCase()
+                );
+                if (existingIndex >= 0) {
+                  subcategories[existingIndex] = newSubcategory;
+                } else {
+                  subcategories.push(newSubcategory);
+                }
+              } else {
+                console.error("Invalid row data:", row);
+              }
+            });
+            localStorage.setItem("subcategories", JSON.stringify(subcategories));
+            renderSubcategories(searchInput.value, categorySelect.value);
+            importModal.style.display = "none";
+            csvFileInput.value = "";
+          };
+          reader.readAsText(file);
+        } else {
+          alert("Please select a CSV file.");
         }
       });
 
-      document.getElementById("downloadCsvBtn").addEventListener("click", () => {
-        alert("Exporting CSV...");
+      // Close modal when clicking outside
+      window.addEventListener("click", (e) => {
+        if (e.target === importModal) {
+          importModal.style.display = "none";
+          csvFileInput.value = "";
+        }
+      });
+
+      // Export functionality
+      const exportModal = document.getElementById("exportModal");
+      const closeExportModal = document.querySelector("#exportModal .close");
+      const downloadCsvBtn = document.getElementById("downloadCsvBtn");
+
+      document.querySelectorAll(".btn-export").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          exportModal.style.display = "flex";
+        });
+      });
+
+      closeExportModal.addEventListener("click", () => {
+        exportModal.style.display = "none";
+      });
+
+      window.addEventListener("click", (e) => {
+        if (e.target === exportModal) {
+          exportModal.style.display = "none";
+        }
+      });
+
+      downloadCsvBtn.addEventListener("click", () => {
+        const csv = [
+          "Category,Subcategory,Product Name,Price,Description,Image,Quantity,CreatedAt",
+          ...subcategories.map((sub) =>
+            `${sub.category},${sub.subcategory},${sub.productName},${sub.price},${sub.desc},${sub.image},${sub.quantity},${sub.createdAt || ''}`
+          ),
+        ].join("\n");
+        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "subcategories.csv";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+        exportModal.style.display = "none";
       });
     </script>
   </body>
