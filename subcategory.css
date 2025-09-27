@@ -3,7 +3,14 @@
   box-sizing: border-box !important;
 }
 
-/* Hero */
+/* Navbar */
+.navbar {
+  /* ... other styles ... */
+  position: sticky;
+  top: 0;
+  /* ... */
+}
+
 .hero {
   background-color: #007bff;
   color: white;
@@ -31,7 +38,7 @@
   margin-right: 5px;
 }
 
-.header-icon i {
+.header-icon svg {
   width: 16px;
   height: 16px;
   color: white;
@@ -62,7 +69,7 @@
   font-size: 12px;
 }
 
-.btn i {
+.btn svg {
   width: 14px;
   height: 14px;
   vertical-align: middle;
@@ -634,39 +641,7 @@
   .btn {
     flex: 1;
     min-width: 80px;
-    display: flex;
     justify-content: center;
-    align-items: center;
-  }
-
-  .profile {
-    width: auto;
-    margin: 0;
-  }
-
-  .profile-dropdown {
-    position: static;
-    width: 100%;
-    box-shadow: none;
-  }
-
-  .profile-dropdown ul {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .profile-dropdown li {
-    text-align: center;
-    width: 100%;
-  }
-
-  .profile-dropdown li a {
-    display: block;
-    padding: 8px;
-    color: #1DA1F2;
-    text-decoration: none;
   }
 
   .search-stats-wrapper {
