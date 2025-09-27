@@ -1,3 +1,5 @@
+/* Category Page Specific */
+
 .navbar {
   /* ... other styles ... */
   position: sticky;
@@ -763,4 +765,3 @@ select.btn:focus {
   input, select {
     font-size: 16px; /* Prevents zoom on iOS */
   }
-}
