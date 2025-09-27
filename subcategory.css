@@ -644,219 +644,119 @@
   font-size: 0.9rem !important;
 }
 
-/* Mobile Responsive Updates from Category CSS */
-
-/* Hero Mobile (applied to subcategory-banner) */
-@media (max-width: 640px) {
-  .subcategory-banner {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 8px 12px;
-    gap: 8px;
-  }
-  .subcategory-content {
-    width: 100%;
-  }
-  .category-controls {
-    justify-content: flex-start;
-    width: 100%;
-    flex-wrap: wrap;
-  }
-  .btn {
-    flex: 1;
-    min-width: 80px;
-    justify-content: center;
-  }
-}
-
-/* Search Sort Mobile */
-@media (max-width: 640px) {
-  .search-stats-wrapper {
-    flex-direction: column;
-    gap: 12px;
-    padding: 12px 8px;
-  }
-  .search-container, .stats-container {
-    width: 100%;
-  }
-  .btn-apply {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-/* Filter Container Mobile */
+/* Responsive Design */
 @media (max-width: 768px) {
-  .filter-sort-container {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 12px 8px;
-    gap: 12px;
+  .navbar {
+    padding: 10px !important;
   }
-  .filter-sort-options {
-    min-width: 100%;
-  }
-  .actions {
-    width: 100%;
-    justify-content: stretch;
-  }
-  .btn-apply, .btn.add-new-btn {
-    flex: 1;
-    min-width: 0;
-  }
-}
 
-/* Category Table Mobile */
-@media (max-width: 480px) {
+  .nav-inner {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+
+  .nav-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+    align-items: center !important;
+  }
+
+  .dashboard-pill,
+  .profile {
+    width: 100% !important;
+    text-align: center !important;
+    margin: 5px 0 !important;
+  }
+
+  .profile-dropdown {
+    position: static !important;
+    width: 100% !important;
+    box-shadow: none !important;
+  }
+
+  .profile-dropdown ul {
+    width: 100% !important;
+  }
+
+  .profile-dropdown li {
+    text-align: center !important;
+  }
+
+  .subcategory-banner {
+    padding: 20px !important;
+  }
+
+  .search-stats-wrapper {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 15px !important;
+  }
+
+  .search-container,
+  .stats-container {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .filter-sort-container {
+    padding: 10px !important;
+  }
+
+  .filter-sort-content {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 15px !important;
+  }
+
+  .filter-sort-options {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .category-select,
+  .sort-select {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .btn.apply,
+  .btn.add-new-btn {
+    width: 100% !important;
+  }
+
   .category-table {
-    width: 100%;
-    border-collapse: collapse;
-    display: table;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin: 0;
-    padding: 0;
+    display: block !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
   }
-  .category-table thead {
-    display: table-header-group;
-    position: sticky;
-    top: 0;
-    background: #f9f9f9;
-    z-index: 10;
-    width: 100%;
-    min-width: 100%;
-  }
+
   .category-table th,
   .category-table td {
-    padding: 6px;
-    text-align: left;
-    border-bottom: 1px solid #eee;
-    font-size: 13px;
-    vertical-align: middle;
+    min-width: 100px !important;
   }
-  .category-table th:nth-child(1),
-  .category-table td:nth-child(1) { width: 10%; min-width: 40px; } /* ID */
-  .category-table th:nth-child(2),
-  .category-table td:nth-child(2) { width: 15%; min-width: 60px; } /* IMG */
-  .category-table th:nth-child(3),
-  .category-table td:nth-child(3) { width: 25%; min-width: 100px; } /* CATEGORY */
-  .category-table th:nth-child(4),
-  .category-table td:nth-child(4) { width: 30%; min-width: 120px; } /* Description */
-  .category-table th:nth-child(5),
-  .category-table td:nth-child(5) { width: 20%; min-width: 120px; } /* ACTIONS */
-  .category-table th {
-    background: #f9f9f9;
-    white-space: nowrap;
-    vertical-align: middle;
-  }
-  .category-table td img {
-    width: 35px;
-    height: 35px;
-    object-fit: cover;
-    border-radius: 4px;
-    vertical-align: middle;
-  }
-  .edit-subcategory,
-  .delete-subcategory {
-    padding: 5px 10px;
-    font-size: 12px;
-    margin: 0 2px;
-    display: inline-block;
-    vertical-align: middle;
-  }
-  .category-table td:nth-child(5) {
-    text-align: center;
-  }
-  .table-wrapper {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    width: 100%;
-    display: block;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    margin: 0;
-    padding: 0;
-  }
-  .table-wrapper::-webkit-scrollbar {
-    display: none;
-  }
-}
 
-/* Category Controls Mobile */
-@media (max-width: 640px) {
-  .category-controls {
-    justify-content: flex-start !important;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  select.btn {
-    min-width: 120px;
-  }
-}
-
-/* Popup Mobile */
-@media (max-width: 640px) {
-  .popup-inner {
-    width: 95%;
-    max-width: 95vw;
-    margin: 10px;
-    padding: 12px;
-  }
-  .popup-header h2 {
-    font-size: 20px;
-  }
-  .image-container img {
-    width: 100px;
-    height: 100px;
-  }
-  .form-actions {
-    flex-direction: column;
-    gap: 8px;
-  }
-  .save-btn,
-  .cancel-btn {
-    width: 100%;
-  }
-}
-
-/* Modal Mobile */
-@media (max-width: 640px) {
+  .popup-inner,
   .modal-content {
-    width: 95%;
-    max-width: 95vw;
-    margin: 10% auto;
-    padding: 12px;
+    width: 95% !important;
+    padding: 15px !important;
   }
-  .modal-actions {
-    flex-direction: column;
-    gap: 8px;
-  }
-  .btn-cancel, .btn-blue {
-    width: 100%;
-  }
-  .checkbox-row {
-    justify-content: flex-start;
-  }
-}
 
-/* CSV Options Mobile */
-@media (max-width: 640px) {
-  #csvOptions {
-    width: 100%;
-    padding: 8px;
+  .form-actions {
+    flex-direction: column !important;
   }
-}
 
-/* General Mobile Adjustments */
-@media (max-width: 640px) {
-  body {
-    padding: 5px;
+  .form-actions button {
+    width: 100% !important;
+    margin: 5px 0 !important;
   }
-  .btn {
-    font-size: 13px;
-    padding: 6px 12px;
-  }
-  input, select {
-    font-size: 16px;
+
+  .footer {
+    font-size: 0.8rem !important;
   }
 }
