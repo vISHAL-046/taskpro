@@ -181,12 +181,15 @@
           <h2 id="popupTitle">Add Subcategory</h2>
           <button class="close-btn" id="closePopupBtn">&times;</button>
         </div>
-        <div class="image-container">
+        <div class="image-container" style="position: relative;">
           <img
             id="subcategoryImg"
             alt="Subcategory Image"
-            style="width: 150px; height: 150px; object-fit: cover"
+            style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;"
           />
+          <button id="removeSubcategoryPhoto" class="remove-img-btn" style="position: absolute; top: 0; right: 0; background: #ff4d4d; color: white; border: none; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 12px;">
+            <i class="fas fa-times"></i>
+          </button>
           <input
             type="file"
             id="subcategoryPhotoInput"
@@ -486,6 +489,7 @@
       const subcategoryImg = document.getElementById("subcategoryImg");
       const subcategoryPhotoInput = document.getElementById("subcategoryPhotoInput");
       const changeSubcategoryPhotoBtn = document.getElementById("changeSubcategoryPhoto");
+      const removeSubcategoryPhotoBtn = document.getElementById("removeSubcategoryPhoto");
       const searchInput = document.getElementById("searchInput");
       const sortSelect = document.getElementById("sortSelect");
       const applyFiltersBtn = document.getElementById("applyFiltersBtn");
@@ -494,6 +498,32 @@
       let editingIndex = -1;
 
       const defaultImage = "https://images.unsplash.com/photo-1600585152280-be6161a56a0c?auto=format&fit=crop&w=150&q=80";
+
+      // Trigger file input click when "Change Image" button is clicked
+      changeSubcategoryPhotoBtn.addEventListener("click", () => {
+        subcategoryPhotoInput.click();
+      });
+
+      // Handle file selection and update subcategory image
+      subcategoryPhotoInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            subcategoryImg.src = event.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // Handle remove image button click
+      removeSubcategoryPhotoBtn.addEventListener("click", () => {
+        const uniqueCategories = deduplicateCategories(categories);
+        subcategoryImg.src =
+          uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
+          defaultImage;
+        subcategoryPhotoInput.value = ""; // Clear the file input
+      });
 
       // Function to deduplicate categories by name (case-insensitive)
       function deduplicateCategories(cats) {
@@ -663,17 +693,6 @@
         subcategoryImg.src =
           uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
           defaultImage;
-      });
-
-      changeSubcategoryPhotoBtn.addEventListener("change", (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            subcategoryImg.src = event.target.result;
-          };
-          reader.readAsDataURL(file);
-        }
       });
 
       subcategoryForm.addEventListener("submit", (e) => {
