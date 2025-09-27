@@ -6,6 +6,245 @@
     <title>Subcategory Manager</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="subcategory.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="nav-profile.css" />
+    <!-- New responsive CSS -->
+    <style>
+      /* responsive.css */
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+      }
+
+      /* Navbar */
+      .navbar {
+        width: 100%;
+        padding: 10px 20px;
+      }
+
+      .nav-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .brand, .nav-actions {
+        display: flex;
+        align-items: center;
+      }
+
+      .dashboard-pill, .profile {
+        margin: 0 10px;
+      }
+
+      @media (max-width: 768px) {
+        .nav-inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .nav-actions {
+          flex-direction: column;
+          width: 100%;
+          margin-top: 10px;
+        }
+        .dashboard-pill, .profile {
+          width: 100%;
+          text-align: center;
+          margin: 5px 0;
+        }
+        .profile-dropdown {
+          position: static;
+          width: 100%;
+          box-shadow: none;
+        }
+        .profile-dropdown ul {
+          width: 100%;
+        }
+        .profile-dropdown li {
+          text-align: center;
+        }
+      }
+
+      /* Main Container */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      .subcategory-banner {
+        width: 100%;
+        padding: 20px;
+      }
+
+      /* Search and Stats */
+      .search-stats-wrapper {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+      }
+
+      .search-container, .stats-container {
+        flex: 1;
+        margin: 0 10px;
+      }
+
+      .search-bar {
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+
+      .search-bar input {
+        width: 100%;
+        padding: 8px;
+      }
+
+      @media (max-width: 600px) {
+        .search-stats-wrapper {
+          flex-direction: column;
+        }
+        .search-container, .stats-container {
+          margin: 10px 0;
+        }
+        .stats-container .buttons {
+          display: flex;
+          flex-direction: column;
+        }
+        .stats-container .btn {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+
+      /* Filter and Sort */
+      .filter-sort-container {
+        margin: 20px 0;
+      }
+
+      .filter-sort-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .filter-sort-options {
+        display: flex;
+        gap: 10px;
+      }
+
+      .filter-sort-options select {
+        width: 100%;
+        max-width: 200px;
+        padding: 8px;
+      }
+
+      .actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      @media (max-width: 600px) {
+        .filter-sort-content {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .filter-sort-options {
+          flex-direction: column;
+        }
+        .filter-sort-options select {
+          max-width: none;
+        }
+        .actions {
+          flex-direction: column;
+        }
+        .actions .btn {
+          width: 100%;
+        }
+      }
+
+      /* Popups and Modals */
+      .profile-popup, .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .popup-inner, .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 500px;
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      .ecommerce-form .form-group {
+        margin-bottom: 15px;
+      }
+
+      .ecommerce-form input, .ecommerce-form select {
+        width: 100%;
+        padding: 8px;
+      }
+
+      .form-actions {
+        display: flex;
+        gap: 10px;
+      }
+
+      .form-actions button {
+        padding: 10px;
+        flex: 1;
+      }
+
+      .image-container img {
+        max-width: 100%;
+        height: auto;
+      }
+
+      @media (max-width: 600px) {
+        .popup-inner, .modal-content {
+          width: 95%;
+          padding: 15px;
+        }
+        .form-actions {
+          flex-direction: column;
+        }
+        .form-actions button {
+          width: 100%;
+          margin: 5px 0;
+        }
+      }
+
+      /* Footer */
+      .footer {
+        text-align: center;
+        padding: 20px;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 600px) {
+        .footer {
+          font-size: 0.8rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- NAVBAR -->
@@ -69,10 +308,10 @@
 
     <!-- Subcategory Manager Content -->
     <main class="container">
-      <div class="hero">
-        <div class="header-content">
-          <div class="title-wrapper">
-            <div class="header-icon">
+      <div class="subcategory-banner">
+        <div class="subcategory-content">
+          <div class="subcategory-title">
+            <div class="subcategory-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="34"
@@ -88,23 +327,18 @@
                 />
               </svg>
             </div>
-            <h1 class="header-title">Manage Subcategories</h1>
+            <h1>Manage Subcategories</h1>
           </div>
-          <p class="header-subtitle">Organize your products into categories and subcategories</p>
-        </div>
-        <div class="category-controls">
-          <button class="btn btn-import btn-soft">Import</button>
-          <button class="btn btn-export btn-smokewhite">Export</button>
-          <button id="addNewSubBtnFilter" class="btn btn-apply">Add New</button>
+          <p>Organize your products into categories and subcategories</p>
         </div>
       </div>
-      <div class="search-sort">
-        <div class="search">
-          <label for="searchInput">Search Subcategories</label>
-          <div class="search-box">
+      <div class="search-stats-wrapper">
+        <div class="search-container">
+          <div class="search-bar">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
               <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
             </svg>
+            <span class="search">Search Subcategories</span>
             <input
               type="text"
               id="searchInput"
@@ -112,54 +346,78 @@
             />
           </div>
         </div>
-        <div class="sort">
-          <label for="sortSelect">Sort By</label>
-          <select id="sortSelect">
-            <option value="default">Sort by: Default</option>
-            <option value="name-asc">Name (A-Z)</option>
-            <option value="name-desc">Name (Z-A)</option>
-            <option value="price-asc">Price (Low to High)</option>
-            <option value="price-desc">Price (High to Low)</option>
-            <option value="newest">Newest First</option>
-            <option value="oldest">Oldest First</option>
-          </select>
+        <div class="stats-container">
+          <div class="card">
+            <h3>Statistics</h3>
+            <div class="total-box" id="totalSubcategories">Total: 0</div>
+            <div class="buttons">
+              <button class="btn btn-import">
+                <i class="fas fa-upload"></i> Import
+              </button>
+              <button class="btn btn-export">
+                <i class="fas fa-download"></i> Export
+              </button>
+            </div>
+          </div>
         </div>
-        <div class="filter-group">
-          <label for="categorySelect">Category</label>
-          <select id="categorySelect">
-            <option value="all">All Categories</option>
-            <!-- Categories will be populated dynamically -->
-          </select>
+      </div>
+      <div class="filter-sort-container">
+        <div class="filter-sort-header">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+            <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z"/>
+          </svg>
+          <span class="filter-sort-label">Filter & Sort</span>
         </div>
-        <button class="apply-filters btn-apply" id="applyFiltersBtn">Apply Filters</button>
+        <div class="filter-sort-content">
+          <div class="filter-sort-options">
+            <select class="pill category-select" id="categorySelect" style="border: 1px solid #CED4DA;">
+              <option value="all">Category: All Categories</option>
+              <!-- Categories will be populated dynamically -->
+            </select>
+            <select class="pill sort-select" id="sortSelect" style="border: 1px solid #CED4DA;">
+              <option value="default">Sort by: Default</option>
+              <option value="name-asc">Name (A-Z)</option>
+              <option value="name-desc">Name (Z-A)</option>
+              <option value="price-asc">Price (Low to High)</option>
+              <option value="price-desc">Price (High to Low)</option>
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+            </select>
+          </div>
+          <div class="actions">
+            <button class="btn apply" id="applyFiltersBtn">✔ Apply</button>
+            <button id="addNewSubBtnFilter" class="btn add-new-btn">➕ Add New</button>
+          </div>
+        </div>
       </div>
-      <div class="table-wrapper">
-        <table class="category-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>IMAGE</th>
-              <th>CATEGORY</th>
-              <th>SUBCATEGORY</th>
-              <th>PRODUCT NAME</th>
-              <th>PRICE</th>
-              <th>QUANTITY</th>
-              <th>DESCRIPTION</th>
-              <th>ACTIONS</th>
-            </tr>
-          </thead>
-          <tbody id="subcategoryTableBody">
-            <!-- Subcategories will be inserted here -->
-          </tbody>
-        </table>
-      </div>
+      
+      <table class="category-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>IMAGE</th>
+            <th>CATEGORY</th>
+            <th>SUBCATEGORY</th>
+            <th>PRODUCT NAME</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+            <th>DESCRIPTION</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody id="subcategoryTableBody">
+          <!-- Subcategories will be inserted here -->
+        </tbody>
+      </table>
     </main>
 
     <!-- Add/Edit Subcategory Popup -->
-    <div class="modal" id="subcategoryPopup">
-      <div class="modal-content">
-        <span class="close" id="closePopupBtn">&times;</span>
-        <h2 id="popupTitle">Add Subcategory</h2>
+    <div class="profile-popup" id="subcategoryPopup">
+      <div class="popup-inner">
+        <div class="popup-header">
+          <h2 id="popupTitle">Add Subcategory</h2>
+          <button class="close-btn" id="closePopupBtn">&times;</button>
+        </div>
         <div class="image-container">
           <img
             id="subcategoryImg"
@@ -238,10 +496,12 @@
     </div>
 
     <!-- Edit Profile Popup -->
-    <div class="modal" id="profilePopup">
-      <div class="modal-content">
-        <span class="close" id="closeProfilePopupBtn">&times;</span>
-        <h2>Edit Profile</h2>
+    <div class="profile-popup" id="profilePopup">
+      <div class="popup-inner">
+        <div class="popup-header">
+          <h2>Edit Profile</h2>
+          <button class="close-btn" id="closeProfilePopupBtn">&times;</button>
+        </div>
         <div class="image-container">
           <img id="profileImg" alt="Profile" />
           <input
@@ -310,7 +570,6 @@
     </footer>
 
     <script>
-      // JavaScript remains unchanged
       // Check localStorage availability
       function isLocalStorageAvailable() {
         try {
@@ -768,7 +1027,7 @@
           subcategoryDescInput.value = "";
           subcategoryImg.src =
             uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
-            defaultImage;
+              defaultImage;
         }
       });
 
