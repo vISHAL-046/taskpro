@@ -1,984 +1,1089 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Subcategory Manager</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <link rel="stylesheet" href="subcategory.css" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="nav-profile.css" />
-  </head>
-  <body>
-    <!-- NAVBAR -->
-    <header class="navbar">
-      <div class="nav-inner">
-        <div class="brand">
-          <div class="logo">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="28"
-              fill="white"
-              class="bi bi-check2-square"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M3 14.5A1.5 1.5 0 0 1 1.5 13V3A1.5 1.5 0 0 1 3 1.5h8a.5.5 0 0 1 0 1H3a.5.5 0 0 0-.5.5v10a.5.5 0 0 0 .5.5h10a.5.5 0 0 0 .5-.5V8a.5.5 0 0 1 1 0v5a1.5 1.5 0 0 1-1.5 1.5z"
-              />
-              <path
-                d="m8.354 10.354 7-7a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0"
-              />
-            </svg>
-          </div>
-          <span class="brand-name">TaskPro</span>
-        </div>
-        <div class="nav-actions">
-          <a href="dashboard.html" class="dashboard-pill">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              fill="white"
-              class="bi bi-house"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"
-              />
-            </svg>
-            <span class="dashboard-text">Dashboard</span>
-          </a>
-          <div class="profile" id="profile">
-            <div id="profileIcon" class="profile-trigger">
-              <img src="download.jpeg" alt="Profile" />
-            </div>
-            <div id="profileDropdown" class="profile-dropdown">
-              <ul>
-                <li><a href="#" id="editProfileLink">Edit</a></li>
-                <li><a href="#" id="settingsLink">Settings</a></li>
-                <li><a href="#" id="logoutLink">Logout</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
+/* Global Reset for Consistency */
+* {
+  box-sizing: border-box !important;
+}
 
-    <!-- Subcategory Manager Content -->
-    <main class="container">
-      <div class="subcategory-banner">
-        <div class="subcategory-content">
-          <div class="subcategory-title">
-            <div class="subcategory-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="34"
-                height="34"
-                fill="white"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  fill="none"
-                />
-              </svg>
-            </div>
-            <h1>Manage Subcategories</h1>
-          </div>
-          <p>Organize your products into categories and subcategories</p>
-        </div>
-      </div>
-      <div class="search-stats-wrapper">
-        <div class="search-container">
-          <div class="search-bar">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-            </svg>
-            <span class="search">Search Subcategories</span>
-            <input
-              type="text"
-              id="searchInput"
-              placeholder="Search by name, category, or description..."
-            />
-          </div>
-        </div>
-        <div class="stats-container">
-          <div class="card">
-            <h3>Statistics</h3>
-            <div class="total-box" id="totalSubcategories">Total: 0</div>
-            <div class="buttons">
-              <button class="btn btn-import">
-                <i class="fas fa-upload"></i> Import
-              </button>
-              <button class="btn btn-export">
-                <i class="fas fa-download"></i> Export
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="filter-sort-container">
-        <div class="filter-sort-header">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
-            <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z"/>
-          </svg>
-          <span class="filter-sort-label">Filter & Sort</span>
-        </div>
-        <div class="filter-sort-content">
-          <div class="filter-sort-options">
-            <select class="pill category-select" id="categorySelect" style="border: 1px solid #CED4DA;">
-              <option value="all">Category: All Categories</option>
-              <!-- Categories will be populated dynamically -->
-            </select>
-            <select class="pill sort-select" id="sortSelect" style="border: 1px solid #CED4DA;">
-              <option value="default">Sort by: Default</option>
-              <option value="name-asc">Name (A-Z)</option>
-              <option value="name-desc">Name (Z-A)</option>
-              <option value="price-asc">Price (Low to High)</option>
-              <option value="price-desc">Price (High to Low)</option>
-              <option value="newest">Newest First</option>
-              <option value="oldest">Oldest First</option>
-            </select>
-          </div>
-          <div class="actions">
-            <button class="btn apply" id="applyFiltersBtn">✔ Apply</button>
-            <button id="addNewSubBtnFilter" class="btn add-new-btn">➕ Add New</button>
-          </div>
-        </div>
-      </div>
-      
-      <div class="table-wrapper">
-        <table class="category-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>IMAGE</th>
-              <th>CATEGORY</th>
-              <th>SUBCATEGORY</th>
-              <th>PRODUCT NAME</th>
-              <th>PRICE</th>
-              <th>QUANTITY</th>
-              <th>DESCRIPTION</th>
-              <th>ACTIONS</th>
-            </tr>
-          </thead>
-          <tbody id="subcategoryTableBody">
-            <!-- Subcategories will be inserted here -->
-          </tbody>
-        </table>
-      </div>
-    </main>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
 
-    <!-- Add/Edit Subcategory Popup -->
-    <div class="profile-popup" id="subcategoryPopup">
-      <div class="popup-inner">
-        <div class="popup-header">
-          <h2 id="popupTitle">Add Subcategory</h2>
-          <button class="close-btn" id="closePopupBtn">&times;</button>
-        </div>
-        <div class="image-container" style="position: relative;">
-          <img
-            id="subcategoryImg"
-            alt="Subcategory Image"
-            style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%;"
-          />
-          <button id="removeSubcategoryPhoto" class="remove-img-btn" style="position: absolute; top: 0; right: 0; background: #ff4d4d; color: white; border: none; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 12px;">
-            <i class="fas fa-times"></i>
-          </button>
-          <input
-            type="file"
-            id="subcategoryPhotoInput"
-            accept="image/*"
-            style="display: none"
-          />
-          <button id="changeSubcategoryPhoto" class="image-btn">
-            Change Image
-          </button>
-        </div>
-        <form id="subcategoryForm" class="ecommerce-form">
-          <div class="form-group">
-            <label>Category</label>
-            <select id="subcategoryCategory" required>
-              <!-- Categories will be populated dynamically -->
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Subcategory</label>
-            <input
-              type="text"
-              id="subcategoryName"
-              required
-              placeholder="e.g., Table Fan"
-            />
-          </div>
-          <div class="form-group">
-            <label>Product Name</label>
-            <input
-              type="text"
-              id="productName"
-              required
-              placeholder="e.g., Premium Table Fan"
-            />
-          </div>
-          <div class="form-group">
-            <label>Price ($)</label>
-            <input
-              type="number"
-              id="price"
-              step="0.01"
-              required
-              placeholder="e.g., 49.99"
-            />
-          </div>
-          <div class="form-group">
-            <label>Quantity</label>
-            <input
-              type="number"
-              id="quantity"
-              required
-              placeholder="e.g., 50"
-            />
-          </div>
-          <div class="form-group">
-            <label>Description</label>
-            <input
-              type="text"
-              id="subcategoryDesc"
-              required
-              placeholder="e.g., High-quality table fan"
-            />
-          </div>
-          <div class="form-actions">
-            <button type="submit" class="save-btn">Save</button>
-            <button type="button" class="cancel-btn">Cancel</button>
-          </div>
-        </form>
-      </div>
-    </div>
+/* Navbar */
+.navbar {
+  background-color: #1DA1F2;
+  padding: 10px 0;
+  color: white;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
 
-    <!-- Edit Profile Popup -->
-    <div class="profile-popup" id="profilePopup">
-      <div class="popup-inner">
-        <div class="popup-header">
-          <h2>Edit Profile</h2>
-          <button class="close-btn" id="closeProfilePopupBtn">&times;</button>
-        </div>
-        <div class="image-container">
-          <img id="profileImg" alt="Profile" />
-          <input
-            type="file"
-            id="photoInput"
-            accept="image/*"
-            style="display: none"
-          />
-          <button id="changePhoto" class="image-btn">Change Photo</button>
-        </div>
-        <form id="profileForm" class="ecommerce-form">
-          <div class="form-group">
-            <label>Username</label>
-            <input type="text" id="username" value="owner" />
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" id="email" value="owner@signaltone.com" />
-          </div>
-          <div class="form-actions">
-            <button type="submit" class="save-btn">Save Changes</button>
-            <button type="button" class="cancel-btn">Cancel</button>
-          </div>
-        </form>
-      </div>
-    </div>
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 10px;
+}
 
-    <!-- Import Modal -->
-    <div id="importModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>📂 Import Subcategories from CSV</h2>
-        <label for="csvFile">CSV File</label>
-        <input type="file" id="csvFile" accept=".csv" />
-        <p class="hint">
-          CSV format: <code>category,subcategory,productName,price,description,image,quantity,createdAt</code> (image, quantity, and createdAt optional).
-          <a href="#" id="downloadTemplate">Download template</a>
-        </p>
-        <div class="checkbox-row">
-          <input type="checkbox" id="containsHeaders" checked />
-          <label for="containsHeaders">First row contains headers</label>
-        </div>
-        <div class="warning">
-          ⚠️ Existing subcategories with the same product name and category will be updated.<br />
-          New subcategories will be added.
-        </div>
-        <div class="modal-actions">
-          <button class="btn btn-cancel">Cancel</button>
-          <button class="btn btn-blue" id="importSubcategoriesBtn">⬆ Import Subcategories</button>
-        </div>
-      </div>
-    </div>
+.brand {
+  display: flex;
+  align-items: center;
+  margin-left: 0;
+}
 
-    <!-- Export Modal -->
-    <div id="exportModal" class="modal">
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Export subcategories to CSV</h2>
-        <p>Click below to export all subcategories as a CSV file.</p>
-        <button class="btn btn-blue" id="downloadCsvBtn">Download CSV</button>
-      </div>
-    </div>
+.logo svg {
+  margin-right: 10px;
+  width: 28px;
+  height: 28px;
+}
 
-    <footer class="footer">
-      <small>©️ 2025 TaskPro — Dashboard prototype (Last updated: 06:05 PM IST, Friday, September 26, 2025)</small>
-    </footer>
+.brand-name {
+  font-size: 18px;
+  font-weight: bold;
+}
 
-    <script>
-      // Check localStorage availability
-      function isLocalStorageAvailable() {
-        try {
-          const test = "__test__";
-          localStorage.setItem(test, test);
-          localStorage.removeItem(test);
-          return true;
-        } catch (e) {
-          console.error("localStorage is not available:", e);
-          alert("localStorage is disabled. Please enable it or try a different browser.");
-          return false;
-        }
-      }
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px !important;
+  justify-content: flex-end;
+}
 
-      // Profile functionality
-      const savedUsername = localStorage.getItem("username") || "owner";
-      const savedEmail = localStorage.getItem("email") || "owner@signaltone.com";
-      const savedProfileImg = localStorage.getItem("profileImg") || "download.jpeg";
+.dashboard-pill {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  margin-right: 0;
+}
 
-      document.getElementById("username").value = savedUsername;
-      document.getElementById("email").value = savedEmail;
-      const profileIcon = document.getElementById("profileIcon");
-      const profileImg = document.getElementById("profileImg");
-      const profileTrigger = document.querySelector(".profile-trigger");
-      const profilePopup = document.getElementById("profilePopup");
-      const profileForm = document.getElementById("profileForm");
-      const usernameInput = document.getElementById("username");
-      const emailInput = document.getElementById("email");
-      const photoInput = document.getElementById("photoInput");
-      const changePhotoBtn = document.getElementById("changePhoto");
-      const closeProfilePopupBtn = document.getElementById("closeProfilePopupBtn");
-      const profileDropdown = document.getElementById("profileDropdown");
-      const editProfileLink = document.getElementById("editProfileLink");
-      const settingsLink = document.getElementById("settingsLink");
-      const logoutLink = document.getElementById("logoutLink");
+.dashboard-pill svg {
+  margin-right: 5px;
+  width: 18px;
+  height: 18px;
+}
 
-      profileImg.src = savedProfileImg;
-      profileIcon.innerHTML = `<img src="${savedProfileImg}" alt="Profile">`;
+.profile {
+  position: relative;
+}
 
-      profileTrigger.addEventListener("click", (e) => {
-        e.preventDefault();
-        profileDropdown.style.display = profileDropdown.style.display === "block" ? "none" : "block";
-      });
+.profile-trigger img {
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+}
 
-      editProfileLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        profileDropdown.style.display = "none";
-        profilePopup.style.display = "flex";
-      });
+.profile-dropdown {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+  z-index: 1000;
+}
 
-      settingsLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        profileDropdown.style.display = "none";
-        alert("Settings page is not implemented yet.");
-      });
+.profile-dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
 
-      logoutLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        profileDropdown.style.display = "none";
-        if (confirm("Are you sure you want to logout?")) {
-          localStorage.removeItem("username");
-          localStorage.removeItem("email");
-          localStorage.removeItem("profileImg");
-          window.location.href = "index.html";
-        }
-      });
+.profile-dropdown li a {
+  display: block;
+  padding: 10px;
+  color: #333;
+  text-decoration: none;
+}
 
-      changePhotoBtn.addEventListener("click", () => {
-        photoInput.click();
-      });
+.profile-dropdown li a:hover {
+  background-color: #f5f5f5;
+}
 
-      photoInput.addEventListener("change", (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            profileImg.src = event.target.result;
-            profileIcon.innerHTML = `<img src="${event.target.result}" alt="Profile">`;
-          };
-          reader.readAsDataURL(file);
-        }
-      });
+/* Main Container Styles */
+.container {
+  margin-top: 70px;
+  padding: 20px;
+  max-width: 1200px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
 
-      profileForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        if (!isLocalStorageAvailable()) return;
-        const username = usernameInput.value;
-        const email = emailInput.value;
-        const profileImgSrc = profileImg.src;
-        localStorage.setItem("username", username);
-        localStorage.setItem("email", email);
-        localStorage.setItem("profileImg", profileImgSrc);
-        profileIcon.innerHTML = `<img src="${profileImgSrc}" alt="Profile">`;
-        profilePopup.style.display = "none";
-      });
+/* Subcategory Banner */
+.subcategory-banner {
+  background: linear-gradient(90deg, #007bff, #6f42c1);
+  color: white;
+  padding: 40px 20px;
+  text-align: center;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
-      document.querySelector("#profilePopup .cancel-btn").addEventListener("click", () => {
-        profilePopup.style.display = "none";
-        usernameInput.value = localStorage.getItem("username") || "owner";
-        emailInput.value = localStorage.getItem("email") || "owner@signaltone.com";
-        profileImg.src = localStorage.getItem("profileImg") || "https://via.placeholder.com/100";
-        profileIcon.innerHTML = `<img src="${profileImg.src}" alt="Profile">`;
-      });
+.subcategory-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
 
-      closeProfilePopupBtn.addEventListener("click", () => {
-        profilePopup.style.display = "none";
-      });
+.subcategory-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
 
-      // Subcategory functionality
-      let categories = [];
-      let subcategories = [];
-      if (isLocalStorageAvailable()) {
-        try {
-          categories = JSON.parse(localStorage.getItem("categories")) || [];
-          subcategories = JSON.parse(localStorage.getItem("subcategories")) || [];
-        } catch (error) {
-          console.error("Error parsing localStorage:", error);
-          categories = [];
-          subcategories = [];
-          localStorage.setItem("categories", JSON.stringify(categories));
-          localStorage.setItem("subcategories", JSON.stringify(subcategories));
-        }
-      } else {
-        categories = [];
-        subcategories = [];
-      }
+.subcategory-icon svg {
+  color: white;
+}
 
-      // Validate and normalize createdAt for subcategories
-      subcategories = subcategories.map(sub => {
-        const createdAt = sub.createdAt && !isNaN(new Date(sub.createdAt)) 
-          ? sub.createdAt 
-          : new Date().toISOString();
-        return { ...sub, createdAt };
-      });
-      if (isLocalStorageAvailable()) {
-        localStorage.setItem("subcategories", JSON.stringify(subcategories));
-      }
+.subcategory-banner h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
 
-      const subcategoryTableBody = document.getElementById("subcategoryTableBody");
-      const totalSubcategories = document.getElementById("totalSubcategories");
-      const addNewSubBtn = document.getElementById("addNewSubBtnFilter");
-      const subcategoryPopup = document.getElementById("subcategoryPopup");
-      const popupTitle = document.getElementById("popupTitle");
-      const subcategoryForm = document.getElementById("subcategoryForm");
-      const subcategoryCategorySelect = document.getElementById("subcategoryCategory");
-      const subcategoryNameInput = document.getElementById("subcategoryName");
-      const productNameInput = document.getElementById("productName");
-      const priceInput = document.getElementById("price");
-      const quantityInput = document.getElementById("quantity");
-      const subcategoryDescInput = document.getElementById("subcategoryDesc");
-      const subcategoryImg = document.getElementById("subcategoryImg");
-      const subcategoryPhotoInput = document.getElementById("subcategoryPhotoInput");
-      const changeSubcategoryPhotoBtn = document.getElementById("changeSubcategoryPhoto");
-      const removeSubcategoryPhotoBtn = document.getElementById("removeSubcategoryPhoto");
-      const searchInput = document.getElementById("searchInput");
-      const sortSelect = document.getElementById("sortSelect");
-      const applyFiltersBtn = document.getElementById("applyFiltersBtn");
-      const closePopupBtn = document.getElementById("closePopupBtn");
-      const categorySelect = document.getElementById("categorySelect");
-      let editingIndex = -1;
+.subcategory-banner p {
+  font-size: 16px;
+  opacity: 0.9;
+  margin: 0;
+}
 
-      const defaultImage = "https://images.unsplash.com/photo-1600585152280-be6161a56a0c?auto=format&fit=crop&w=150&q=80";
+/* Search and Stats Wrapper */
+.search-stats-wrapper {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: stretch !important;
+  margin: 20px 0 !important;
+  gap: 20px !important;
+}
 
-      // Trigger file input click when "Change Image" button is clicked
-      changeSubcategoryPhotoBtn.addEventListener("click", () => {
-        subcategoryPhotoInput.click();
-      });
+.search-container {
+  background-color: #FFFFFF;
+  padding: 15px !important;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 2 !important;
+  min-width: 200px !important;
+}
 
-      // Handle file selection and update subcategory image
-      subcategoryPhotoInput.addEventListener("change", (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            subcategoryImg.src = event.target.result;
-          };
-          reader.readAsDataURL(file);
-        }
-      });
+.search {
+  color: #1DA1F2;
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px;
+  display: inline-block;
+}
 
-      // Handle remove image button click
-      removeSubcategoryPhotoBtn.addEventListener("click", () => {
-        const uniqueCategories = deduplicateCategories(categories);
-        subcategoryImg.src =
-          uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
-          defaultImage;
-        subcategoryPhotoInput.value = "";
-      });
+.search-bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
 
-      // Function to deduplicate categories by name (case-insensitive)
-      function deduplicateCategories(cats) {
-        const seen = new Map();
-        cats.forEach((cat) => {
-          const nameLower = (cat.name || "").trim().toLowerCase();
-          if (nameLower && !seen.has(nameLower)) {
-            seen.set(nameLower, { ...cat, name: cat.name.trim() });
-          } else if (nameLower) {
-            seen.set(nameLower, { ...cat, name: cat.name.trim() });
-          }
-        });
-        return Array.from(seen.values());
-      }
+.search-bar svg {
+  margin-right: 10px;
+}
 
-      // Initialize categories with deduplication
-      categories = deduplicateCategories(categories);
+.search-bar input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #CED4DA;
+  border-radius: 4px;
+  font-size: 14px;
+  width: 100%;
+}
 
-      // Function to populate category dropdowns
-      function populateCategoryDropdowns() {
-        subcategoryCategorySelect.innerHTML = "";
-        categorySelect.innerHTML = '<option value="all">Category: All Categories</option>';
-        const uniqueCategories = deduplicateCategories(categories);
-        console.log("Populating dropdowns with categories:", uniqueCategories);
-        if (uniqueCategories.length === 0) {
-          console.warn("No categories available");
-          subcategoryCategorySelect.innerHTML = '<option value="">No categories available</option>';
-          return;
-        }
-        uniqueCategories.forEach((cat) => {
-          const option1 = document.createElement("option");
-          option1.value = (cat.name || "").trim().toLowerCase();
-          option1.textContent = cat.name || "";
-          subcategoryCategorySelect.appendChild(option1);
+/* Stats Container */
+.stats-container {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1 !important;
+  min-width: 200px !important;
+  padding: 15px !important;
+}
 
-          const option2 = document.createElement("option");
-          option2.value = (cat.name || "").trim().toLowerCase();
-          option2.textContent = cat.name || "";
-          categorySelect.appendChild(option2);
-        });
+.card {
+  background: #FFFFFF;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 100% !important;
+}
 
-        subcategoryImg.src =
-          uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
-          defaultImage;
-      }
+.card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #007bff;
+  margin-bottom: 10px;
+}
 
-      // Initialize category dropdowns
-      populateCategoryDropdowns();
+.total-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(90deg, #007bff, #6f42c1);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  margin-bottom: 10px;
+}
 
-      // Listen for changes to categories in localStorage
-      window.addEventListener("storage", (e) => {
-        if (e.key === "categories" && isLocalStorageAvailable()) {
-          categories = JSON.parse(e.newValue) || [];
-          categories = deduplicateCategories(categories);
-          console.log("Categories updated:", categories);
-          populateCategoryDropdowns();
-          renderSubcategories(searchInput.value, categorySelect.value);
-        }
-      });
+.total-box svg {
+  width: 16px;
+  height: 16px;
+}
 
-      function renderSubcategories(searchFilter = "", filterCategory = "all") {
-        console.log("Rendering subcategories:", subcategories, { searchFilter, filterCategory });
-        if (!subcategoryTableBody) {
-          console.error("subcategoryTableBody element not found");
-          return;
-        }
-        subcategoryTableBody.innerHTML = "";
-        let filteredSubcategories = subcategories.filter((sub) => {
-          const matchesSearch =
-            (sub.productName || "").toLowerCase().includes(searchFilter.toLowerCase()) ||
-            ((sub.category || "").trim().toLowerCase().includes(searchFilter.toLowerCase())) ||
-            (sub.desc || "").toLowerCase().includes(searchFilter.toLowerCase());
-          const matchesCategory = filterCategory === "all" || 
-            ((sub.category || "").trim().toLowerCase() === (filterCategory || "").trim().toLowerCase());
-          console.log("Subcategory:", sub.category, "Matches category:", matchesCategory);
-          return matchesSearch && matchesCategory;
-        });
+.buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
 
-        // Apply sorting
-        console.log("Sorting subcategories by:", sortSelect.value);
-        console.log("Before sorting:", filteredSubcategories.map(sub => ({ productName: sub.productName, createdAt: sub.createdAt })));
-        switch (sortSelect.value) {
-          case "name-asc":
-            filteredSubcategories.sort((a, b) => 
-              (a.productName || "").localeCompare(b.productName || ""));
-            break;
-          case "name-desc":
-            filteredSubcategories.sort((a, b) => 
-              (b.productName || "").localeCompare(a.productName || ""));
-            break;
-          case "price-asc":
-            filteredSubcategories.sort((a, b) => 
-              (a.price || 0) - (b.price || 0));
-            break;
-          case "price-desc":
-            filteredSubcategories.sort((a, b) => 
-              (b.price || 0) - (a.price || 0));
-            break;
-          case "newest":
-            filteredSubcategories.sort((a, b) => {
-              const dateA = new Date(a.createdAt || "1970-01-01T00:00:00Z");
-              const dateB = new Date(b.createdAt || "1970-01-01T00:00:00Z");
-              if (isNaN(dateA)) console.error("Invalid dateA:", a.createdAt);
-              if (isNaN(dateB)) console.error("Invalid dateB:", b.createdAt);
-              return dateB - dateA;
-            });
-            break;
-          case "oldest":
-            filteredSubcategories.sort((a, b) => {
-              const dateA = new Date(a.createdAt || "1970-01-01T00:00:00Z");
-              const dateB = new Date(b.createdAt || "1970-01-01T00:00:00Z");
-              if (isNaN(dateA)) console.error("Invalid dateA:", a.createdAt);
-              if (isNaN(dateB)) console.error("Invalid dateB:", b.createdAt);
-              return dateA - dateB;
-            });
-            break;
-          default:
-            break;
-        }
-        console.log("After sorting:", filteredSubcategories.map(sub => ({ productName: sub.productName, createdAt: sub.createdAt })));
+.btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
 
-        filteredSubcategories.forEach((sub, index) => {
-          const row = document.createElement("tr");
-          row.innerHTML = `
-            <td data-label="ID">${index + 1}</td>
-            <td data-label="IMAGE"><img src="${sub.image || defaultImage}" alt="${sub.productName || ''}"></td>
-            <td data-label="CATEGORY">${sub.category || ''}</td>
-            <td data-label="SUBCATEGORY">${sub.subcategory || ''}</td>
-            <td data-label="PRODUCT NAME">${sub.productName || ''}</td>
-            <td data-label="PRICE">$${sub.price ? sub.price.toFixed(2) : '0.00'}</td>
-            <td data-label="QUANTITY">${sub.quantity || 0}</td>
-            <td data-label="DESCRIPTION">${sub.desc || ''}</td>
-            <td data-label="ACTIONS">
-              <div class="edit-delete-group">
-                <button class="edit-subcategory" data-index="${index}">
-                  <i class="fas fa-edit"></i> Edit
-                </button>
-                <button class="delete-subcategory" data-index="${index}">
-                  <i class="fas fa-trash"></i> Delete
-                </button>
-              </div>
-            </td>
-          `;
-          subcategoryTableBody.appendChild(row);
-        });
-        totalSubcategories.textContent = `Total: ${filteredSubcategories.length}`;
-      }
+.btn-import {
+  background-color: #28a745;
+  color: white;
+}
 
-      renderSubcategories();
+.btn-export {
+  background-color: #007bff;
+  color: white;
+}
 
-      addNewSubBtn.addEventListener("click", () => {
-        if (!addNewSubBtn) {
-          console.error("Add New button not found!");
-          return;
-        }
-        popupTitle.textContent = "Add Subcategory";
-        const uniqueCategories = deduplicateCategories(categories);
-        subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
-        subcategoryNameInput.value = "";
-        productNameInput.value = "";
-        priceInput.value = "";
-        quantityInput.value = "";
-        subcategoryDescInput.value = "";
-        subcategoryImg.src =
-          uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
-          defaultImage;
-        editingIndex = -1;
-        subcategoryPopup.style.display = "flex";
-      });
+/* Filter Sort Container */
+.filter-sort-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  background: #fff;
+  padding: 15px !important;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
-      subcategoryCategorySelect.addEventListener("change", () => {
-        const uniqueCategories = deduplicateCategories(categories);
-        subcategoryImg.src =
-          uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
-          defaultImage;
-      });
+.filter-sort-header {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 10px;
+}
 
-      subcategoryForm.addEventListener("submit", (e) => {
-        e.preventDefault();
-        console.log("Submitting subcategory form", {
-          category: subcategoryCategorySelect.value,
-          subcategory: subcategoryNameInput.value,
-          productName: productNameInput.value,
-          price: priceInput.value,
-          quantity: quantityInput.value,
-          desc: subcategoryDescInput.value,
-          image: subcategoryImg.src,
-          editingIndex
-        });
-        try {
-          if (!isLocalStorageAvailable()) {
-            alert("Cannot save: localStorage is disabled.");
-            return;
-          }
-          if (categories.length === 0) {
-            console.error("No categories available");
-            alert("No categories available. Please add a category in the Category Manager first.");
-            return;
-          }
-          if (!subcategoryCategorySelect.value || !subcategoryNameInput.value || !productNameInput.value || !priceInput.value || !quantityInput.value || !subcategoryDescInput.value) {
-            console.error("Form validation failed: Missing fields");
-            alert("Please fill all fields.");
-            return;
-          }
-          const subcategory = {
-            category: subcategoryCategorySelect.value.trim(),
-            subcategory: subcategoryNameInput.value.trim(),
-            productName: productNameInput.value.trim(),
-            price: parseFloat(priceInput.value),
-            quantity: parseInt(quantityInput.value),
-            desc: subcategoryDescInput.value.trim(),
-            image: subcategoryImg.src,
-            createdAt: editingIndex >= 0 ? subcategories[editingIndex].createdAt || new Date().toISOString() : new Date().toISOString()
-          };
-          if (editingIndex >= 0) {
-            subcategories[editingIndex] = subcategory;
-          } else {
-            subcategories.push(subcategory);
-          }
-          localStorage.setItem("subcategories", JSON.stringify(subcategories));
-          console.log("Subcategories saved:", subcategories);
-          searchInput.value = "";
-          categorySelect.value = "all";
-          sortSelect.value = "default";
-          renderSubcategories("", "all");
-          subcategoryPopup.style.display = "none";
-          const uniqueCategories = deduplicateCategories(categories);
-          subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
-          subcategoryNameInput.value = "";
-          productNameInput.value = "";
-          priceInput.value = "";
-          quantityInput.value = "";
-          subcategoryDescInput.value = "";
-          subcategoryImg.src =
-            uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
-            defaultImage;
-        } catch (error) {
-          console.error("Error saving subcategory:", error);
-          alert("Failed to save subcategory. Check console for details.");
-        }
-      });
+.filter-sort-label {
+  font-weight: bold;
+  color: #1DA1F2;
+}
 
-      document.querySelectorAll(".cancel-btn").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          subcategoryPopup.style.display = "none";
-          profilePopup.style.display = "none";
-          if (editingIndex >= 0) {
-            const sub = subcategories[editingIndex];
-            subcategoryCategorySelect.value = sub.category;
-            subcategoryNameInput.value = sub.subcategory;
-            productNameInput.value = sub.productName;
-            priceInput.value = sub.price;
-            quantityInput.value = sub.quantity;
-            subcategoryDescInput.value = sub.desc;
-            subcategoryImg.src = sub.image || defaultImage;
-          } else {
-            const uniqueCategories = deduplicateCategories(categories);
-            subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
-            subcategoryNameInput.value = "";
-            productNameInput.value = "";
-            priceInput.value = "";
-            quantityInput.value = "";
-            subcategoryDescInput.value = "";
-            subcategoryImg.src =
-              uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
-              defaultImage;
-          }
-        });
-      });
+.filter-sort-content {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
 
-      closePopupBtn.addEventListener("click", () => {
-        subcategoryPopup.style.display = "none";
-        if (editingIndex >= 0) {
-          const sub = subcategories[editingIndex];
-          subcategoryCategorySelect.value = sub.category;
-          subcategoryNameInput.value = sub.subcategory;
-          productNameInput.value = sub.productName;
-          priceInput.value = sub.price;
-          quantityInput.value = sub.quantity;
-          subcategoryDescInput.value = sub.desc;
-          subcategoryImg.src = sub.image || defaultImage;
-        } else {
-          const uniqueCategories = deduplicateCategories(categories);
-          subcategoryCategorySelect.value = uniqueCategories[0]?.name.trim().toLowerCase() || "";
-          subcategoryNameInput.value = "";
-          productNameInput.value = "";
-          priceInput.value = "";
-          quantityInput.value = "";
-          subcategoryDescInput.value = "";
-          subcategoryImg.src =
-            uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
-            defaultImage;
-        }
-      });
+.filter-sort-options {
+  display: flex !important;
+  gap: 10px !important;
+  flex-wrap: wrap !important;
+}
 
-      subcategoryTableBody.addEventListener("click", (e) => {
-        const editButton = e.target.closest(".edit-subcategory");
-        const deleteButton = e.target.closest(".delete-subcategory");
-        if (editButton) {
-          editingIndex = parseInt(editButton.getAttribute("data-index"));
-          const sub = subcategories[editingIndex];
-          popupTitle.textContent = "Edit Subcategory";
-          subcategoryCategorySelect.value = (sub.category || "").trim().toLowerCase();
-          subcategoryNameInput.value = sub.subcategory;
-          productNameInput.value = sub.productName;
-          priceInput.value = sub.price;
-          quantityInput.value = sub.quantity;
-          subcategoryDescInput.value = sub.desc;
-          subcategoryImg.src = sub.image || defaultImage;
-          subcategoryPopup.style.display = "flex";
-        } else if (deleteButton) {
-          const index = parseInt(deleteButton.getAttribute("data-index"));
-          if (confirm("Are you sure you want to delete this subcategory?")) {
-            subcategories.splice(index, 1);
-            if (isLocalStorageAvailable()) {
-              localStorage.setItem("subcategories", JSON.stringify(subcategories));
-            }
-            renderSubcategories(searchInput.value, categorySelect.value);
-          }
-        }
-      });
+.pill {
+  padding: 8px 12px;
+  border: 1px solid #CED4DA;
+  border-radius: 20px;
+  background: #fff;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 
-      searchInput.addEventListener("input", (e) => {
-        renderSubcategories(e.target.value, categorySelect.value);
-      });
+.category-select,
+.sort-select {
+  appearance: none;
+  border: 1px solid #CED4DA;
+  padding: 8px 12px;
+  border-radius: 20px;
+  background: none;
+  font-size: 14px;
+  width: 100%;
+  max-width: 200px;
+}
 
-      sortSelect.addEventListener("change", () => {
-        renderSubcategories(searchInput.value, categorySelect.value);
-      });
+.category-select:focus,
+.sort-select:focus {
+  outline: none;
+  border-color: #1DA1F2;
+}
 
-      applyFiltersBtn.addEventListener("click", () => {
-        console.log("Applying filters with category:", categorySelect.value);
-        renderSubcategories(searchInput.value, categorySelect.value);
-      });
+.actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap !important;
+}
 
-      // Import functionality
-      const importModal = document.getElementById("importModal");
-      const csvFileInput = document.getElementById("csvFile");
-      const closeImportModal = document.querySelector("#importModal .close");
-      const importBtn = document.getElementById("importSubcategoriesBtn");
-      const headerCheckbox = importModal.querySelector("#containsHeaders");
+.btn.apply {
+  background-color: #A461D8;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 
-      document.querySelectorAll(".btn-import").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          importModal.style.display = "flex";
-        });
-      });
+.btn.add-new-btn {
+  background-color: #6f42c1;
+  color: white;
+  padding: 8px 19px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 
-      closeImportModal.addEventListener("click", () => {
-        importModal.style.display = "none";
-        csvFileInput.value = "";
-      });
+/* Table Styles */
+.table-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
 
-      importBtn.addEventListener("click", () => {
-        if (!isLocalStorageAvailable()) {
-          alert("Cannot import: localStorage is disabled.");
-          return;
-        }
-        const file = csvFileInput.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (e) => {
-            const text = e.target.result;
-            const rows = text.split("\n");
-            const hasHeaders = headerCheckbox.checked;
-            const startIndex = hasHeaders ? 1 : 0;
+.category-table {
+  width: 100%;
+  max-width: 1200px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
 
-            rows.slice(startIndex).forEach((row) => {
-              const [category, subcategory, productName, price, desc, image, quantity, createdAt] = row
-                .split(",")
-                .map((item) => item.trim());
-              if (category && subcategory && productName && price && desc) {
-                const validCreatedAt = createdAt && !isNaN(new Date(createdAt)) 
-                  ? createdAt 
-                  : new Date().toISOString();
-                const newSubcategory = {
-                  category: category.trim(),
-                  subcategory: subcategory.trim(),
-                  productName: productName.trim(),
-                  price: parseFloat(price.trim()),
-                  quantity: quantity ? parseInt(quantity.trim()) : 0,
-                  desc: desc.trim(),
-                  image: image ? image.trim() : defaultImage,
-                  createdAt: validCreatedAt
-                };
-                const existingIndex = subcategories.findIndex(
-                  (sub) =>
-                    sub.productName === newSubcategory.productName &&
-                    (sub.category || "").trim().toLowerCase() === (newSubcategory.category || "").trim().toLowerCase()
-                );
-                if (existingIndex >= 0) {
-                  subcategories[existingIndex] = newSubcategory;
-                } else {
-                  subcategories.push(newSubcategory);
-                }
-              } else {
-                console.error("Invalid row data:", row);
-              }
-            });
-            localStorage.setItem("subcategories", JSON.stringify(subcategories));
-            renderSubcategories(searchInput.value, categorySelect.value);
-            importModal.style.display = "none";
-            csvFileInput.value = "";
-          };
-          reader.readAsText(file);
-        } else {
-          alert("Please select a CSV file.");
-        }
-      });
+.category-table th,
+.category-table td {
+  padding: 10px 20px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
 
-      // Close modal when clicking outside
-      window.addEventListener("click", (e) => {
-        if (e.target === importModal) {
-          importModal.style.display = "none";
-          csvFileInput.value = "";
-        }
-      });
+.category-table th {
+  background: #f9f9f9;
+  white-space: nowrap;
+  font-weight: 600;
+}
 
-      // Export functionality
-      const exportModal = document.getElementById("exportModal");
-      const closeExportModal = document.querySelector("#exportModal .close");
-      const downloadCsvBtn = document.getElementById("downloadCsvBtn");
+/* Explicit column widths for desktop */
+.category-table th:nth-child(1),
+.category-table td:nth-child(1) {
+  width: 60px; /* ID */
+  min-width: 60px;
+  max-width: 60px;
+}
 
-      document.querySelectorAll(".btn-export").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          exportModal.style.display = "flex";
-        });
-      });
+.category-table th:nth-child(2),
+.category-table td:nth-child(2) {
+  width: 80px; /* IMG */
+  min-width: 80px;
+  max-width: 80px;
+}
 
-      closeExportModal.addEventListener("click", () => {
-        exportModal.style.display = "none";
-      });
+.category-table th:nth-child(3),
+.category-table td:nth-child(3) {
+  width: 120px; /* CATEGORY */
+  min-width: 120px;
+  max-width: 120px;
+}
 
-      window.addEventListener("click", (e) => {
-        if (e.target === exportModal) {
-          exportModal.style.display = "none";
-        }
-      });
+.category-table th:nth-child(4),
+.category-table td:nth-child(4) {
+  width: 140px; /* SUBCATEGORY */
+  min-width: 140px;
+  max-width: 140px;
+}
 
-      downloadCsvBtn.addEventListener("click", () => {
-        const csv = [
-          "Category,Subcategory,Product Name,Price,Description,Image,Quantity,CreatedAt",
-          ...subcategories.map((sub) =>
-            `${sub.category},${sub.subcategory},${sub.productName},${sub.price},${sub.desc},${sub.image},${sub.quantity},${sub.createdAt || ''}`
-          ),
-        ].join("\n");
-        const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = "subcategories.csv";
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-        window.URL.revokeObjectURL(url);
-        exportModal.style.display = "none";
-      });
-    </script>
-  </body>
-</html>
+.category-table th:nth-child(5),
+.category-table td:nth-child(5) {
+  width: 170px; /* PRODUCT NAME */
+  min-width: 170px;
+  max-width: 170px;
+}
+
+.category-table th:nth-child(6),
+.category-table td:nth-child(6) {
+  width: 100px; /* PRICE */
+  min-width: 100px;
+  max-width: 100px;
+}
+
+.category-table th:nth-child(7),
+.category-table td:nth-child(7) {
+  width: 100px; /* QUANTITY */
+  min-width: 100px;
+  max-width: 100px;
+}
+
+.category-table th:nth-child(8),
+.category-table td:nth-child(8) {
+  width: 200px; /* DESCRIPTION */
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.category-table th:nth-child(9),
+.category-table td:nth-child(9) {
+  width: 200px; /* ACTIONS */
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.category-table td img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+/* Grouped Edit/Delete Button Styles */
+.category-table .edit-delete-group {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  vertical-align: middle;
+  width: 200px;
+  margin: 0 auto;
+}
+
+.category-table .edit-delete-group button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: #fff;
+  transition: background-color 0.3s, color 0.3s;
+  width: 100px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.category-table .edit-delete-group button i {
+  font-size: 14px;
+  margin-right: 6px;
+  flex-shrink: 0;
+}
+
+.category-table .edit-delete-group .edit-subcategory {
+  color: #1e88e5;
+  border-right: 1px solid #ddd;
+}
+
+.category-table .edit-delete-group .edit-subcategory:hover {
+  background-color: #1e88e5;
+  color: #fff;
+}
+
+.category-table .edit-delete-group .delete-subcategory {
+  color: #dc3545;
+}
+
+.category-table .edit-delete-group .delete-subcategory:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+/* Popup Styles */
+.profile-popup, .modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100% !important;
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-inner, .modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90% !important;
+  max-width: 500px !important;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.image-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.image-container img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  max-width: 100%;
+  height: auto;
+}
+
+.image-btn {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #1DA1F2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.ecommerce-form .form-group {
+  margin-bottom: 15px !important;
+}
+
+.ecommerce-form label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.ecommerce-form input,
+.ecommerce-form select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #CED4DA;
+  border-radius: 4px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.form-actions button {
+  padding: 10px;
+  flex: 1;
+}
+
+.save-btn {
+  background-color: #1DA1F2;
+  color: white;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #E1E8ED;
+  color: #1DA1F2;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Modal Styles */
+.modal-content h2 {
+  margin: 0 0 15px;
+  font-size: 18px;
+  color: #333;
+}
+
+.modal-content label {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.modal-content input[type="file"] {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+
+.hint {
+  font-size: 12px;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.hint code {
+  background: #f1f1f1;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.checkbox-row input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  cursor: pointer;
+  accent-color: #1DA1F2;
+}
+
+.checkbox-row label {
+  font-size: 14px;
+  color: #444;
+  font-weight: 500;
+  margin: 0;
+}
+
+.warning {
+  background: #fff3cd;
+  border: 1px solid #ffeeba;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #856404;
+  margin-bottom: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.btn-cancel {
+  background: #e0e0e0;
+}
+
+.btn-blue {
+  background: #007bff;
+  color: white;
+}
+
+.btn-blue:hover {
+  background: #0056b3;
+}
+
+.close {
+  position: absolute;
+  right: 16px;
+  top: 10px;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#csvOptions {
+  width: auto !important;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px;
+  color: #657786;
+  margin-top: 20px;
+  font-size: 0.9rem !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  /* Navbar */
+  .navbar {
+    padding: 8px 0 !important;
+  }
+
+  .nav-inner {
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 5px !important;
+  }
+
+  .brand {
+    margin-left: 0 !important;
+  }
+
+  .logo svg {
+    margin-right: 8px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .brand-name {
+    font-size: 16px;
+  }
+
+  .nav-actions {
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    gap: 8px !important;
+  }
+
+  .dashboard-pill {
+    margin: 0 !important;
+  }
+
+  .dashboard-pill svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .profile {
+    margin: 0 !important;
+  }
+
+  .profile-trigger img {
+    width: 30px;
+    height: 30px;
+  }
+
+  .profile-dropdown {
+    position: absolute !important;
+    right: 0 !important;
+    width: auto !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .profile-dropdown ul {
+    width: 100% !important;
+  }
+
+  .subcategory-banner {
+    padding: 20px !important;
+  }
+
+  .search-stats-wrapper {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 15px !important;
+  }
+
+  .search-container,
+  .stats-container {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 10px 0 !important;
+  }
+
+  .stats-container .buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stats-container .btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  .filter-sort-container {
+    padding: 10px !important;
+  }
+
+  .filter-sort-content {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 15px !important;
+  }
+
+  .filter-sort-options {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .category-select,
+  .sort-select {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .actions {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .btn.apply,
+  .btn.add-new-btn {
+    width: 100% !important;
+  }
+
+  /* Mobile Table Styles */
+  .container {
+    margin-top: 50px !important;
+    padding: 10px !important;
+  }
+
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .category-table {
+    display: table;
+    width: 100%;
+    min-width: 800px;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .category-table thead {
+    display: table-header-group;
+  }
+
+  .category-table tbody {
+    display: table-row-group;
+  }
+
+  .category-table tr {
+    display: table-row;
+  }
+
+  .category-table th,
+  .category-table td {
+    display: table-cell;
+    padding: 8px 12px;
+    margin: 0;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    white-space: nowrap;
+    box-sizing: border-box;
+    vertical-align: middle;
+  }
+
+  .category-table th {
+    background: #f9f9f9;
+    white-space: nowrap;
+    font-weight: 600;
+  }
+
+  .category-table th:nth-child(1),
+  .category-table td:nth-child(1) {
+    width: 60px; /* ID */
+    min-width: 60px;
+    max-width: 60px;
+  }
+
+  .category-table th:nth-child(2),
+  .category-table td:nth-child(2) {
+    width: 80px; /* IMG */
+    min-width: 80px;
+    max-width: 80px;
+  }
+
+  .category-table th:nth-child(3),
+  .category-table td:nth-child(3) {
+    width: 120px; /* CATEGORY */
+    min-width: 120px;
+    max-width: 120px;
+  }
+
+  .category-table th:nth-child(4),
+  .category-table td:nth-child(4) {
+    width: 140px; /* SUBCATEGORY */
+    min-width: 140px;
+    max-width: 140px;
+  }
+
+  .category-table th:nth-child(5),
+  .category-table td:nth-child(5) {
+    width: 170px; /* PRODUCT NAME */
+    min-width: 170px;
+    max-width: 170px;
+  }
+
+  .category-table th:nth-child(6),
+  .category-table td:nth-child(6) {
+    width: 100px; /* PRICE */
+    min-width: 100px;
+    max-width: 100px;
+  }
+
+  .category-table th:nth-child(7),
+  .category-table td:nth-child(7) {
+    width: 100px; /* QUANTITY */
+    min-width: 100px;
+    max-width: 100px;
+  }
+
+  .category-table th:nth-child(8),
+  .category-table td:nth-child(8) {
+    width: 200px; /* DESCRIPTION */
+    min-width: 200px;
+    max-width: 200px;
+  }
+
+  .category-table th:nth-child(9),
+  .category-table td:nth-child(9) {
+    width: 200px; /* ACTIONS */
+    min-width: 200px;
+    max-width: 200px;
+  }
+
+  .category-table td img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  .category-table .edit-delete-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+    vertical-align: middle;
+    max-width: 180px;
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+
+  .category-table .edit-delete-group button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+    transition: background-color 0.3s, color 0.3s;
+    flex: 1;
+    max-width: 90px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .category-table .edit-delete-group button i {
+    font-size: 14px;
+    margin-right: 4px;
+    flex-shrink: 0;
+  }
+
+  .category-table .edit-delete-group .edit-subcategory {
+    color: #1e88e5;
+    border-right: 1px solid #ddd;
+  }
+
+  .category-table .edit-delete-group .edit-subcategory:hover {
+    background-color: #1e88e5;
+    color: #fff;
+  }
+
+  .category-table .edit-delete-group .delete-subcategory {
+    color: #dc3545;
+  }
+
+  .category-table .edit-delete-group .delete-subcategory:hover {
+    background-color: #dc3545;
+    color: #fff;
+  }
+
+  .category-table::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .category-table::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .category-table::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+
+  .category-table::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  .popup-inner,
+  .modal-content {
+    width: 95% !important;
+    padding: 15px !important;
+  }
+
+  .form-actions {
+    flex-direction: column !important;
+  }
+
+  .form-actions button {
+    width: 100% !important;
+    margin: 5px 0 !important;
+  }
+
+  .footer {
+    font-size: 0.8rem !important;
+  }
+}
