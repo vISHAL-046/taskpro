@@ -646,12 +646,20 @@ select.btn:focus {
     min-width: 0;
   }
 
+  .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .category-table {
     display: table;
     width: 100%;
+    min-width: 800px; /* Ensures table is wide enough to trigger scrollbar */
     overflow-x: auto;
     white-space: nowrap;
     border-collapse: collapse;
+    table-layout: fixed; /* Helps maintain consistent column widths */
   }
 
   .category-table thead {
@@ -666,13 +674,39 @@ select.btn:focus {
     display: table-row;
   }
 
-  .category-table td,
-  .category-table th {
+  .category-table th,
+  .category-table td {
     display: table-cell;
     padding: 8px;
     border-bottom: 1px solid #eee;
     text-align: left;
     white-space: nowrap;
+    min-width: 100px; /* Ensures columns are wide enough */
+  }
+
+  .category-table th:nth-child(1),
+  .category-table td:nth-child(1) {
+    min-width: 60px; /* ID */
+  }
+
+  .category-table th:nth-child(2),
+  .category-table td:nth-child(2) {
+    min-width: 80px; /* IMG */
+  }
+
+  .category-table th:nth-child(3),
+  .category-table td:nth-child(3) {
+    min-width: 150px; /* CATEGORY */
+  }
+
+  .category-table th:nth-child(4),
+  .category-table td:nth-child(4) {
+    min-width: 200px; /* DESCRIPTION */
+  }
+
+  .category-table th:nth-child(5),
+  .category-table td:nth-child(5) {
+    min-width: 200px; /* ACTIONS */
   }
 
   .category-table td img {
@@ -685,6 +719,25 @@ select.btn:focus {
   /* Remove card-like layout */
   .category-table td::before {
     content: none;
+  }
+
+  /* Ensure scrollbar visibility */
+  .category-table::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .category-table::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .category-table::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+
+  .category-table::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 
   /* Grouped Edit/Delete Button Styles (Same as Desktop) */
@@ -808,7 +861,7 @@ select.btn:focus {
     padding: 6px 12px;
   }
 
-  input,
+  .input,
   select {
     font-size: 16px; /* Prevents zoom on iOS */
   }
