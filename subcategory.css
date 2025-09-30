@@ -369,7 +369,7 @@ body {
   gap: 5px;
 }
 
-/* Table (Updated for 9 Columns) */
+/* Table (No Row or Column Lines, Combined Action Buttons) */
 .table-wrapper {
   width: 100%;
   overflow-x: auto;
@@ -389,10 +389,10 @@ body {
 .category-table th,
 .category-table td {
   padding: 12px;
-  border: 1px solid #eee;
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
+  border: none; /* Remove all cell borders (row and column lines) */
 }
 
 .category-table th {
@@ -409,23 +409,27 @@ body {
 
 .category-table .edit-delete-group {
   display: flex;
-  gap: 10px;
+  gap: 0; /* No gap between buttons for combined look */
   justify-content: center;
+  border: 1px solid #ddd; /* Shared outer border */
+  border-radius: 4px;
+  overflow: hidden; /* Ensure rounded corners clip button edges */
 }
 
 .category-table .edit-delete-group button {
   padding: 8px 16px;
   font-size: 14px;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
+  flex: 1;
 }
 
 .category-table .edit-delete-group .edit-subcategory {
   background: #fff;
   color: #1e88e5;
-  border: 1px solid #1e88e5;
+  border-right: 1px solid #ddd; /* Internal border between buttons */
+  border-radius: 4px 0 0 4px; /* Rounded left corners */
 }
 
 .category-table .edit-delete-group .edit-subcategory:hover {
@@ -436,7 +440,7 @@ body {
 .category-table .edit-delete-group .delete-subcategory {
   background: #fff;
   color: #dc3545;
-  border: 1px solid #dc3545;
+  border-radius: 0 4px 4px 0; /* Rounded right corners */
 }
 
 .category-table .edit-delete-group .delete-subcategory:hover {
@@ -698,7 +702,7 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  /* Navbar (Optimized for Mobile) */
+  /* Navbar */
   .navbar {
     padding: 8px 0 !important;
   }
@@ -817,8 +821,9 @@ body {
     width: 100% !important;
   }
 
-  /* Minimized Category Table for Mobile (9 Columns) */
+  /* Minimized Category Table for Mobile (No Lines, Combined Buttons) */
   .container {
+    margin-top: 50px !important;
     padding: 10px !important;
   }
 
@@ -859,7 +864,7 @@ body {
     display: table-cell;
     padding: 6px !important;
     margin: 0;
-    border: 1px solid #eee;
+    border: none; /* Remove all cell borders */
     text-align: center;
     white-space: nowrap;
     box-sizing: border-box;
@@ -949,8 +954,11 @@ body {
 
   .category-table .edit-delete-group {
     display: flex;
-    gap: 5px;
+    gap: 0; /* No gap for combined look */
     justify-content: center;
+    border: 1px solid #ddd; /* Shared outer border */
+    border-radius: 4px;
+    overflow: hidden;
     max-width: 90px;
     margin: 0 auto;
   }
@@ -959,7 +967,6 @@ body {
     padding: 4px 8px;
     font-size: 10px;
     border: none;
-    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     flex: 1;
@@ -973,7 +980,8 @@ body {
   .category-table .edit-delete-group .edit-subcategory {
     background: #fff;
     color: #1e88e5;
-    border: 1px solid #1e88e5;
+    border-right: 1px solid #ddd; /* Internal border */
+    border-radius: 4px 0 0 4px; /* Rounded left corners */
   }
 
   .category-table .edit-delete-group .edit-subcategory:hover {
@@ -984,7 +992,7 @@ body {
   .category-table .edit-delete-group .delete-subcategory {
     background: #fff;
     color: #dc3545;
-    border: 1px solid #dc3545;
+    border-radius: 0 4px 4px 0; /* Rounded right corners */
   }
 
   .category-table .edit-delete-group .delete-subcategory:hover {
@@ -992,7 +1000,7 @@ body {
     color: #fff;
   }
 
-  /* Scrollbar for table-wrapper */
+  /* Scrollbar for table-wrapper (Same as First CSS) */
   .table-wrapper::-webkit-scrollbar {
     height: 8px;
   }
