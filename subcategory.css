@@ -387,17 +387,22 @@ body {
 }
 
 .category-table th {
-  padding: 12px 24px; /* Increased for more header separation */
+  padding: 12px 30px; /* Increased for more header separation */
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
   border: none;
-  border-right: 2px solid #bbb; /* Thicker, darker border for visibility */
+  border-right: 2px solid #999; /* Thicker, darker border for visibility */
   background: #f9f9f9;
   font-weight: bold;
-  /* Optional: Alternating backgrounds for extra separation */
-  /* &:nth-child(odd) { background: #f9f9f9; } */
-  /* &:nth-child(even) { background: #f5f5f5; } */
+}
+
+.category-table th:nth-child(odd) {
+  background: #f9f9f9; /* Subtle alternating background */
+}
+
+.category-table th:nth-child(even) {
+  background: #f3f3f3; /* Slightly different for separation */
 }
 
 .category-table th:last-child {
@@ -833,7 +838,7 @@ body {
     width: 100% !important;
   }
 
-  /* Minimized Category Table for Mobile (No Lines, Separated Headings, Full Button Text) */
+  /* Minimized Category Table for Mobile (No Lines, Separated Headings, Unchanged Action Buttons) */
   .container {
     margin-top: 50px !important;
     padding: 10px !important;
@@ -874,7 +879,7 @@ body {
   .category-table th,
   .category-table td {
     display: table-cell;
-    padding: 6px 14px !important; /* Increased for headers, kept for cells */
+    padding: 6px 10px !important; /* Unchanged for td, updated for th below */
     margin: 0;
     border: none; /* Remove all cell borders */
     text-align: center;
@@ -885,13 +890,18 @@ body {
   }
 
   .category-table th {
-    border-right: 2px solid #bbb; /* Thicker, darker border for visibility */
+    padding: 6px 18px !important; /* Increased for header separation */
+    border-right: 2px solid #999; /* Thicker, darker border for visibility */
     background: #f9f9f9;
     font-weight: bold;
-    /* font-size: 11px; */ /* Optional: Reduce font size for less density */
-    /* Optional: Alternating backgrounds */
-    /* &:nth-child(odd) { background: #f9f9f9; } */
-    /* &:nth-child(even) { background: #f5f5f5; } */
+  }
+
+  .category-table th:nth-child(odd) {
+    background: #f9f9f9; /* Subtle alternating background */
+  }
+
+  .category-table th:nth-child(even) {
+    background: #f3f3f3; /* Slightly different for separation */
   }
 
   .category-table th:last-child {
@@ -982,8 +992,8 @@ body {
   }
 
   .category-table .edit-delete-group button {
-    padding: 8px 16px; /* Match desktop */
-    font-size: 14px; /* Match desktop */
+    padding: 8px 16px; /* Unchanged */
+    font-size: 14px; /* Unchanged */
     border: none;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
@@ -994,8 +1004,8 @@ body {
   .category-table .edit-delete-group .edit-subcategory {
     background: #fff;
     color: #1e88e5;
-    border-right: 1px solid #ddd; /* Internal border */
-    border-radius: 4px 0 0 4px; /* Rounded left corners */
+    border-right: 1px solid #ddd; /* Unchanged */
+    border-radius: 4px 0 0 4px; /* Unchanged */
   }
 
   .category-table .edit-delete-group .edit-subcategory:hover {
@@ -1006,7 +1016,7 @@ body {
   .category-table .edit-delete-group .delete-subcategory {
     background: #fff;
     color: #dc3545;
-    border-radius: 0 4px 4px 0; /* Rounded right corners */
+    border-radius: 0 4px 4px 0; /* Unchanged */
   }
 
   .category-table .edit-delete-group .delete-subcategory:hover {
