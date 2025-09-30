@@ -393,31 +393,54 @@ body {
   object-fit: cover;
 }
 
-.category-table .actions button {
-  padding: 5px 10px;
-  margin-right: 5px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+/* Grouped Edit/Delete button styles */
+.category-table .edit-delete-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  vertical-align: middle;
 }
 
-.edit-subcategory,
-.delete-subcategory {
-  padding: 5px 10px;
-  border: none;
-  border-radius: 5px;
+.category-table .edit-delete-group button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  font-weight: 500;
   cursor: pointer;
-  margin-right: 5px;
+  border: none;
+  background: #fff;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.edit-subcategory {
+.category-table .edit-delete-group button i {
+  font-size: 14px;
+  margin-right: 4px;
+}
+
+.category-table .edit-delete-group .edit-subcategory {
+  color: #1e88e5;
+  border-right: 1px solid #ddd;
+}
+
+.category-table .edit-delete-group .edit-subcategory:hover {
   background-color: #1e88e5;
-  color: white;
+  color: #fff;
 }
 
-.delete-subcategory {
+.category-table .edit-delete-group .delete-subcategory {
+  color: #ff4444;
+}
+
+.category-table .edit-delete-group .delete-subcategory:hover {
   background-color: #ff4444;
-  color: white;
+  color: #fff;
 }
 
 /* Popup Styles */
@@ -740,6 +763,85 @@ body {
   .category-table th,
   .category-table td {
     min-width: 100px !important;
+  }
+
+  .category-table thead {
+    display: none;
+  }
+
+  .category-table tbody,
+  .category-table tr {
+    display: block;
+    margin-bottom: 12px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    padding: 8px;
+  }
+
+  .category-table td {
+    display: block;
+    text-align: right;
+    padding: 6px 0;
+    border: none;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  .category-table td::before {
+    content: attr(data-label) ": ";
+    position: absolute;
+    left: 0;
+    width: 45%;
+    font-weight: bold;
+    text-align: left;
+    color: #666;
+  }
+
+  .category-table td img {
+    width: 40px;
+    height: 40px;
+    display: block;
+    margin: 0 auto 4px;
+  }
+
+  .category-table .edit-delete-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+  }
+
+  .category-table .edit-delete-group button {
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+
+  .category-table .edit-delete-group button i {
+    font-size: 12px;
+    margin-right: 3px;
+  }
+
+  .category-table .edit-delete-group .edit-subcategory {
+    border-right: none;
+    background: #1e88e5;
+    color: white;
+  }
+
+  .category-table .edit-delete-group .edit-subcategory:hover {
+    background: #1565c0;
+  }
+
+  .category-table .edit-delete-group .delete-subcategory {
+    background: #ff4444;
+    color: white;
+  }
+
+  .category-table .edit-delete-group .delete-subcategory:hover {
+    background: #cc0000;
   }
 
   .popup-inner,
