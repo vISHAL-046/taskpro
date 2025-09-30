@@ -754,103 +754,44 @@ body {
     width: 100% !important;
   }
 
-  .category-table {
-    display: block !important;
+  /* Table container for horizontal scrolling */
+  .table-container {
     overflow-x: auto !important;
-    white-space: nowrap !important;
+    width: 100% !important;
   }
 
-  .category-table th,
-  .category-table td {
-    min-width: 100px !important;
+  .category-table {
+    width: auto !important; /* Allow table to take its natural width */
+    min-width: 100% !important; /* Ensure table is at least as wide as container */
+    display: table !important; /* Maintain default table display */
+    white-space: nowrap !important; /* Prevent text wrapping */
   }
 
   .category-table thead {
-    display: none;
+    display: table-header-group !important; /* Keep thead visible */
   }
 
   .category-table tbody,
   .category-table tr {
-    display: block;
-    margin-bottom: 12px;
-    border: 1px solid #eee;
-    border-radius: 6px;
-    padding: 8px;
+    display: table-row !important; /* Maintain table row structure */
   }
 
   .category-table td {
-    display: block;
-    text-align: right;
-    padding: 6px 0;
-    border: none;
-    position: relative;
-    padding-left: 50%;
+    display: table-cell !important; /* Maintain table cell structure */
+    padding: 12px !important; /* Restore original padding */
+    border-bottom: 1px solid #E1E8ED !important; /* Restore original border */
+    text-align: left !important; /* Restore original alignment */
   }
 
   .category-table td::before {
-    content: attr(data-label) ": ";
-    position: absolute;
-    left: 0;
-    width: 45%;
-    font-weight: bold;
-    text-align: left;
-    color: #666;
+    content: none !important; /* Remove pseudo-element content */
   }
 
   .category-table td img {
-    width: 40px;
-    height: 40px;
-    display: block;
-    margin: 0 auto 4px;
-  }
-
-  .category-table .edit-delete-group {
-    display: inline-flex;
-    align-items: center;
-    gap: 0;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    overflow: hidden;
-    background: #fff;
-    vertical-align: middle;
-  }
-
-  .category-table .edit-delete-group button {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 10px;
-    font-size: 12px;
-    font-family: Arial, sans-serif;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
-    background: #fff;
-    transition: background-color 0.3s, color 0.3s;
-  }
-
-  .category-table .edit-delete-group button i {
-    font-size: 12px;
-    margin-right: 3px;
-  }
-
-  .category-table .edit-delete-group .edit-subcategory {
-    color: #1e88e5;
-    border-right: 1px solid #ddd;
-  }
-
-  .category-table .edit-delete-group .edit-subcategory:hover {
-    background-color: #1e88e5;
-    color: #fff;
-  }
-
-  .category-table .edit-delete-group .delete-subcategory {
-    color: #ff4444;
-  }
-
-  .category-table .edit-delete-group .delete-subcategory:hover {
-    background-color: #ff4444;
-    color: #fff;
+    width: 50px !important; /* Restore original image size */
+    height: 50px !important;
+    display: inline-block !important; /* Restore original display */
+    margin: 0 !important; /* Remove mobile-specific margin */
   }
 
   .popup-inner,
