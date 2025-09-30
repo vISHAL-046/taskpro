@@ -365,81 +365,77 @@ body {
   gap: 5px;
 }
 
-/* Table */
+/* Table (Replaced with First CSS Properties) */
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .category-table {
   width: 100%;
   border-collapse: collapse;
-  background: #FFFFFF;
+  background: #fff;
+  border: 1px solid #eee;
   border-radius: 8px;
-  overflow: hidden;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .category-table th,
 .category-table td {
-  padding: 12px !important;
-  text-align: left;
-  border-bottom: 1px solid #E1E8ED;
+  padding: 12px;
+  border: 1px solid #eee;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
 .category-table th {
-  background-color: #F5F8FA;
-  color: #657786;
+  background: #f9f9f9;
+  font-weight: bold;
 }
 
 .category-table td img {
   width: 50px;
   height: 50px;
   object-fit: cover;
+  border-radius: 4px;
 }
 
-/* Grouped Edit/Delete button styles */
 .category-table .edit-delete-group {
-  display: inline-flex;
-  align-items: center;
-  gap: 0;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  overflow: hidden;
-  background: #fff;
-  vertical-align: middle;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
 }
 
 .category-table .edit-delete-group button {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
+  padding: 8px 16px;
   font-size: 14px;
-  font-family: Arial, sans-serif;
-  font-weight: 500;
-  cursor: pointer;
   border: none;
-  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 
-.category-table .edit-delete-group button i {
-  font-size: 14px;
-  margin-right: 4px;
-}
-
-.category-table .edit-delete-group .edit-subcategory {
+.category-table .edit-delete-group .edit-category {
+  background: #fff;
   color: #1e88e5;
-  border-right: 1px solid #ddd;
+  border: 1px solid #1e88e5;
 }
 
-.category-table .edit-delete-group .edit-subcategory:hover {
-  background-color: #1e88e5;
+.category-table .edit-delete-group .edit-category:hover {
+  background: #1e88e5;
   color: #fff;
 }
 
-.category-table .edit-delete-group .delete-subcategory {
-  color: #ff4444;
+.category-table .edit-delete-group .delete-category {
+  background: #fff;
+  color: #dc3545;
+  border: 1px solid #dc3545;
 }
 
-.category-table .edit-delete-group .delete-subcategory:hover {
-  background-color: #ff4444;
+.category-table .edit-delete-group .delete-category:hover {
+  background: #dc3545;
   color: #fff;
 }
 
@@ -754,7 +750,7 @@ body {
     width: 100% !important;
   }
 
-  /* Minimized Category Table for Mobile */
+  /* Minimized Category Table for Mobile (Replaced with First CSS Properties) */
   .container {
     padding: 10px !important; /* Reduce container padding for mobile */
   }
@@ -773,6 +769,10 @@ body {
     white-space: nowrap;
     border-collapse: collapse;
     table-layout: fixed;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .category-table thead {
@@ -790,14 +790,20 @@ body {
   .category-table th,
   .category-table td {
     display: table-cell;
-    padding: 6px !important; /* Further reduced padding for compactness */
+    padding: 6px !important; /* Reduced from 8px for compactness */
     margin: 0;
-    border-bottom: 1px solid #E1E8ED;
+    border: 1px solid #eee;
     text-align: center;
     white-space: nowrap;
     box-sizing: border-box;
     vertical-align: middle;
     font-size: 12px; /* Smaller font for mobile */
+  }
+
+  .category-table th {
+    background: #f9f9f9;
+    font-weight: bold;
+    font-size: 12px; /* Match td font size */
   }
 
   /* Minimized column widths */
@@ -836,12 +842,6 @@ body {
     max-width: 150px;
   }
 
-  .category-table th {
-    background-color: #F5F8FA;
-    color: #657786;
-    font-size: 12px; /* Match td font size */
-  }
-
   .category-table td img {
     width: 30px !important; /* Smaller images for mobile */
     height: 30px !important;
@@ -853,30 +853,19 @@ body {
   }
 
   .category-table .edit-delete-group {
-    display: inline-flex;
-    align-items: center;
-    gap: 0;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    overflow: hidden;
-    background: #fff;
-    vertical-align: middle;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
     max-width: 120px; /* Reduced for mobile */
-    box-sizing: border-box;
     margin: 0 auto;
   }
 
   .category-table .edit-delete-group button {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px; /* Reduced gap */
-    padding: 6px; /* Reduced padding */
-    font-size: 12px; /* Smaller font */
-    font-family: Arial, sans-serif;
-    font-weight: 500;
-    cursor: pointer;
+    padding: 6px 12px; /* Reduced from 8px 16px */
+    font-size: 12px; /* Reduced from 14px */
     border: none;
-    background: #fff;
+    border-radius: 4px;
+    cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     flex: 1;
     max-width: 60px; /* Split 120px width */
@@ -886,28 +875,25 @@ body {
     text-overflow: ellipsis;
   }
 
-  .category-table .edit-delete-group button i {
-    font-size: 12px; /* Smaller icon */
-    margin-right: 3px;
-    flex-shrink: 0;
-  }
-
-  .category-table .edit-delete-group .edit-subcategory {
+  .category-table .edit-delete-group .edit-category {
+    background: #fff;
     color: #1e88e5;
-    border-right: 1px solid #ddd;
+    border: 1px solid #1e88e5;
   }
 
-  .category-table .edit-delete-group .edit-subcategory:hover {
-    background-color: #1e88e5;
+  .category-table .edit-delete-group .edit-category:hover {
+    background: #1e88e5;
     color: #fff;
   }
 
-  .category-table .edit-delete-group .delete-subcategory {
-    color: #ff4444;
+  .category-table .edit-delete-group .delete-category {
+    background: #fff;
+    color: #dc3545;
+    border: 1px solid #dc3545;
   }
 
-  .category-table .edit-delete-group .delete-subcategory:hover {
-    background-color: #ff4444;
+  .category-table .edit-delete-group .delete-category:hover {
+    background: #dc3545;
     color: #fff;
   }
 
