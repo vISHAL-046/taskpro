@@ -755,7 +755,8 @@ body {
   }
 
   .category-table {
-    display: block !important;
+    display: table !important;
+    width: 100% !important;
     overflow-x: auto !important;
     white-space: nowrap !important;
   }
@@ -763,45 +764,12 @@ body {
   .category-table th,
   .category-table td {
     min-width: 100px !important;
-  }
-
-  .category-table thead {
-    display: none;
-  }
-
-  .category-table tbody,
-  .category-table tr {
-    display: block;
-    margin-bottom: 12px;
-    border: 1px solid #eee;
-    border-radius: 6px;
-    padding: 8px;
-  }
-
-  .category-table td {
-    display: block;
-    text-align: right;
-    padding: 6px 0;
-    border: none;
-    position: relative;
-    padding-left: 50%;
-  }
-
-  .category-table td::before {
-    content: attr(data-label) ": ";
-    position: absolute;
-    left: 0;
-    width: 45%;
-    font-weight: bold;
-    text-align: left;
-    color: #666;
+    padding: 8px !important;
   }
 
   .category-table td img {
     width: 40px;
     height: 40px;
-    display: block;
-    margin: 0 auto 4px;
   }
 
   .category-table .edit-delete-group {
