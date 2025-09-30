@@ -51,11 +51,7 @@
           </a>
           <div class="profile" id="profile">
             <div id="profileIcon" class="profile-trigger">
-              <img
-                src="download.jpeg"
-                alt="Profile"
-                style="width: 34px; height: 34px; border-radius: 50%"
-              />
+              <img src="download.jpeg" alt="Profile" />
             </div>
             <div id="profileDropdown" class="profile-dropdown">
               <ul>
@@ -154,24 +150,26 @@
         </div>
       </div>
       
-      <table class="category-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>IMAGE</th>
-            <th>CATEGORY</th>
-            <th>SUBCATEGORY</th>
-            <th>PRODUCT NAME</th>
-            <th>PRICE</th>
-            <th>QUANTITY</th>
-            <th>DESCRIPTION</th>
-            <th>ACTIONS</th>
-          </tr>
-        </thead>
-        <tbody id="subcategoryTableBody">
-          <!-- Subcategories will be inserted here -->
-        </tbody>
-      </table>
+      <div class="table-wrapper">
+        <table class="category-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>IMAGE</th>
+              <th>CATEGORY</th>
+              <th>SUBCATEGORY</th>
+              <th>PRODUCT NAME</th>
+              <th>PRICE</th>
+              <th>QUANTITY</th>
+              <th>DESCRIPTION</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody id="subcategoryTableBody">
+            <!-- Subcategories will be inserted here -->
+          </tbody>
+        </table>
+      </div>
     </main>
 
     <!-- Add/Edit Subcategory Popup -->
@@ -373,7 +371,7 @@
       const logoutLink = document.getElementById("logoutLink");
 
       profileImg.src = savedProfileImg;
-      profileIcon.innerHTML = `<img src="${savedProfileImg}" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
+      profileIcon.innerHTML = `<img src="${savedProfileImg}" alt="Profile">`;
 
       profileTrigger.addEventListener("click", (e) => {
         e.preventDefault();
@@ -413,7 +411,7 @@
           const reader = new FileReader();
           reader.onload = (event) => {
             profileImg.src = event.target.result;
-            profileIcon.innerHTML = `<img src="${event.target.result}" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
+            profileIcon.innerHTML = `<img src="${event.target.result}" alt="Profile">`;
           };
           reader.readAsDataURL(file);
         }
@@ -428,7 +426,7 @@
         localStorage.setItem("username", username);
         localStorage.setItem("email", email);
         localStorage.setItem("profileImg", profileImgSrc);
-        profileIcon.innerHTML = `<img src="${profileImgSrc}" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
+        profileIcon.innerHTML = `<img src="${profileImgSrc}" alt="Profile">`;
         profilePopup.style.display = "none";
       });
 
@@ -437,7 +435,7 @@
         usernameInput.value = localStorage.getItem("username") || "owner";
         emailInput.value = localStorage.getItem("email") || "owner@signaltone.com";
         profileImg.src = localStorage.getItem("profileImg") || "https://via.placeholder.com/100";
-        profileIcon.innerHTML = `<img src="${profileImg.src}" alt="Profile" style="width: 34px; height: 34px; border-radius: 50%;">`;
+        profileIcon.innerHTML = `<img src="${profileImg.src}" alt="Profile">`;
       });
 
       closeProfilePopupBtn.addEventListener("click", () => {
@@ -522,7 +520,7 @@
         subcategoryImg.src =
           uniqueCategories.find((cat) => (cat.name || "").trim().toLowerCase() === (subcategoryCategorySelect.value || "").trim().toLowerCase())?.image ||
           defaultImage;
-        subcategoryPhotoInput.value = ""; // Clear the file input
+        subcategoryPhotoInput.value = "";
       });
 
       // Function to deduplicate categories by name (case-insensitive)
@@ -649,7 +647,7 @@
           const row = document.createElement("tr");
           row.innerHTML = `
             <td data-label="ID">${index + 1}</td>
-            <td data-label="IMAGE"><img src="${sub.image || defaultImage}" alt="${sub.productName || ''}" style="width: 50px; height: 50px; object-fit: cover;"></td>
+            <td data-label="IMAGE"><img src="${sub.image || defaultImage}" alt="${sub.productName || ''}"></td>
             <td data-label="CATEGORY">${sub.category || ''}</td>
             <td data-label="SUBCATEGORY">${sub.subcategory || ''}</td>
             <td data-label="PRODUCT NAME">${sub.productName || ''}</td>
