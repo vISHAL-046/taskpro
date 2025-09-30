@@ -754,7 +754,11 @@ body {
     width: 100% !important;
   }
 
-  /* Replaced Category Table Styles (from first CSS) */
+  /* Minimized Category Table for Mobile */
+  .container {
+    padding: 10px !important; /* Reduce container padding for mobile */
+  }
+
   .table-wrapper {
     width: 100%;
     overflow-x: auto;
@@ -764,7 +768,7 @@ body {
   .category-table {
     display: table !important;
     width: 100%;
-    min-width: 800px;
+    min-width: 500px; /* Reduced from 800px for mobile compactness */
     overflow-x: auto;
     white-space: nowrap;
     border-collapse: collapse;
@@ -786,53 +790,61 @@ body {
   .category-table th,
   .category-table td {
     display: table-cell;
-    padding: 8px !important;
+    padding: 6px !important; /* Further reduced padding for compactness */
     margin: 0;
     border-bottom: 1px solid #E1E8ED;
     text-align: center;
     white-space: nowrap;
     box-sizing: border-box;
     vertical-align: middle;
+    font-size: 12px; /* Smaller font for mobile */
   }
 
+  /* Minimized column widths */
   .category-table th:nth-child(1),
   .category-table td:nth-child(1) {
-    width: 60px; /* ID */
-    min-width: 60px;
-    max-width: 60px;
+    width: 40px; /* ID, reduced from 60px */
+    min-width: 40px;
+    max-width: 40px;
   }
 
   .category-table th:nth-child(2),
   .category-table td:nth-child(2) {
-    width: 80px; /* IMG */
-    min-width: 80px;
-    max-width: 80px;
+    width: 60px; /* IMG, reduced from 80px */
+    min-width: 60px;
+    max-width: 60px;
   }
 
   .category-table th:nth-child(3),
   .category-table td:nth-child(3) {
-    width: 150px; /* CATEGORY */
-    min-width: 150px;
-    max-width: 150px;
+    width: 100px; /* CATEGORY, reduced from 150px */
+    min-width: 100px;
+    max-width: 100px;
   }
 
   .category-table th:nth-child(4),
   .category-table td:nth-child(4) {
-    width: 200px; /* DESCRIPTION */
-    min-width: 200px;
-    max-width: 200px;
+    width: 150px; /* DESCRIPTION, reduced from 200px */
+    min-width: 150px;
+    max-width: 150px;
   }
 
   .category-table th:nth-child(5),
   .category-table td:nth-child(5) {
-    width: 200px; /* ACTIONS */
-    min-width: 200px;
-    max-width: 200px;
+    width: 150px; /* ACTIONS, reduced from 200px */
+    min-width: 150px;
+    max-width: 150px;
+  }
+
+  .category-table th {
+    background-color: #F5F8FA;
+    color: #657786;
+    font-size: 12px; /* Match td font size */
   }
 
   .category-table td img {
-    width: 40px !important;
-    height: 40px !important;
+    width: 30px !important; /* Smaller images for mobile */
+    height: 30px !important;
     object-fit: cover;
     border-radius: 4px;
     display: block;
@@ -849,7 +861,7 @@ body {
     overflow: hidden;
     background: #fff;
     vertical-align: middle;
-    max-width: 180px;
+    max-width: 120px; /* Reduced for mobile */
     box-sizing: border-box;
     margin: 0 auto;
   }
@@ -857,9 +869,9 @@ body {
   .category-table .edit-delete-group button {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 8px;
-    font-size: 14px;
+    gap: 4px; /* Reduced gap */
+    padding: 6px; /* Reduced padding */
+    font-size: 12px; /* Smaller font */
     font-family: Arial, sans-serif;
     font-weight: 500;
     cursor: pointer;
@@ -867,7 +879,7 @@ body {
     background: #fff;
     transition: background-color 0.3s, color 0.3s;
     flex: 1;
-    max-width: 90px;
+    max-width: 60px; /* Split 120px width */
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
@@ -875,8 +887,8 @@ body {
   }
 
   .category-table .edit-delete-group button i {
-    font-size: 14px;
-    margin-right: 4px;
+    font-size: 12px; /* Smaller icon */
+    margin-right: 3px;
     flex-shrink: 0;
   }
 
@@ -899,21 +911,22 @@ body {
     color: #fff;
   }
 
-  .category-table::-webkit-scrollbar {
+  /* Scrollbar for table-wrapper */
+  .table-wrapper::-webkit-scrollbar {
     height: 8px;
   }
 
-  .category-table::-webkit-scrollbar-track {
+  .table-wrapper::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 4px;
   }
 
-  .category-table::-webkit-scrollbar-thumb {
+  .table-wrapper::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 4px;
   }
 
-  .category-table::-webkit-scrollbar-thumb:hover {
+  .table-wrapper::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
 
