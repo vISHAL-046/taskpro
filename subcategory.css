@@ -387,14 +387,17 @@ body {
 }
 
 .category-table th {
-  padding: 12px 16px; /* Increased horizontal padding for spacing */
+  padding: 12px 24px; /* Increased for more header separation */
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
   border: none;
-  border-right: 1px solid #ddd; /* Darker border for visibility */
+  border-right: 2px solid #bbb; /* Thicker, darker border for visibility */
   background: #f9f9f9;
   font-weight: bold;
+  /* Optional: Alternating backgrounds for extra separation */
+  /* &:nth-child(odd) { background: #f9f9f9; } */
+  /* &:nth-child(even) { background: #f5f5f5; } */
 }
 
 .category-table th:last-child {
@@ -871,7 +874,7 @@ body {
   .category-table th,
   .category-table td {
     display: table-cell;
-    padding: 6px 10px !important; /* Adjusted padding for mobile, increased for headers */
+    padding: 6px 14px !important; /* Increased for headers, kept for cells */
     margin: 0;
     border: none; /* Remove all cell borders */
     text-align: center;
@@ -882,10 +885,13 @@ body {
   }
 
   .category-table th {
-    border-right: 1px solid #ddd; /* Darker border for visibility */
+    border-right: 2px solid #bbb; /* Thicker, darker border for visibility */
     background: #f9f9f9;
     font-weight: bold;
-    font-size: 12px;
+    /* font-size: 11px; */ /* Optional: Reduce font size for less density */
+    /* Optional: Alternating backgrounds */
+    /* &:nth-child(odd) { background: #f9f9f9; } */
+    /* &:nth-child(even) { background: #f5f5f5; } */
   }
 
   .category-table th:last-child {
@@ -951,7 +957,7 @@ body {
 
   .category-table th:nth-child(9),
   .category-table td:nth-child(9) {
-    width: 150px; /* Increased for larger buttons */
+    width: 150px; /* For larger buttons */
     min-width: 150px;
     max-width: 150px;
   }
@@ -1008,7 +1014,7 @@ body {
     color: #fff;
   }
 
-  /* Scrollbar for table-wrapper (Same as First CSS) */
+  /* Scrollbar for table-wrapper (Unchanged) */
   .table-wrapper::-webkit-scrollbar {
     height: 8px;
   }
