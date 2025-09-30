@@ -810,7 +810,7 @@ select.btn:focus {
   }
 }
 
-/* === Added Grouped Edit/Delete Button Styles === */
+/* === Added Grouped Edit/Delete Button Styles (Same as Previous Task) === */
 .category-table .edit-delete-group {
   display: inline-flex;
   align-items: center;
@@ -860,7 +860,7 @@ select.btn:focus {
   color: #fff;
 }
 
-/* === Added Mobile Styles for Button Group === */
+/* === Added Mobile Styles for Button Group (Same as Previous Task) === */
 @media (max-width: 640px) {
   .category-table .edit-delete-group {
     display: inline-flex;
