@@ -805,19 +805,28 @@ body {
   }
 
   .category-table .edit-delete-group {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-    border: none;
-    border-radius: 0;
-    overflow: visible;
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+    vertical-align: middle;
   }
 
   .category-table .edit-delete-group button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     padding: 6px 10px;
     font-size: 12px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+    font-family: Arial, sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+    transition: background-color 0.3s, color 0.3s;
   }
 
   .category-table .edit-delete-group button i {
@@ -826,22 +835,22 @@ body {
   }
 
   .category-table .edit-delete-group .edit-subcategory {
-    border-right: none;
-    background: #1e88e5;
-    color: white;
+    color: #1e88e5;
+    border-right: 1px solid #ddd;
   }
 
   .category-table .edit-delete-group .edit-subcategory:hover {
-    background: #1565c0;
+    background-color: #1e88e5;
+    color: #fff;
   }
 
   .category-table .edit-delete-group .delete-subcategory {
-    background: #ff4444;
-    color: white;
+    color: #ff4444;
   }
 
   .category-table .edit-delete-group .delete-subcategory:hover {
-    background: #cc0000;
+    background-color: #ff4444;
+    color: #fff;
   }
 
   .popup-inner,
