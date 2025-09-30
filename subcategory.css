@@ -754,13 +754,9 @@ body {
     width: 100% !important;
   }
 
-  /* Table container for horizontal scrolling */
-  .table-container {
-    overflow-x: auto !important;
-    width: 100% !important;
-  }
-
+  /* Table styles for horizontal scrolling */
   .category-table {
+    overflow-x: auto !important;
     width: auto !important; /* Allow table to take its natural width */
     min-width: 100% !important; /* Ensure table is at least as wide as container */
     display: table !important; /* Maintain default table display */
@@ -776,11 +772,13 @@ body {
     display: table-row !important; /* Maintain table row structure */
   }
 
+  .category-table th,
   .category-table td {
     display: table-cell !important; /* Maintain table cell structure */
     padding: 12px !important; /* Restore original padding */
-    border-bottom: 1px solid #E1E8ED !important; /* Restore original border */
     text-align: left !important; /* Restore original alignment */
+    border-bottom: 1px solid #E1E8ED !important; /* Restore original border */
+    min-width: 100px !important; /* Ensure columns have minimum width for readability */
   }
 
   .category-table td::before {
@@ -792,6 +790,29 @@ body {
     height: 50px !important;
     display: inline-block !important; /* Restore original display */
     margin: 0 !important; /* Remove mobile-specific margin */
+  }
+
+  .category-table .edit-delete-group {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0 !important;
+    border: 1px solid #ddd !important;
+    border-radius: 6px !important;
+    overflow: hidden !important;
+    background: #fff !important;
+    vertical-align: middle !important;
+  }
+
+  .category-table .edit-delete-group button {
+    padding: 8px 14px !important; /* Restore desktop padding */
+    font-size: 14px !important; /* Restore desktop font size */
+    font-family: Arial, sans-serif !important;
+    font-weight: 500 !important;
+  }
+
+  .category-table .edit-delete-group button i {
+    font-size: 14px !important; /* Restore desktop icon size */
+    margin-right: 4px !important;
   }
 
   .popup-inner,
