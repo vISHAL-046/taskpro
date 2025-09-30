@@ -1,4 +1,4 @@
-/* === Original CSS (kept as-is) === */
+/* === Original CSS (kept as-is for non-table sections) === */
 /* Category Page Specific */
 
 .navbar {
@@ -256,9 +256,11 @@ select:focus {
   border-radius: 5px;
 }
 
+/* === Desktop Table Styles === */
 .category-table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed; /* Added to lock column widths */
 }
 
 .category-table th,
@@ -266,6 +268,8 @@ select:focus {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #eee;
+  box-sizing: border-box; /* Added for consistent sizing */
+  vertical-align: middle; /* Added for consistent vertical alignment */
 }
 
 .category-table th {
@@ -273,11 +277,112 @@ select:focus {
   white-space: nowrap;
 }
 
+/* Explicit column widths for desktop */
+.category-table th:nth-child(1),
+.category-table td:nth-child(1) {
+  width: 60px; /* ID */
+  min-width: 60px;
+  max-width: 60px;
+  text-align: center; /* Center for consistency */
+}
+
+.category-table th:nth-child(2),
+.category-table td:nth-child(2) {
+  width: 80px; /* IMG */
+  min-width: 80px;
+  max-width: 80px;
+  text-align: center; /* Center for images */
+}
+
+.category-table th:nth-child(3),
+.category-table td:nth-child(3) {
+  width: 150px; /* CATEGORY */
+  min-width: 150px;
+  max-width: 150px;
+}
+
+.category-table th:nth-child(4),
+.category-table td:nth-child(4) {
+  width: 200px; /* DESCRIPTION */
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.category-table th:nth-child(5),
+.category-table td:nth-child(5) {
+  width: 200px; /* ACTIONS */
+  min-width: 200px;
+  max-width: 200px;
+  text-align: center; /* Center for buttons */
+}
+
 .category-table td img {
   width: 50px;
   height: 50px;
   object-fit: cover;
   border-radius: 4px;
+  display: block;
+  margin: 0 auto; /* Center images */
+  max-width: 100%; /* Prevent stretching */
+}
+
+/* === Grouped Edit/Delete Button Styles === */
+.category-table .edit-delete-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  vertical-align: middle;
+  max-width: 180px; /* Added to constrain within 200px column */
+  margin: 0 auto; /* Added to center buttons */
+}
+
+.category-table .edit-delete-group button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px; /* Changed from 8px 14px to match mobile */
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background: #fff;
+  transition: background-color 0.3s, color 0.3s;
+  flex: 1; /* Equal width for buttons */
+  max-width: 90px; /* Ensures buttons fit within 180px */
+  text-align: center; /* Center button content */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.category-table .edit-delete-group button i {
+  font-size: 14px;
+  margin-right: 4px;
+  flex-shrink: 0;
+}
+
+.category-table .edit-delete-group .edit-category {
+  color: #1e88e5;
+  border-right: 1px solid #ddd;
+}
+
+.category-table .edit-delete-group .edit-category:hover {
+  background-color: #1e88e5;
+  color: #fff;
+}
+
+.category-table .edit-delete-group .delete-category {
+  color: #dc3545;
+}
+
+.category-table .edit-delete-group .delete-category:hover {
+  background-color: #dc3545;
+  color: #fff;
 }
 
 /* Category Popup */
@@ -531,56 +636,6 @@ select.btn:focus {
 #csvOptions {
   width: 5px;
   padding-left: 2px;
-}
-
-/* === Grouped Edit/Delete Button Styles === */
-.category-table .edit-delete-group {
-  display: inline-flex;
-  align-items: center;
-  gap: 0;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  overflow: hidden;
-  background: #fff;
-  vertical-align: middle;
-}
-
-.category-table .edit-delete-group button {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  font-size: 14px;
-  font-family: Arial, sans-serif;
-  font-weight: 500;
-  cursor: pointer;
-  border: none;
-  background: #fff;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.category-table .edit-delete-group button i {
-  font-size: 14px;
-  margin-right: 4px;
-}
-
-.category-table .edit-delete-group .edit-category {
-  color: #1e88e5; /* Matches save-btn blue */
-  border-right: 1px solid #ddd;
-}
-
-.category-table .edit-delete-group .edit-category:hover {
-  background-color: #1e88e5;
-  color: #fff;
-}
-
-.category-table .edit-delete-group .delete-category {
-  color: #dc3545; /* Matches standard danger red */
-}
-
-.category-table .edit-delete-group .delete-category:hover {
-  background-color: #dc3545;
-  color: #fff;
 }
 
 /* === Mobile Styles === */
