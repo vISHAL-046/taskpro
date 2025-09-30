@@ -260,7 +260,7 @@ select:focus {
 .category-table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed; /* Added to lock column widths */
+  table-layout: fixed;
 }
 
 .category-table th,
@@ -268,8 +268,8 @@ select:focus {
   padding: 10px;
   text-align: left;
   border-bottom: 1px solid #eee;
-  box-sizing: border-box; /* Added for consistent sizing */
-  vertical-align: middle; /* Added for consistent vertical alignment */
+  box-sizing: border-box;
+  vertical-align: middle;
 }
 
 .category-table th {
@@ -283,7 +283,7 @@ select:focus {
   width: 60px; /* ID */
   min-width: 60px;
   max-width: 60px;
-  text-align: center; /* Center for consistency */
+  text-align: center;
 }
 
 .category-table th:nth-child(2),
@@ -291,7 +291,7 @@ select:focus {
   width: 80px; /* IMG */
   min-width: 80px;
   max-width: 80px;
-  text-align: center; /* Center for images */
+  text-align: center;
 }
 
 .category-table th:nth-child(3),
@@ -313,7 +313,7 @@ select:focus {
   width: 200px; /* ACTIONS */
   min-width: 200px;
   max-width: 200px;
-  text-align: center; /* Center for buttons */
+  text-align: center;
 }
 
 .category-table td img {
@@ -322,29 +322,30 @@ select:focus {
   object-fit: cover;
   border-radius: 4px;
   display: block;
-  margin: 0 auto; /* Center images */
-  max-width: 100%; /* Prevent stretching */
+  margin: 0 auto;
+  max-width: 100%;
 }
 
 /* === Grouped Edit/Delete Button Styles === */
 .category-table .edit-delete-group {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0;
   border: 1px solid #ddd;
   border-radius: 6px;
   overflow: hidden;
   background: #fff;
   vertical-align: middle;
-  max-width: 180px; /* Added to constrain within 200px column */
-  margin: 0 auto; /* Added to center buttons */
+  width: 200px; /* Increased to fill 200px column */
+  margin: 0 auto;
 }
 
 .category-table .edit-delete-group button {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 8px; /* Changed from 8px 14px to match mobile */
+  justify-content: center;
+  padding: 8px 10px;
   font-size: 14px;
   font-family: Arial, sans-serif;
   font-weight: 500;
@@ -352,9 +353,8 @@ select:focus {
   border: none;
   background: #fff;
   transition: background-color 0.3s, color 0.3s;
-  flex: 1; /* Equal width for buttons */
-  max-width: 90px; /* Ensures buttons fit within 180px */
-  text-align: center; /* Center button content */
+  width: 100px; /* Increased from 90px */
+  text-align: center;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -362,7 +362,7 @@ select:focus {
 
 .category-table .edit-delete-group button i {
   font-size: 14px;
-  margin-right: 4px;
+  margin-right: 6px; /* Replaced gap with margin-right */
   flex-shrink: 0;
 }
 
@@ -710,11 +710,11 @@ select.btn:focus {
   .category-table {
     display: table;
     width: 100%;
-    min-width: 800px; /* Ensures table is wide enough for scrollbar */
+    min-width: 800px;
     overflow-x: auto;
     white-space: nowrap;
     border-collapse: collapse;
-    table-layout: fixed; /* Locks column widths */
+    table-layout: fixed;
   }
 
   .category-table thead {
@@ -735,13 +735,12 @@ select.btn:focus {
     padding: 8px;
     margin: 0;
     border-bottom: 1px solid #eee;
-    text-align: center; /* Center all headers and cells */
+    text-align: center;
     white-space: nowrap;
     box-sizing: border-box;
     vertical-align: middle;
   }
 
-  /* Explicit column widths for perfect alignment */
   .category-table th:nth-child(1),
   .category-table td:nth-child(1) {
     width: 60px; /* ID */
@@ -784,10 +783,9 @@ select.btn:focus {
     border-radius: 4px;
     display: block;
     margin: 0 auto;
-    max-width: 100%; /* Prevents image from stretching column */
+    max-width: 100%;
   }
 
-  /* Constrain edit-delete-group to fit ACTIONS column */
   .category-table .edit-delete-group {
     display: inline-flex;
     align-items: center;
@@ -797,9 +795,9 @@ select.btn:focus {
     overflow: hidden;
     background: #fff;
     vertical-align: middle;
-    max-width: 180px; /* Fits within 200px with padding */
+    max-width: 180px;
     box-sizing: border-box;
-    margin: 0 auto; /* Centers buttons */
+    margin: 0 auto;
   }
 
   .category-table .edit-delete-group button {
@@ -814,8 +812,8 @@ select.btn:focus {
     border: none;
     background: #fff;
     transition: background-color 0.3s, color 0.3s;
-    flex: 1; /* Equal width for buttons */
-    max-width: 90px; /* Ensures buttons fit within 180px */
+    flex: 1;
+    max-width: 90px;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
@@ -847,7 +845,6 @@ select.btn:focus {
     color: #fff;
   }
 
-  /* Ensure scrollbar visibility */
   .category-table::-webkit-scrollbar {
     height: 8px;
   }
