@@ -533,7 +533,7 @@ select.btn:focus {
   padding-left: 2px;
 }
 
-/* === Updated Grouped Edit/Delete button styles === */
+/* === Grouped Edit/Delete Button Styles === */
 .category-table .edit-delete-group {
   display: inline-flex;
   align-items: center;
@@ -583,7 +583,7 @@ select.btn:focus {
   color: #fff;
 }
 
-/* === Updated Mobile Styles for Button Group === */
+/* === Mobile Styles === */
 @media (max-width: 640px) {
   .hero {
     flex-direction: column;
@@ -647,90 +647,94 @@ select.btn:focus {
   }
 
   .category-table {
-    display: block;
+    display: table;
     width: 100%;
     overflow-x: auto;
     white-space: nowrap;
+    border-collapse: collapse;
   }
 
   .category-table thead {
-    display: none;
+    display: table-header-group;
   }
 
-  .category-table tbody,
+  .category-table tbody {
+    display: table-row-group;
+  }
+
   .category-table tr {
-    display: block;
-    margin-bottom: 12px;
-    border: 1px solid #eee;
-    border-radius: 6px;
+    display: table-row;
+  }
+
+  .category-table td,
+  .category-table th {
+    display: table-cell;
     padding: 8px;
-  }
-
-  .category-table td {
-    display: block;
-    text-align: right;
-    padding: 6px 0;
-    border: none;
-    position: relative;
-    padding-left: 50%;
-  }
-
-  .category-table td::before {
-    content: attr(data-label) ": ";
-    position: absolute;
-    left: 0;
-    width: 45%;
-    font-weight: bold;
+    border-bottom: 1px solid #eee;
     text-align: left;
-    color: #666;
+    white-space: nowrap;
   }
 
   .category-table td img {
     width: 40px;
     height: 40px;
     display: block;
-    margin: 0 auto 4px;
+    margin: 0 auto;
   }
 
-  /* Updated mobile styles for edit-delete-group */
+  /* Remove card-like layout */
+  .category-table td::before {
+    content: none;
+  }
+
+  /* Grouped Edit/Delete Button Styles (Same as Desktop) */
   .category-table .edit-delete-group {
-    display: flex;
-    justify-content: flex-end;
-    gap: 8px;
-    border: none;
-    border-radius: 0;
-    overflow: visible;
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+    vertical-align: middle;
   }
 
   .category-table .edit-delete-group button {
-    padding: 6px 10px;
-    font-size: 12px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: #fff;
+    transition: background-color 0.3s, color 0.3s;
   }
 
   .category-table .edit-delete-group button i {
-    font-size: 12px;
-    margin-right: 3px;
+    font-size: 14px;
+    margin-right: 4px;
   }
 
   .category-table .edit-delete-group .edit-category {
-    border-right: none;
-    background: #1e88e5;
-    color: white;
+    color: #1e88e5;
+    border-right: 1px solid #ddd;
   }
 
   .category-table .edit-delete-group .edit-category:hover {
-    background: #1565c0;
+    background-color: #1e88e5;
+    color: #fff;
   }
 
   .category-table .edit-delete-group .delete-category {
-    background: #dc3545;
-    color: white;
+    color: #dc3545;
   }
 
   .category-table .edit-delete-group .delete-category:hover {
-    background: #c82333;
+    background-color: #dc3545;
+    color: #fff;
   }
 
   .category-controls {
@@ -807,104 +811,5 @@ select.btn:focus {
   input,
   select {
     font-size: 16px; /* Prevents zoom on iOS */
-  }
-}
-
-/* === Added Grouped Edit/Delete Button Styles (Same as Previous Task) === */
-.category-table .edit-delete-group {
-  display: inline-flex;
-  align-items: center;
-  gap: 0;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  overflow: hidden;
-  background: #fff;
-  vertical-align: middle;
-}
-
-.category-table .edit-delete-group button {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 14px;
-  font-size: 14px;
-  font-family: Arial, sans-serif;
-  font-weight: 500;
-  cursor: pointer;
-  border: none;
-  background: #fff;
-  transition: background-color 0.3s, color 0.3s;
-}
-
-.category-table .edit-delete-group button i {
-  font-size: 14px;
-  margin-right: 4px;
-}
-
-.category-table .edit-delete-group .edit-category {
-  color: #1e88e5;
-  border-right: 1px solid #ddd;
-}
-
-.category-table .edit-delete-group .edit-category:hover {
-  background-color: #1e88e5;
-  color: #fff;
-}
-
-.category-table .edit-delete-group .delete-category {
-  color: #dc3545;
-}
-
-.category-table .edit-delete-group .delete-category:hover {
-  background-color: #dc3545;
-  color: #fff;
-}
-
-/* === Added Mobile Styles for Button Group (Same as Previous Task) === */
-@media (max-width: 640px) {
-  .category-table .edit-delete-group {
-    display: inline-flex;
-    align-items: center;
-    gap: 0;
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    overflow: hidden;
-    background: #fff;
-    vertical-align: middle;
-  }
-
-  .category-table .edit-delete-group button {
-    padding: 6px 10px;
-    font-size: 12px;
-    font-family: Arial, sans-serif;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
-    background: #fff;
-    transition: background-color 0.3s, color 0.3s;
-  }
-
-  .category-table .edit-delete-group button i {
-    font-size: 12px;
-    margin-right: 3px;
-  }
-
-  .category-table .edit-delete-group .edit-category {
-    color: #1e88e5;
-    border-right: 1px solid #ddd;
-  }
-
-  .category-table .edit-delete-group .edit-category:hover {
-    background-color: #1e88e5;
-    color: #fff;
-  }
-
-  .category-table .edit-delete-group .delete-category {
-    color: #dc3545;
-  }
-
-  .category-table .edit-delete-group .delete-category:hover {
-    background-color: #dc3545;
-    color: #fff;
   }
 }
