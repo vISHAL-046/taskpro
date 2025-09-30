@@ -416,13 +416,19 @@
         filteredCategories.forEach((cat, index) => {
           const row = document.createElement("tr");
           row.innerHTML = `
-            <td>${index + 1}</td>
-            <td><img src="${cat.image || defaultImage}" alt="${cat.name || ''}" style="width: 50px; height: 50px;"></td>
-            <td>${cat.name || ''}</td>
-            <td>${cat.desc || ''}</td>
-            <td>
-              <button class="edit-category" data-index="${index}">Edit</button>
-              <button class="delete-category" data-index="${index}">Delete</button>
+            <td data-label="ID">${index + 1}</td>
+            <td data-label="IMG"><img src="${cat.image || defaultImage}" alt="${cat.name || ''}" style="width: 50px; height: 50px;"></td>
+            <td data-label="CATEGORY">${cat.name || ''}</td>
+            <td data-label="Description">${cat.desc || ''}</td>
+            <td data-label="ACTIONS">
+              <div class="edit-delete-group">
+                <button class="edit-category" data-index="${index}">
+                  <i class="fas fa-edit"></i> Edit
+                </button>
+                <button class="delete-category" data-index="${index}">
+                  <i class="fas fa-trash"></i> Delete
+                </button>
+              </div>
             </td>
           `;
           categoryTableBody.appendChild(row);
@@ -488,8 +494,8 @@
       });
 
       categoryTableBody.addEventListener("click", (e) => {
-        if (e.target.classList.contains("edit-category")) {
-          const index = e.target.dataset.index;
+        if (e.target.classList.contains("edit-category") || e.target.closest(".edit-category")) {
+          const index = e.target.dataset.index || e.target.closest(".edit-category").dataset.index;
           const cat = categories[index];
           popupTitle.textContent = "Edit Category";
           categoryNameInput.value = cat.name;
@@ -497,8 +503,8 @@
           categoryImg.src = cat.image || defaultImage;
           editingIndex = index;
           categoryPopup.style.display = "flex";
-        } else if (e.target.classList.contains("delete-category")) {
-          const index = e.target.dataset.index;
+        } else if (e.target.classList.contains("delete-category") || e.target.closest(".delete-category")) {
+          const index = e.target.dataset.index || e.target.closest(".delete-category").dataset.index;
           if (confirm("Are you sure you want to delete this category?")) {
             categories.splice(index, 1);
             localStorage.setItem("categories", JSON.stringify(categories));
