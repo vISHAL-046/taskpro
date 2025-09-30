@@ -655,11 +655,11 @@ select.btn:focus {
   .category-table {
     display: table;
     width: 100%;
-    min-width: 800px; /* Ensures table is wide enough to trigger scrollbar */
+    min-width: 800px; /* Ensures table is wide enough */
     overflow-x: auto;
     white-space: nowrap;
     border-collapse: collapse;
-    table-layout: fixed; /* Helps maintain consistent column widths */
+    table-layout: fixed; /* Locks column widths */
   }
 
   .category-table thead {
@@ -678,40 +678,56 @@ select.btn:focus {
   .category-table td {
     display: table-cell;
     padding: 8px;
+    margin: 0;
     border-bottom: 1px solid #eee;
     text-align: left;
     white-space: nowrap;
-    min-width: 100px; /* Ensures columns are wide enough */
+    box-sizing: border-box; /* Includes padding in width */
   }
 
+  /* Explicit column widths for perfect alignment */
   .category-table th:nth-child(1),
   .category-table td:nth-child(1) {
-    min-width: 60px; /* ID */
+    width: 60px; /* ID */
+    min-width: 60px;
+    max-width: 60px;
   }
 
   .category-table th:nth-child(2),
   .category-table td:nth-child(2) {
-    min-width: 80px; /* IMG */
+    width: 80px; /* IMG */
+    min-width: 80px;
+    max-width: 80px;
+    text-align: center; /* Center images */
   }
 
   .category-table th:nth-child(3),
   .category-table td:nth-child(3) {
-    min-width: 150px; /* CATEGORY */
+    width: 150px; /* CATEGORY */
+    min-width: 150px;
+    max-width: 150px;
   }
 
   .category-table th:nth-child(4),
   .category-table td:nth-child(4) {
-    min-width: 200px; /* DESCRIPTION */
+    width: 200px; /* DESCRIPTION */
+    min-width: 200px;
+    max-width: 200px;
   }
 
   .category-table th:nth-child(5),
   .category-table td:nth-child(5) {
-    min-width: 200px; /* ACTIONS */
+    width: 200px; /* ACTIONS */
+    min-width: 200px;
+    max-width: 200px;
+    text-align: center; /* Center buttons */
   }
 
   .category-table td img {
     width: 40px;
     height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
     display: block;
     margin: 0 auto;
   }
@@ -721,26 +737,7 @@ select.btn:focus {
     content: none;
   }
 
-  /* Ensure scrollbar visibility */
-  .category-table::-webkit-scrollbar {
-    height: 8px;
-  }
-
-  .category-table::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 4px;
-  }
-
-  .category-table::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 4px;
-  }
-
-  .category-table::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-
-  /* Grouped Edit/Delete Button Styles (Same as Desktop) */
+  /* Constrain edit-delete-group to fit ACTIONS column */
   .category-table .edit-delete-group {
     display: inline-flex;
     align-items: center;
@@ -750,6 +747,8 @@ select.btn:focus {
     overflow: hidden;
     background: #fff;
     vertical-align: middle;
+    max-width: 100%; /* Prevent overflow */
+    box-sizing: border-box;
   }
 
   .category-table .edit-delete-group button {
@@ -764,6 +763,8 @@ select.btn:focus {
     border: none;
     background: #fff;
     transition: background-color 0.3s, color 0.3s;
+    flex: 1; /* Equal width for buttons */
+    max-width: 98px; /* Ensures both buttons fit within 200px */
   }
 
   .category-table .edit-delete-group button i {
@@ -788,6 +789,25 @@ select.btn:focus {
   .category-table .edit-delete-group .delete-category:hover {
     background-color: #dc3545;
     color: #fff;
+  }
+
+  /* Ensure scrollbar visibility */
+  .category-table::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  .category-table::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .category-table::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+
+  .category-table::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 
   .category-controls {
@@ -861,7 +881,7 @@ select.btn:focus {
     padding: 6px 12px;
   }
 
-  .input,
+  input,
   select {
     font-size: 16px; /* Prevents zoom on iOS */
   }
