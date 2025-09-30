@@ -369,7 +369,7 @@ body {
   gap: 5px;
 }
 
-/* Table (No Row or Column Lines, Combined Action Buttons) */
+/* Table (No Row or Column Lines, Separated Headings, Combined Action Buttons) */
 .table-wrapper {
   width: 100%;
   overflow-x: auto;
@@ -386,18 +386,27 @@ body {
   table-layout: fixed;
 }
 
-.category-table th,
+.category-table th {
+  padding: 12px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  border: none;
+  border-right: 1px solid #eee; /* Add separation between headers */
+  background: #f9f9f9;
+  font-weight: bold;
+}
+
+.category-table th:last-child {
+  border-right: none; /* Remove border from last header */
+}
+
 .category-table td {
   padding: 12px;
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
-  border: none; /* Remove all cell borders (row and column lines) */
-}
-
-.category-table th {
-  background: #f9f9f9;
-  font-weight: bold;
+  border: none;
 }
 
 .category-table td img {
@@ -821,7 +830,7 @@ body {
     width: 100% !important;
   }
 
-  /* Minimized Category Table for Mobile (No Lines, Combined Buttons) */
+  /* Minimized Category Table for Mobile (No Lines, Separated Headings, Full Button Text) */
   .container {
     margin-top: 50px !important;
     padding: 10px !important;
@@ -873,9 +882,14 @@ body {
   }
 
   .category-table th {
+    border-right: 1px solid #eee; /* Add separation between headers */
     background: #f9f9f9;
     font-weight: bold;
     font-size: 12px;
+  }
+
+  .category-table th:last-child {
+    border-right: none; /* Remove border from last header */
   }
 
   /* Minimized column widths for mobile */
@@ -937,9 +951,9 @@ body {
 
   .category-table th:nth-child(9),
   .category-table td:nth-child(9) {
-    width: 100px;
-    min-width: 100px;
-    max-width: 100px;
+    width: 150px; /* Increased for larger buttons */
+    min-width: 150px;
+    max-width: 150px;
   }
 
   .category-table td img {
@@ -959,22 +973,16 @@ body {
     border: 1px solid #ddd; /* Shared outer border */
     border-radius: 4px;
     overflow: hidden;
-    max-width: 90px;
-    margin: 0 auto;
   }
 
   .category-table .edit-delete-group button {
-    padding: 4px 8px;
-    font-size: 10px;
+    padding: 8px 16px; /* Match desktop */
+    font-size: 14px; /* Match desktop */
     border: none;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     flex: 1;
-    max-width: 45px;
     text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .category-table .edit-delete-group .edit-subcategory {
