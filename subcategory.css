@@ -369,52 +369,97 @@ body {
   gap: 5px;
 }
 
-/* Table (No Row or Column Lines, Separated Headings, Combined Action Buttons) */
+/* Table Styles */
 .table-wrapper {
   width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .category-table {
   width: 100%;
+  max-width: 1200px;
   border-collapse: collapse;
-  background: #fff;
-  border: 1px solid #eee;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   table-layout: fixed;
 }
 
-.category-table th {
-  padding: 12px 30px; /* Increased for more header separation */
-  text-align: center;
-  vertical-align: middle;
-  white-space: nowrap;
-  border: none;
-  border-right: 2px solid #999; /* Thicker, darker border for visibility */
-  background: #f9f9f9;
-  font-weight: bold;
-}
-
-.category-table th:nth-child(odd) {
-  background: #f9f9f9; /* Subtle alternating background */
-}
-
-.category-table th:nth-child(even) {
-  background: #f3f3f3; /* Slightly different for separation */
-}
-
-.category-table th:last-child {
-  border-right: none; /* Remove border from last header */
-}
-
+.category-table th,
 .category-table td {
-  padding: 12px;
+  padding: 10px 20px;
   text-align: center;
+  border-bottom: 1px solid #eee;
+  box-sizing: border-box;
   vertical-align: middle;
+}
+
+.category-table th {
+  background: #f9f9f9;
   white-space: nowrap;
-  border: none;
+  font-weight: 600;
+}
+
+/* Explicit column widths for desktop */
+.category-table th:nth-child(1),
+.category-table td:nth-child(1) {
+  width: 60px; /* ID */
+  min-width: 60px;
+  max-width: 60px;
+}
+
+.category-table th:nth-child(2),
+.category-table td:nth-child(2) {
+  width: 80px; /* IMG */
+  min-width: 80px;
+  max-width: 80px;
+}
+
+.category-table th:nth-child(3),
+.category-table td:nth-child(3) {
+  width: 120px; /* CATEGORY */
+  min-width: 120px;
+  max-width: 120px;
+}
+
+.category-table th:nth-child(4),
+.category-table td:nth-child(4) {
+  width: 140px; /* SUBCATEGORY */
+  min-width: 140px;
+  max-width: 140px;
+}
+
+.category-table th:nth-child(5),
+.category-table td:nth-child(5) {
+  width: 170px; /* PRODUCT NAME */
+  min-width: 170px;
+  max-width: 170px;
+}
+
+.category-table th:nth-child(6),
+.category-table td:nth-child(6) {
+  width: 100px; /* PRICE */
+  min-width: 100px;
+  max-width: 100px;
+}
+
+.category-table th:nth-child(7),
+.category-table td:nth-child(7) {
+  width: 100px; /* QUANTITY */
+  min-width: 100px;
+  max-width: 100px;
+}
+
+.category-table th:nth-child(8),
+.category-table td:nth-child(8) {
+  width: 200px; /* DESCRIPTION */
+  min-width: 200px;
+  max-width: 200px;
+}
+
+.category-table th:nth-child(9),
+.category-table td:nth-child(9) {
+  width: 200px; /* ACTIONS */
+  min-width: 200px;
+  max-width: 200px;
 }
 
 .category-table td img {
@@ -422,85 +467,68 @@ body {
   height: 50px;
   object-fit: cover;
   border-radius: 4px;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
 }
 
+/* Grouped Edit/Delete Button Styles */
 .category-table .edit-delete-group {
-  display: flex;
-  gap: 0; /* No gap between buttons for combined look */
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  border: 1px solid #ddd; /* Shared outer border */
-  border-radius: 4px;
-  overflow: hidden; /* Ensure rounded corners clip button edges */
+  gap: 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  vertical-align: middle;
+  width: 200px;
+  margin: 0 auto;
 }
 
 .category-table .edit-delete-group button {
-  padding: 8px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 10px;
   font-size: 14px;
-  border: none;
+  font-family: Arial, sans-serif;
+  font-weight: 500;
   cursor: pointer;
+  border: none;
+  background: #fff;
   transition: background-color 0.3s, color 0.3s;
-  flex: 1;
+  width: 100px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.category-table .edit-delete-group button i {
+  font-size: 14px;
+  margin-right: 6px;
+  flex-shrink: 0;
 }
 
 .category-table .edit-delete-group .edit-subcategory {
-  background: #fff;
   color: #1e88e5;
-  border-right: 1px solid #ddd; /* Internal border between buttons */
-  border-radius: 4px 0 0 4px; /* Rounded left corners */
+  border-right: 1px solid #ddd;
 }
 
 .category-table .edit-delete-group .edit-subcategory:hover {
-  background: #1e88e5;
+  background-color: #1e88e5;
   color: #fff;
 }
 
 .category-table .edit-delete-group .delete-subcategory {
-  background: #fff;
   color: #dc3545;
-  border-radius: 0 4px 4px 0; /* Rounded right corners */
 }
 
 .category-table .edit-delete-group .delete-subcategory:hover {
-  background: #dc3545;
+  background-color: #dc3545;
   color: #fff;
-}
-
-/* Column widths for desktop */
-.category-table th:nth-child(1),
-.category-table td:nth-child(1) {
-  width: 60px; /* ID */
-}
-.category-table th:nth-child(2),
-.category-table td:nth-child(2) {
-  width: 80px; /* Image */
-}
-.category-table th:nth-child(3),
-.category-table td:nth-child(3) {
-  width: 120px; /* Category */
-}
-.category-table th:nth-child(4),
-.category-table td:nth-child(4) {
-  width: 120px; /* Subcategory */
-}
-.category-table th:nth-child(5),
-.category-table td:nth-child(5) {
-  width: 150px; /* Product Name */
-}
-.category-table th:nth-child(6),
-.category-table td:nth-child(6) {
-  width: 100px; /* Price */
-}
-.category-table th:nth-child(7),
-.category-table td:nth-child(7) {
-  width: 100px; /* Quantity */
-}
-.category-table th:nth-child(8),
-.category-table td:nth-child(8) {
-  width: 200px; /* Description */
-}
-.category-table th:nth-child(9),
-.category-table td:nth-child(9) {
-  width: 200px; /* Actions */
 }
 
 /* Popup Styles */
@@ -838,7 +866,7 @@ body {
     width: 100% !important;
   }
 
-  /* Minimized Category Table for Mobile (No Lines, Separated Headings, Unchanged Action Buttons) */
+  /* Mobile Table Styles */
   .container {
     margin-top: 50px !important;
     padding: 10px !important;
@@ -851,21 +879,17 @@ body {
   }
 
   .category-table {
-    display: table !important;
+    display: table;
     width: 100%;
-    min-width: 700px;
+    min-width: 800px;
     overflow-x: auto;
     white-space: nowrap;
     border-collapse: collapse;
     table-layout: fixed;
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 
   .category-table thead {
-    display: table-header-group !important;
+    display: table-header-group;
   }
 
   .category-table tbody {
@@ -879,102 +903,87 @@ body {
   .category-table th,
   .category-table td {
     display: table-cell;
-    padding: 6px 10px !important; /* Unchanged for td, updated for th below */
+    padding: 8px 12px;
     margin: 0;
-    border: none; /* Remove all cell borders */
+    border-bottom: 1px solid #eee;
     text-align: center;
     white-space: nowrap;
     box-sizing: border-box;
     vertical-align: middle;
-    font-size: 12px;
   }
 
   .category-table th {
-    padding: 6px 18px !important; /* Increased for header separation */
-    border-right: 2px solid #999; /* Thicker, darker border for visibility */
     background: #f9f9f9;
-    font-weight: bold;
+    white-space: nowrap;
+    font-weight: 600;
   }
 
-  .category-table th:nth-child(odd) {
-    background: #f9f9f9; /* Subtle alternating background */
-  }
-
-  .category-table th:nth-child(even) {
-    background: #f3f3f3; /* Slightly different for separation */
-  }
-
-  .category-table th:last-child {
-    border-right: none; /* Remove border from last header */
-  }
-
-  /* Minimized column widths for mobile */
   .category-table th:nth-child(1),
   .category-table td:nth-child(1) {
-    width: 40px;
-    min-width: 40px;
-    max-width: 40px;
-  }
-
-  .category-table th:nth-child(2),
-  .category-table td:nth-child(2) {
-    width: 60px;
+    width: 60px; /* ID */
     min-width: 60px;
     max-width: 60px;
   }
 
+  .category-table th:nth-child(2),
+  .category-table td:nth-child(2) {
+    width: 80px; /* IMG */
+    min-width: 80px;
+    max-width: 80px;
+  }
+
   .category-table th:nth-child(3),
   .category-table td:nth-child(3) {
-    width: 80px;
-    min-width: 80px;
-    max-width: 80px;
-  }
-
-  .category-table th:nth-child(4),
-  .category-table td:nth-child(4) {
-    width: 80px;
-    min-width: 80px;
-    max-width: 80px;
-  }
-
-  .category-table th:nth-child(5),
-  .category-table td:nth-child(5) {
-    width: 100px;
-    min-width: 100px;
-    max-width: 100px;
-  }
-
-  .category-table th:nth-child(6),
-  .category-table td:nth-child(6) {
-    width: 70px;
-    min-width: 70px;
-    max-width: 70px;
-  }
-
-  .category-table th:nth-child(7),
-  .category-table td:nth-child(7) {
-    width: 70px;
-    min-width: 70px;
-    max-width: 70px;
-  }
-
-  .category-table th:nth-child(8),
-  .category-table td:nth-child(8) {
-    width: 120px;
+    width: 120px; /* CATEGORY */
     min-width: 120px;
     max-width: 120px;
   }
 
+  .category-table th:nth-child(4),
+  .category-table td:nth-child(4) {
+    width: 140px; /* SUBCATEGORY */
+    min-width: 140px;
+    max-width: 140px;
+  }
+
+  .category-table th:nth-child(5),
+  .category-table td:nth-child(5) {
+    width: 170px; /* PRODUCT NAME */
+    min-width: 170px;
+    max-width: 170px;
+  }
+
+  .category-table th:nth-child(6),
+  .category-table td:nth-child(6) {
+    width: 100px; /* PRICE */
+    min-width: 100px;
+    max-width: 100px;
+  }
+
+  .category-table th:nth-child(7),
+  .category-table td:nth-child(7) {
+    width: 100px; /* QUANTITY */
+    min-width: 100px;
+    max-width: 100px;
+  }
+
+  .category-table th:nth-child(8),
+  .category-table td:nth-child(8) {
+    width: 200px; /* DESCRIPTION */
+    min-width: 200px;
+    max-width: 200px;
+  }
+
   .category-table th:nth-child(9),
   .category-table td:nth-child(9) {
-    width: 150px; /* For larger buttons */
-    min-width: 150px;
-    max-width: 150px;
+    width: 200px; /* ACTIONS */
+    min-width: 200px;
+    max-width: 200px;
   }
 
   .category-table td img {
-    width: 30px !important;
-    height: 30px !important;
+    width: 40px;
+    height: 40px;
     object-fit: cover;
     border-radius: 4px;
     display: block;
@@ -983,63 +992,79 @@ body {
   }
 
   .category-table .edit-delete-group {
-    display: flex;
-    gap: 0; /* No gap for combined look */
-    justify-content: center;
-    border: 1px solid #ddd; /* Shared outer border */
-    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid #ddd;
+    border-radius: 6px;
     overflow: hidden;
+    background: #fff;
+    vertical-align: middle;
+    max-width: 180px;
+    box-sizing: border-box;
+    margin: 0 auto;
   }
 
   .category-table .edit-delete-group button {
-    padding: 8px 16px; /* Unchanged */
-    font-size: 14px; /* Unchanged */
-    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    font-weight: 500;
     cursor: pointer;
+    border: none;
+    background: #fff;
     transition: background-color 0.3s, color 0.3s;
     flex: 1;
+    max-width: 90px;
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .category-table .edit-delete-group button i {
+    font-size: 14px;
+    margin-right: 4px;
+    flex-shrink: 0;
   }
 
   .category-table .edit-delete-group .edit-subcategory {
-    background: #fff;
     color: #1e88e5;
-    border-right: 1px solid #ddd; /* Unchanged */
-    border-radius: 4px 0 0 4px; /* Unchanged */
+    border-right: 1px solid #ddd;
   }
 
   .category-table .edit-delete-group .edit-subcategory:hover {
-    background: #1e88e5;
+    background-color: #1e88e5;
     color: #fff;
   }
 
   .category-table .edit-delete-group .delete-subcategory {
-    background: #fff;
     color: #dc3545;
-    border-radius: 0 4px 4px 0; /* Unchanged */
   }
 
   .category-table .edit-delete-group .delete-subcategory:hover {
-    background: #dc3545;
+    background-color: #dc3545;
     color: #fff;
   }
 
-  /* Scrollbar for table-wrapper (Unchanged) */
-  .table-wrapper::-webkit-scrollbar {
+  .category-table::-webkit-scrollbar {
     height: 8px;
   }
 
-  .table-wrapper::-webkit-scrollbar-track {
+  .category-table::-webkit-scrollbar-track {
     background: #f1f1f1;
     border-radius: 4px;
   }
 
-  .table-wrapper::-webkit-scrollbar-thumb {
+  .category-table::-webkit-scrollbar-thumb {
     background: #888;
     border-radius: 4px;
   }
 
-  .table-wrapper::-webkit-scrollbar-thumb:hover {
+  .category-table::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
 
