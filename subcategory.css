@@ -12,7 +12,7 @@ body {
 /* Navbar */
 .navbar {
   background-color: #1DA1F2;
-  padding: 10px 0; /* Remove horizontal padding to allow edge-to-edge alignment */
+  padding: 10px 0;
   color: white;
   position: fixed;
   width: 100%;
@@ -24,20 +24,22 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100% !important; /* Stretch to full width */
-  max-width: none !important; /* Remove max-width constraint */
-  margin: 0 !important; /* Remove auto margins */
-  padding: 0 10px; /* Add minimal padding for content spacing */
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 10px;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  margin-left: 0; /* Ensure title is flush with the left edge */
+  margin-left: 0;
 }
 
 .logo svg {
   margin-right: 10px;
+  width: 28px;
+  height: 28px;
 }
 
 .brand-name {
@@ -49,7 +51,7 @@ body {
   display: flex;
   align-items: center;
   gap: 15px !important;
-  justify-content: flex-end; /* Aligns icons to the right */
+  justify-content: flex-end;
 }
 
 .dashboard-pill {
@@ -57,11 +59,13 @@ body {
   align-items: center;
   color: white;
   text-decoration: none;
-  margin-right: 0; /* Remove extra margin */
+  margin-right: 0;
 }
 
 .dashboard-pill svg {
   margin-right: 5px;
+  width: 18px;
+  height: 18px;
 }
 
 .profile {
@@ -365,7 +369,7 @@ body {
   gap: 5px;
 }
 
-/* Table (Replaced with First CSS Properties) */
+/* Table (Updated for 9 Columns) */
 .table-wrapper {
   width: 100%;
   overflow-x: auto;
@@ -379,6 +383,7 @@ body {
   border: 1px solid #eee;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  table-layout: fixed;
 }
 
 .category-table th,
@@ -417,26 +422,64 @@ body {
   transition: background-color 0.3s, color 0.3s;
 }
 
-.category-table .edit-delete-group .edit-category {
+.category-table .edit-delete-group .edit-subcategory {
   background: #fff;
   color: #1e88e5;
   border: 1px solid #1e88e5;
 }
 
-.category-table .edit-delete-group .edit-category:hover {
+.category-table .edit-delete-group .edit-subcategory:hover {
   background: #1e88e5;
   color: #fff;
 }
 
-.category-table .edit-delete-group .delete-category {
+.category-table .edit-delete-group .delete-subcategory {
   background: #fff;
   color: #dc3545;
   border: 1px solid #dc3545;
 }
 
-.category-table .edit-delete-group .delete-category:hover {
+.category-table .edit-delete-group .delete-subcategory:hover {
   background: #dc3545;
   color: #fff;
+}
+
+/* Column widths for desktop */
+.category-table th:nth-child(1),
+.category-table td:nth-child(1) {
+  width: 60px; /* ID */
+}
+.category-table th:nth-child(2),
+.category-table td:nth-child(2) {
+  width: 80px; /* Image */
+}
+.category-table th:nth-child(3),
+.category-table td:nth-child(3) {
+  width: 120px; /* Category */
+}
+.category-table th:nth-child(4),
+.category-table td:nth-child(4) {
+  width: 120px; /* Subcategory */
+}
+.category-table th:nth-child(5),
+.category-table td:nth-child(5) {
+  width: 150px; /* Product Name */
+}
+.category-table th:nth-child(6),
+.category-table td:nth-child(6) {
+  width: 100px; /* Price */
+}
+.category-table th:nth-child(7),
+.category-table td:nth-child(7) {
+  width: 100px; /* Quantity */
+}
+.category-table th:nth-child(8),
+.category-table td:nth-child(8) {
+  width: 200px; /* Description */
+}
+.category-table th:nth-child(9),
+.category-table td:nth-child(9) {
+  width: 200px; /* Actions */
 }
 
 /* Popup Styles */
@@ -655,30 +698,54 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  /* Navbar (Optimized for Mobile) */
   .navbar {
-    padding: 10px 0 !important; /* Maintain no horizontal padding */
+    padding: 8px 0 !important;
   }
 
   .nav-inner {
     flex-direction: row !important;
     justify-content: space-between !important;
     align-items: center !important;
-    padding: 0 10px !important; /* Consistent padding */
+    padding: 0 5px !important;
   }
 
   .brand {
-    margin-left: 0 !important; /* Keep title flush left */
+    margin-left: 0 !important;
+  }
+
+  .logo svg {
+    margin-right: 8px;
+    width: 24px;
+    height: 24px;
+  }
+
+  .brand-name {
+    font-size: 16px;
   }
 
   .nav-actions {
-    flex-direction: row !important; /* Keep dashboard and profile icons horizontal */
+    flex-direction: row !important;
     justify-content: flex-end !important;
-    gap: 10px !important;
+    gap: 8px !important;
   }
 
-  .dashboard-pill,
+  .dashboard-pill {
+    margin: 0 !important;
+  }
+
+  .dashboard-pill svg {
+    width: 16px;
+    height: 16px;
+  }
+
   .profile {
     margin: 0 !important;
+  }
+
+  .profile-trigger img {
+    width: 30px;
+    height: 30px;
   }
 
   .profile-dropdown {
@@ -750,9 +817,9 @@ body {
     width: 100% !important;
   }
 
-  /* Minimized Category Table for Mobile (Replaced with First CSS Properties) */
+  /* Minimized Category Table for Mobile (9 Columns) */
   .container {
-    padding: 10px !important; /* Reduce container padding for mobile */
+    padding: 10px !important;
   }
 
   .table-wrapper {
@@ -764,7 +831,7 @@ body {
   .category-table {
     display: table !important;
     width: 100%;
-    min-width: 500px; /* Reduced from 800px for mobile compactness */
+    min-width: 700px;
     overflow-x: auto;
     white-space: nowrap;
     border-collapse: collapse;
@@ -790,60 +857,88 @@ body {
   .category-table th,
   .category-table td {
     display: table-cell;
-    padding: 6px !important; /* Reduced from 8px for compactness */
+    padding: 6px !important;
     margin: 0;
     border: 1px solid #eee;
     text-align: center;
     white-space: nowrap;
     box-sizing: border-box;
     vertical-align: middle;
-    font-size: 12px; /* Smaller font for mobile */
+    font-size: 12px;
   }
 
   .category-table th {
     background: #f9f9f9;
     font-weight: bold;
-    font-size: 12px; /* Match td font size */
+    font-size: 12px;
   }
 
-  /* Minimized column widths */
+  /* Minimized column widths for mobile */
   .category-table th:nth-child(1),
   .category-table td:nth-child(1) {
-    width: 40px; /* ID, reduced from 60px */
+    width: 40px;
     min-width: 40px;
     max-width: 40px;
   }
 
   .category-table th:nth-child(2),
   .category-table td:nth-child(2) {
-    width: 60px; /* IMG, reduced from 80px */
+    width: 60px;
     min-width: 60px;
     max-width: 60px;
   }
 
   .category-table th:nth-child(3),
   .category-table td:nth-child(3) {
-    width: 100px; /* CATEGORY, reduced from 150px */
-    min-width: 100px;
-    max-width: 100px;
+    width: 80px;
+    min-width: 80px;
+    max-width: 80px;
   }
 
   .category-table th:nth-child(4),
   .category-table td:nth-child(4) {
-    width: 150px; /* DESCRIPTION, reduced from 200px */
-    min-width: 150px;
-    max-width: 150px;
+    width: 80px;
+    min-width: 80px;
+    max-width: 80px;
   }
 
   .category-table th:nth-child(5),
   .category-table td:nth-child(5) {
-    width: 150px; /* ACTIONS, reduced from 200px */
-    min-width: 150px;
-    max-width: 150px;
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+  }
+
+  .category-table th:nth-child(6),
+  .category-table td:nth-child(6) {
+    width: 70px;
+    min-width: 70px;
+    max-width: 70px;
+  }
+
+  .category-table th:nth-child(7),
+  .category-table td:nth-child(7) {
+    width: 70px;
+    min-width: 70px;
+    max-width: 70px;
+  }
+
+  .category-table th:nth-child(8),
+  .category-table td:nth-child(8) {
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+  }
+
+  .category-table th:nth-child(9),
+  .category-table td:nth-child(9) {
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
   }
 
   .category-table td img {
-    width: 30px !important; /* Smaller images for mobile */
+    width: 30px !important;
     height: 30px !important;
     object-fit: cover;
     border-radius: 4px;
@@ -854,45 +949,45 @@ body {
 
   .category-table .edit-delete-group {
     display: flex;
-    gap: 10px;
+    gap: 5px;
     justify-content: center;
-    max-width: 120px; /* Reduced for mobile */
+    max-width: 90px;
     margin: 0 auto;
   }
 
   .category-table .edit-delete-group button {
-    padding: 6px 12px; /* Reduced from 8px 16px */
-    font-size: 12px; /* Reduced from 14px */
+    padding: 4px 8px;
+    font-size: 10px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
     flex: 1;
-    max-width: 60px; /* Split 120px width */
+    max-width: 45px;
     text-align: center;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .category-table .edit-delete-group .edit-category {
+  .category-table .edit-delete-group .edit-subcategory {
     background: #fff;
     color: #1e88e5;
     border: 1px solid #1e88e5;
   }
 
-  .category-table .edit-delete-group .edit-category:hover {
+  .category-table .edit-delete-group .edit-subcategory:hover {
     background: #1e88e5;
     color: #fff;
   }
 
-  .category-table .edit-delete-group .delete-category {
+  .category-table .edit-delete-group .delete-subcategory {
     background: #fff;
     color: #dc3545;
     border: 1px solid #dc3545;
   }
 
-  .category-table .edit-delete-group .delete-category:hover {
+  .category-table .edit-delete-group .delete-subcategory:hover {
     background: #dc3545;
     color: #fff;
   }
