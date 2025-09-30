@@ -648,17 +648,23 @@
         filteredSubcategories.forEach((sub, index) => {
           const row = document.createElement("tr");
           row.innerHTML = `
-            <td>${index + 1}</td>
-            <td><img src="${sub.image || defaultImage}" alt="${sub.productName || ''}" style="width: 50px; height: 50px; object-fit: cover;"></td>
-            <td>${sub.category || ''}</td>
-            <td>${sub.subcategory || ''}</td>
-            <td>${sub.productName || ''}</td>
-            <td>$${sub.price ? sub.price.toFixed(2) : '0.00'}</td>
-            <td>${sub.quantity || 0}</td>
-            <td>${sub.desc || ''}</td>
-            <td>
-              <button class="edit-subcategory" data-index="${index}">Edit</button>
-              <button class="delete-subcategory" data-index="${index}">Delete</button>
+            <td data-label="ID">${index + 1}</td>
+            <td data-label="IMAGE"><img src="${sub.image || defaultImage}" alt="${sub.productName || ''}" style="width: 50px; height: 50px; object-fit: cover;"></td>
+            <td data-label="CATEGORY">${sub.category || ''}</td>
+            <td data-label="SUBCATEGORY">${sub.subcategory || ''}</td>
+            <td data-label="PRODUCT NAME">${sub.productName || ''}</td>
+            <td data-label="PRICE">$${sub.price ? sub.price.toFixed(2) : '0.00'}</td>
+            <td data-label="QUANTITY">${sub.quantity || 0}</td>
+            <td data-label="DESCRIPTION">${sub.desc || ''}</td>
+            <td data-label="ACTIONS">
+              <div class="edit-delete-group">
+                <button class="edit-subcategory" data-index="${index}">
+                  <i class="fas fa-edit"></i> Edit
+                </button>
+                <button class="delete-subcategory" data-index="${index}">
+                  <i class="fas fa-trash"></i> Delete
+                </button>
+              </div>
             </td>
           `;
           subcategoryTableBody.appendChild(row);
@@ -814,8 +820,10 @@
       });
 
       subcategoryTableBody.addEventListener("click", (e) => {
-        if (e.target.classList.contains("edit-subcategory")) {
-          editingIndex = parseInt(e.target.getAttribute("data-index"));
+        const editButton = e.target.closest(".edit-subcategory");
+        const deleteButton = e.target.closest(".delete-subcategory");
+        if (editButton) {
+          editingIndex = parseInt(editButton.getAttribute("data-index"));
           const sub = subcategories[editingIndex];
           popupTitle.textContent = "Edit Subcategory";
           subcategoryCategorySelect.value = (sub.category || "").trim().toLowerCase();
@@ -826,8 +834,8 @@
           subcategoryDescInput.value = sub.desc;
           subcategoryImg.src = sub.image || defaultImage;
           subcategoryPopup.style.display = "flex";
-        } else if (e.target.classList.contains("delete-subcategory")) {
-          const index = parseInt(e.target.getAttribute("data-index"));
+        } else if (deleteButton) {
+          const index = parseInt(deleteButton.getAttribute("data-index"));
           if (confirm("Are you sure you want to delete this subcategory?")) {
             subcategories.splice(index, 1);
             if (isLocalStorageAvailable()) {
